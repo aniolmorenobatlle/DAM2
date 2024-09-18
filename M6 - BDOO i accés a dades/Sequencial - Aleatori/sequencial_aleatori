@@ -1,0 +1,4 @@
+Diferències clau:
+
+Accés seqüencial: adequat per llegir tot el fitxer des de principi a fi.
+Accés aleatori: adequat quan vols llegir/escriure en parts específiques del fitxer sense processar-ho tot.
