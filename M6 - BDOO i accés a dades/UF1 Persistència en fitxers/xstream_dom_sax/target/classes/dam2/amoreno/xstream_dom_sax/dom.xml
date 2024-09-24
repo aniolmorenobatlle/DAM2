@@ -1,0 +1,51 @@
+<agenda>
+        	
+    
+    <persona>
+                
+        <nom>Joan</nom>
+                
+        <cognom>Prova2</cognom>
+                
+        <mail>joanprova@gmail.com</mail>
+        	
+        
+        <telefon>46498654687</telefon>
+            
+    </persona>
+        	
+    
+    <persona>
+                
+        <nom>Aniol</nom>
+        	
+        
+        <cognom>Moreno Batlle</cognom>
+                
+        <mail>aniolmoreno@gmail.com</mail>
+                
+        <telefon>46498654687</telefon>
+            
+    </persona>
+        
+    
+    <persona>
+                
+        <nom>Maria</nom>
+                
+        <cognom>Garcia</cognom>
+                
+        <mail>mariagarcia@gmail.com</mail>
+                
+        <telefon>123456789</telefon>
+            
+    </persona>
+        
+
+    <persona>
+        <nom>prova2</nom>
+        <cognom>prova2</cognom>
+        <mail>prova2@gmail.com</mail>
+        <telefon>16476987463</telefon>
+    </persona>
+</agenda>
