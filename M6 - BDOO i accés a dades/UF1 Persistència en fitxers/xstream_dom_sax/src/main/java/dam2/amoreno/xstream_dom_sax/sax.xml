@@ -1,0 +1,14 @@
+<agenda>
+	<persona>
+		<nom>Joan</nom>
+		<cognom>Prova2</cognom>
+		<mail>joanprova@gmail.com</mail>
+		<telefon>46498654687</telefon>
+	</persona>
+	<persona>
+		<nom>Aniol</nom>
+		<cognom>Moreno Batlle</cognom>
+		<mail>aniolmoreno@gmail.com</mail>
+		<telefon>46498654687</telefon>
+	</persona>
+</agenda>
