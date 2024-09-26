@@ -1,0 +1,29 @@
+- qui ha fet la comanda (adreça)
+- producte vol (id)
+- quantatiat de producte vol
+- mirar si es possible, no quedar-se en negatiu, sortir avis si demana mes de la quantitat que hi ha
+- entrar la ruta del fitxer compartit
+- historial de comandes
+-
+
+
+enviar id article i quantitat demanada
+
+
+if (node.getNodeType() == Node.ELEMENT_NODE) {
+					Element element = (Element) node;
+
+					String id_producte = element.getElementsByTagName("id").item(0).getTextContent();
+					String descripcio_producte = element.getElementsByTagName("descripcio").item(0).getTextContent();
+					String stock_producte = element.getElementsByTagName("stock").item(0).getTextContent();
+					String preu_producte = element.getElementsByTagName("preu").item(0).getTextContent();
+
+					System.out.println("ID de producte: " + id_producte);
+					System.out.println("Descripció producte: " + descripcio_producte);
+					System.out.println("Stock producte: " + stock_producte);
+					System.out.println("Preu producte: " + preu_producte);
+					
+					System.out.println();
+            	}
+
+guardar el stock_producte i actualizar el contingut de dins restant la quantitat demanada
