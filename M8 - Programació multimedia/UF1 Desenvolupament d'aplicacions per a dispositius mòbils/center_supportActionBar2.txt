@@ -1,0 +1,20 @@
+un layout com si fos un component
+
+canviar a <LinearLayout de la primera linia
+
+
+MainActivity
+
+supportActionBar?.setCustomView(R.layout.titol);
+supportActionBar=.setDisplayShowCustomEnabled(true);
+
+
+<LinearLayout
+
+	android:orientation="horizontal">
+	
+	
+	<TextView
+		android:layout_gravity="center_vertical"
+		android:layout_gravity="center_horizontal"
+	/>

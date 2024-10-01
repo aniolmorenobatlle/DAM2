@@ -1,0 +1,25 @@
+supportActionBar?.apply {
+	
+	setDisplayShowTitleEnabled(false)
+	
+	var barPosition = Actionbar.LayoutParams(
+
+		Gravity.CENTER
+
+	)
+	
+	val barText = TextView(this@MainActivity).apply {
+	
+		text = "Text centrat"
+		setTextColor(Color.WHITE)
+		setTextSize(30dp)
+		Gravity.CENTER
+		setPadding(26)
+	
+	}
+	
+	setCustomView(barText, barPosition)
+	setDisplayShowCustomEnabled(true)
+
+	
+}
