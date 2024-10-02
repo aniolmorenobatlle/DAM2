@@ -9,11 +9,19 @@ public class Ex615 {
         casos = sc.nextInt();
 
         for (int i = 0; i < casos; i++) {
-            int pasos = sc.nextInt();
+            int pasos = sc.nextInt(); 
             int factor = sc.nextInt();
-            int temps = sc.nextInt();
+            int temps = sc.nextInt(); 
 
-            
+            int potenciaActual = (temps % pasos);
+
+            if (potenciaActual == 0) {
+                potenciaActual = pasos;
+            }
+
+            int potenciaSalt = potenciaActual * factor;
+
+            System.out.println(potenciaSalt);
         }
 
     }
