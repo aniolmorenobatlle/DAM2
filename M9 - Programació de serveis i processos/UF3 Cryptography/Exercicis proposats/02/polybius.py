@@ -68,4 +68,4 @@ if len(sys.argv) > 1:
         print(decrypt(ciphertext))
 
 else:
-    print("Please provide a message as a command line argument.")
+    print("Please provide the function(decrypt or encrypt) and the message as a command line argument.")
