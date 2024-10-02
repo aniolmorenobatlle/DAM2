@@ -5,8 +5,8 @@ import sys
 from string import ascii_lowercase as alf
 
 
-def encrypt(message):
-    encrypted = ""
+def atbash(message):
+    decrypted = ""
         
     messageList = list(message)
     alfList = list(alf)
@@ -15,20 +15,20 @@ def encrypt(message):
     
     for letter in messageList:
 
-        if letter in alfList:
+        if letter in reversedListAlf:
             # Posició lletre de l'alfabet.
-            index = alfList.index(letter)
+            index = reversedListAlf.index(letter)
 
             # Afegir la lletre pero invertit a l'alfabet invertit
-            encrypted += reversedListAlf[index]
+            decrypted += alf[index]
 
     
-    return encrypted
+    return decrypted
 
 
 
 if len(sys.argv) > 1:
     ciphertext = sys.argv[1]
-    print(encrypt(ciphertext))
+    print(atbash(ciphertext))
 else:
     print("Please provide a message as a command line argument.")

@@ -1,0 +1,26 @@
+MainActivity
+
+
+
+val studentAgeInt: int = studentAge.text.toString().toInt();
+
+
+// guaradar la info a les shared preferences del dispositiu
+
+
+// important!!!!!
+val sharedPreferences : SharedPreferences = getSharedPreferences("StudenInfo", MODE_PRIVATE)
+
+val editor = sharedPreferences.edit()
+
+editor.putString("StudentName", studentName.text.toString()
+editor.putInt("StudentAge", studentAgeInt)
+editor.putBoolean("True", true)
+editor.apply()
+
+
+val intent = Intent(this, SecondScreen::class.java)
+startActivity(intent)
+
+
+
