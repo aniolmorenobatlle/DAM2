@@ -1,0 +1,11 @@
+MainActivity
+
+
+val studentName : EditText = findViewByID(R.id.studentName)
+
+if (studentName.text.toString().isEmpty()) {
+	studentName.error("El camp no pot estar buit")
+} else {
+	Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+}
+
