@@ -1,4 +1,0 @@
-Joan, 2, Empleat, 20000
-Aniol, 3, Manager, 400000
-Aniol, 4, Manager, 400000
-Aniol, 5, Manager, 400000
