@@ -18,12 +18,13 @@ def decrypt ():
         if letter in vowels:
             vowels_count += 1
 
+    print("Vocals en la paraula original:", vowels_count)
     
     if (vowels_count / len(word)) > 0.37:
         for i in range(26):
             decrypted = ''
-
             
+
 
 
 decrypt()
