@@ -267,7 +267,10 @@ public class App
 	public static void xStreamWrite() {
 		XStream xstream = new XStream();
 		
-        File fitxer = new File("src/main/java/dam2/amoreno/xstream_dom_sax/xstream.xml");
+		System.out.print("Escriu al ruta de l'arxiu: ");
+		String ruta = sc.next();
+
+        File fitxer = new File(ruta);
         
         xstream.addPermission(AnyTypePermission.ANY);
         
