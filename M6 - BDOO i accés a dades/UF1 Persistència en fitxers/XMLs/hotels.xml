@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hotels>
+  <hotel>
+    <nom>Hotel Sol</nom>
+    <adreça>Carrer del Sol, 123</adreça>
+    <habitacions>
+      <habitació>
+        <número>101</número>
+        <tipus>doble</tipus>
+        <preu>80</preu>
+      </habitació>
+      <habitació>
+        <número>102</número>
+        <tipus>individual</tipus>
+        <preu>60</preu>
+      </habitació>
+    </habitacions>
+  </hotel>
+  <hotel>
+    <nom>Hotel Mar</nom>
+    <adreça>Carrer del Mar, 2</adreça>
+    <habitacions>
+      <habitació>
+        <número>1201</número>
+        <tipus>doble</tipus>
+        <preu>120</preu>
+      </habitació>
+      <habitació>
+        <número>102</número>
+        <tipus>individual</tipus>
+        <preu>60</preu>
+      </habitació>
+    </habitacions>
+  </hotel>
+</hotels>

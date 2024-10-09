@@ -11,14 +11,21 @@ def encrypt():
 
     for i in range(word_length):
 
-        # Crear una fila amb * per a totes les posicions
-        row = ['*'] * columns
-        
-        # Posar la lletra en la posició i.
-        row[i] = word[i]
-        
-        # Afegim la fila a la llista de files
-        files.append(''.join(row))
+        if len(files) < rows:
+
+            # Crear una fila amb * per a totes les posicions
+            row = ['*'] * columns
+            
+            # Posar la lletra en la posició i.
+            row[i] = word[i]
+            
+            # Afegim la fila a la llista de files
+            files.append(''.join(row))
+
+            
+
+        else:
+            break
 
 
     for f in files:
