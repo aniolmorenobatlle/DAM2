@@ -1,8 +1,3 @@
-
-
-
-
-
 # Curs de Desenvolupament d'Aplicacions Multiplataforma (DAM) 24-25
 
 Benvinguts al repositori del cicle formatiu de Desenvolupament d'Aplicacions Multiplataforma (DAM) 24-25 de l'Institut Palamós!
