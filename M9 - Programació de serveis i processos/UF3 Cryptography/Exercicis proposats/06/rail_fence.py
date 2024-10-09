@@ -4,10 +4,25 @@
 def encrypt():
     word = 'wearediscoveredrunatonce'
     word_length = len(word)
-    rails = 4
+    columns = word_length
+    rows = 4
 
-    for _ in range(rails):
-        print('*' * word_length)
+    files = []
+
+    for i in range(word_length):
+
+        # Crear una fila amb * per a totes les posicions
+        row = ['*'] * columns
+        
+        # Posar la lletra en la posició i.
+        row[i] = word[i]
+        
+        # Afegim la fila a la llista de files
+        files.append(''.join(row))
+
+
+    for f in files:
+        print(f)
 
     
 
