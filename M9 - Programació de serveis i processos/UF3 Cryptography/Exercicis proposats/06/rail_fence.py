@@ -18,11 +18,10 @@ def encrypt():
             
             # Posar la lletra en la posició i.
             row[i] = word[i]
-            
+
+
             # Afegim la fila a la llista de files
             files.append(''.join(row))
-
-            
 
         else:
             break
@@ -31,6 +30,5 @@ def encrypt():
     for f in files:
         print(f)
 
-    
 
 encrypt();
