@@ -5,6 +5,8 @@ public class Ex112 {
 
     public static void main(String[] args) throws Exception {
 
+        // No sé perquè però el AceptaElReto no l'accpeta.
+
         while (true) {
             int distancia = sc.nextInt();
             int velocitatkm = sc.nextInt();
