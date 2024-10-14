@@ -6,7 +6,9 @@ public interface DAO {
 
     List<Usuaris> LlistarUsuaris();
 
-    boolean create(Usuaris usu);
-    boolean update(Usuaris usu);
-    boolean delete(int id);
+    boolean create(Usuaris usuari);
+    boolean update(Usuaris usuari);
+    boolean delete(String email);
+
+    Usuaris cercaEmail(String email);
 }

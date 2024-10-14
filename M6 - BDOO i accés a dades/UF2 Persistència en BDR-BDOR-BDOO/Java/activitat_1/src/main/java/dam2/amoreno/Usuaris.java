@@ -1,39 +1,63 @@
 package dam2.amoreno;
 
-import java.util.List;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+public class Usuaris {
 
-public class Usuaris implements DAO {
+	private int id;
+	private String nom;
+	private String cognoms;
+	private String data_naixement;
+	private String email;
 
-	private static final String URL = "jdbc:mysql://localhost:3306/activitat1";
-    private static final String USER = "aniol";
-    private static final String PASSWORD = "aniol1234";
 
-	private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
-    }
+	public Usuaris() {}
 
-	@Override
-	public List<Usuaris> LlistarUsuaris() {
 
-		
-		String sql = "SELECT * FROM usuaris";
+	public int getId() {
+		return id;
 	}
 
-	@Override
-	public boolean create(Usuaris usuaris) {
-		return false;
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	@Override
-	public boolean update(Usuaris usuaris) {
-		return false;
+
+	public String getNom() {
+		return nom;
 	}
 
-	@Override
-	public boolean delete(int id) {
-		return false;
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public String getCognoms() {
+		return cognoms;
+	}
+
+
+	public void setCognoms(String cognoms) {
+		this.cognoms = cognoms;
+	}
+
+
+	public String getData_naixement() {
+		return data_naixement;
+	}
+
+
+	public void setData_naixement(String data_naixement) {
+		this.data_naixement = data_naixement;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
