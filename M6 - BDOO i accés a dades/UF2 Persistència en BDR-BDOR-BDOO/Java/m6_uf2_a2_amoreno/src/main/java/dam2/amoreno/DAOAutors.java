@@ -8,5 +8,5 @@ public interface DAOAutors {
 
     boolean create(Autors autor);
     boolean update(Autors autor);
-    boolean delete(Integer id);
+    boolean delete(int id);
 }

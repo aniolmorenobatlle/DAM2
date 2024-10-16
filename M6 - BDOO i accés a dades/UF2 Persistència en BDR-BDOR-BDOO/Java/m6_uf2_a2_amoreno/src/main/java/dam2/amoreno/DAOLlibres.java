@@ -8,5 +8,5 @@ public interface DAOLlibres {
 
     boolean create(Llibres llibre);
     boolean update(Llibres llibre);
-    boolean delete(String titol);
+    boolean delete(int id);
 }

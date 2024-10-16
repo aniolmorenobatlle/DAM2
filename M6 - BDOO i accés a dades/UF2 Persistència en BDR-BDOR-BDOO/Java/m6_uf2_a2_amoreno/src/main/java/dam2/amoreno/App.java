@@ -69,6 +69,7 @@ public class App
         
         System.out.println("---------------------------------------------");
 
+        System.out.println();
         System.out.println("Llibres:");
         System.out.println();
 
@@ -96,7 +97,7 @@ public class App
                 break;
 
             case 4: 
-                eliminarLlibre();
+                eliminarLlibre(DAOLlibres);
                 break;
         
             default:
@@ -113,6 +114,8 @@ public class App
 
     // 1.2 Llistar llibres
     public static void llistarLlibres(DAOLlibres DAOLlibres) {
+        System.out.println("---------------------------------------------");
+
         System.out.println();
         System.out.println("Llibres: ");
         System.out.println();
@@ -138,7 +141,46 @@ public class App
 
 
     // 1.4 Eliminar llibre
-    public static void eliminarLlibre() {}
+    public static void eliminarLlibre(DAOLlibres DAOLlibres) {
+        sc.useDelimiter("\\n");
+
+        System.out.println("---------------------------------------------");
+
+        System.out.println();
+        System.out.println("Eliminar llibre:");
+        System.out.println();
+
+        System.out.println("Llibres: ");
+        System.out.println();
+
+        List<Llibres> llibres = DAOLlibres.LlistarLlibres();
+
+        System.out.println("---------------------------------------------");
+
+        int i = 1;
+
+        for (Llibres llibre : llibres) {
+            System.out.println(i + ". " + llibre.getTitol() + " - " + llibre.getAutor());
+            i++;
+            System.out.println("---------------------------------------------");
+        }
+
+        Llibres eliminarLlibre = new Llibres();
+
+        System.out.println();
+        System.out.print("Id del llibre a eliminar: ");
+        eliminarLlibre.setId(sc.nextInt());
+
+        System.out.println();
+
+        boolean eliminat = DAOLlibres.delete(eliminarLlibre.getId());
+
+        if (eliminat) {
+            System.out.println("Llibre eliminat correctament!!");
+        } else {
+            System.out.println("Error en eliminar el llibre!!");;
+        }
+    }
 
 
 
@@ -174,7 +216,7 @@ public class App
                 break;
 
             case 4: 
-                eliminarAutor();
+                eliminarAutor(DAOAutors);
                 break;
         
             default:
@@ -185,6 +227,8 @@ public class App
 
     // 2.1 Afegir autor
     public static void afegirAutor() {
+        System.out.println("---------------------------------------------");
+
         System.out.println();
         System.out.println("Afegir autor:");
         System.out.println();
@@ -216,6 +260,8 @@ public class App
 
     // 2.2 Llistar autors
     public static void llistarAutors(DAOAutors DAOAutors) {
+        System.out.println("---------------------------------------------");
+
         System.out.println();
         System.out.println("Autors: ");
         System.out.println();
@@ -239,7 +285,46 @@ public class App
 
 
     // 2.4 Eliminar autor
-    public static void eliminarAutor() {}
+    public static void eliminarAutor(DAOAutors DAOAutors) {
+        sc.useDelimiter("\\n");
+
+        System.out.println("---------------------------------------------");
+
+        System.out.println();
+        System.out.println("Eliminar autor:");
+        System.out.println();
+
+        System.out.println("Autors: ");
+        System.out.println();
+
+        List<Autors> autors = DAOAutors.LlistarAutors();
+
+        System.out.println("---------------------------------------------");
+
+        int i = 1;
+
+        for (Autors autor : autors) {
+            System.out.println(i + ". " + autor.getNom() + autor.getCognoms());
+            i++;
+            System.out.println("---------------------------------------------");
+        }
+
+        Autors eliminarAutor = new Autors();
+
+        System.out.println();
+        System.out.print("Id del autor a eliminar: ");
+        eliminarAutor.setId(sc.nextInt());
+
+        System.out.println();
+
+        boolean eliminat = DAOAutors.delete(eliminarAutor.getId());
+
+        if (eliminat) {
+            System.out.println("Autor eliminat correctament!!");
+        } else {
+            System.out.println("Error en eliminar l'autor!!");
+        }
+    }
 
 
 
@@ -248,6 +333,7 @@ public class App
     public static void categories() {
         System.out.println("---------------------------------------------");
 
+        System.out.println();
         System.out.println("Categories:");
         System.out.println();
 
@@ -263,7 +349,7 @@ public class App
 
         switch (opcio) {
             case 1:
-                categoriesActuals(DAOCategories);
+                llistarCategories(DAOCategories);
                 afegirCategoria();
                 break;
 
@@ -287,6 +373,8 @@ public class App
 
     // 2.1 Afegir categoria
     public static void afegirCategoria() {
+        System.out.println("---------------------------------------------");
+
         System.out.println();
         System.out.println("Afegir categoria:");
         System.out.println();
@@ -312,6 +400,8 @@ public class App
 
     // 2.2 Llistar cateogires
     public static void llistarCategories(DAOCategories DAOCategories) {
+        System.out.println("---------------------------------------------");
+
         System.out.println();
         System.out.println("Categories: ");
         System.out.println();
@@ -321,24 +411,8 @@ public class App
         System.out.println("---------------------------------------------");
 
         for (Categories categoria : categories) {
-            System.out.println("Nom de la categoria: " + categoria.getNom());
-
-            System.out.println("---------------------------------------------");
-        }
-    }
-
-    // Categories actuals
-    public static void categoriesActuals(DAOCategories DAOCategories) {
-        System.out.println("Categories Actuals: ");
-        System.out.println();
-
-        List<Categories> categories = DAOCategories.LlistarCategories();
-
-        System.out.println("---------------------------------------------");
-
-
-        for (Categories categoria : categories) {
             System.out.println(categoria.getNom());
+
             System.out.println("---------------------------------------------");
         }
     }
@@ -352,7 +426,10 @@ public class App
     public static void eliminarCategoria(DAOCategories DAOCategories) {
         sc.useDelimiter("\\n");
 
-        System.out.println("Eliminar usuari:");
+        System.out.println("---------------------------------------------");
+
+        System.out.println();
+        System.out.println("Eliminar categoria:");
         System.out.println();
 
 
@@ -373,9 +450,19 @@ public class App
 
         Categories eliminarCategoria = new Categories();
 
-        System.out.print("Id de la categoria: ");
-        eliminarCategoria.getId(sc.nextInt());
+        System.out.println();
+        System.out.print("Id de la categoria a eliminar: ");
+        eliminarCategoria.setId(sc.nextInt());
 
+        System.out.println();
+
+        boolean eliminat = DAOCategories.delete(eliminarCategoria.getId());
+
+        if (eliminat) {
+            System.out.println("Categoria eliminada correctament!!");
+        } else {
+            System.err.println("Error en eliminar la categoria!!");
+        }
     }
 
 }

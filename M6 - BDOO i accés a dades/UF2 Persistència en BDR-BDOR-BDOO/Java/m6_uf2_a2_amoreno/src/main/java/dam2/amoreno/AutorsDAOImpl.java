@@ -108,8 +108,20 @@ public class AutorsDAOImpl implements DAOAutors {
 
 
     @Override
-    public boolean delete(Integer id) {
-        return false;
+    public boolean delete(int id) {
+        String query = "DELETE FROM Autor WHERE id = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, id);
+
+            return stmt.executeUpdate() > 0;
+            
+        } catch (SQLException e) {
+            System.out.println("Error en eliminar l'autor!!");
+
+            return false;
+        }
     }
     
 }
