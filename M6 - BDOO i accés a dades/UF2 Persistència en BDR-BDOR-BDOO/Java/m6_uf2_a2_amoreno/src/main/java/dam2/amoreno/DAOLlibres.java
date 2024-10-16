@@ -1,0 +1,12 @@
+package dam2.amoreno;
+
+import java.util.List;
+
+public interface DAOLlibres {
+
+    List<Llibres> LlistarLlibres();
+
+    boolean create(Llibres llibre);
+    boolean update(Llibres llibre);
+    boolean delete(String titol);
+}
