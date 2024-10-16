@@ -19,7 +19,12 @@ public class LlibresDAOImpl implements DAOLlibres {
     @Override
     public List<Llibres> LlistarLlibres() {
         List<Llibres> llibres = new ArrayList<>();
-        String query = "SELECT * FROM Llibre";
+        String query = "SELECT Llibre.id, Llibre.titol, Llibre.isbn, Llibre.any_publicacio, "
+                        + "CONCAT(Autor.nom, ' ', Autor.cognoms) AS autor_nom_complet, "
+                        + "Categoria.nom_categoria "
+                        + "FROM Llibre "
+                        + "JOIN Autor ON Llibre.autor_id = Autor.id "
+                        + "JOIN Categoria ON Llibre.categoria_id = Categoria.id";
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             ResultSet resultSet = stmt.executeQuery();
@@ -31,8 +36,8 @@ public class LlibresDAOImpl implements DAOLlibres {
                 llibre.setTitol(resultSet.getString("titol"));
                 llibre.setISBN(resultSet.getString("isbn"));
                 llibre.setAny(resultSet.getString("any_publicacio"));
-                llibre.setAutor(resultSet.getString("autor_id"));
-                llibre.setCategoria(resultSet.getString("categoria_id"));
+                llibre.setAutor(resultSet.getString("autor_nom_complet"));
+                llibre.setCategoria(resultSet.getString("nom_categoria"));
 
                 llibres.add(llibre);
             }
@@ -46,22 +51,31 @@ public class LlibresDAOImpl implements DAOLlibres {
 
     @Override
     public boolean create(Llibres llibre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        return false;
     }
 
 
     @Override
     public boolean update(Llibres llibre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        return false;
     }
 
 
     @Override
-    public boolean delete(String titol) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public boolean delete(int id) {
+        String query = "DELETE FROM Llibre WHERE id = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, id);
+
+            return stmt.executeUpdate() > 0;
+            
+        } catch (SQLException e) {
+            System.out.println("Error en eliminar el llibre!!");
+
+            return false;
+        }
     }
     
 }
