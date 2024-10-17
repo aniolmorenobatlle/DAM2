@@ -13,11 +13,8 @@ public class App
 
     static {
         try {
-
             conn = SingletonBD.getConnection();
-
         } catch (SQLException e) {
-
             System.out.println("Error en connectar-se a la base de dades!!");
         }
     }
@@ -108,16 +105,72 @@ public class App
 
     // 1.1 Afegir llibre
     public static void afegirLlibre() {
-        
+        System.out.println("---------------------------------------------");
+        sc.useDelimiter("\\n");
+
+        System.out.println();
+        System.out.println("Afegir un llibre: ");
+        System.out.println();
+
+        Llibres nouLlibre = new Llibres();
+
+        System.out.print("Nom del llibre: ");
+        nouLlibre.setTitol(sc.next());
+
+        System.out.print("ISBN del llibre (ex: 978-0747532699): ");
+        nouLlibre.setISBN(sc.next());
+
+        System.out.print("Data de llençament del llibre: ");
+        nouLlibre.setAny(sc.next());
+
+
+        System.out.println();
+        List<Autors> autors = DAOAutors.LlistarAutors();
+
+        System.out.println("---------------------------------------------");
+
+        int i = 1;
+
+        for (Autors autor : autors) {
+            System.out.println(i + ". " + autor.getNom() + autor.getCognoms());
+            i++;
+            System.out.println("---------------------------------------------");
+        }
+
+        System.out.print("Selecciona l'autor del llibre: ");
+        nouLlibre.setAutor(sc.next());
+
+        System.out.println();
+
+
+        List<Categories> categories = DAOCategories.LlistarCategories();
+
+        System.out.println("---------------------------------------------");
+
+        int j = 1;
+
+        for (Categories categoria : categories) {
+            System.out.println(j + ". " + categoria.getNom());
+            j++;
+            System.out.println("---------------------------------------------");
+        }
+
+        System.out.print("Selecciona la categoria del llibre: ");
+        nouLlibre.setCategoria(sc.next());
+
+        System.out.println();
+
+        boolean afegit = DAOLlibres.create(nouLlibre);
+
+        if (afegit) System.out.println("El llibre s'ha afegir correctament!!");
     }
 
 
     // 1.2 Llistar llibres
     public static void llistarLlibres(DAOLlibres DAOLlibres) {
-        System.out.println("---------------------------------------------");
 
         System.out.println();
-        System.out.println("Llibres: ");
+        System.out.println("-------- Llistar llibres -------- ");
         System.out.println();
 
         List<Llibres> llibres = DAOLlibres.LlistarLlibres();
@@ -137,7 +190,9 @@ public class App
 
 
     // 1.3 Actualitzar llibre
-    public static void actualitzarLlibre() {}
+    public static void actualitzarLlibre() {
+        
+    }
 
 
     // 1.4 Eliminar llibre
@@ -175,11 +230,7 @@ public class App
 
         boolean eliminat = DAOLlibres.delete(eliminarLlibre.getId());
 
-        if (eliminat) {
-            System.out.println("Llibre eliminat correctament!!");
-        } else {
-            System.out.println("Error en eliminar el llibre!!");;
-        }
+        if (eliminat) System.out.println("Llibre eliminat correctament!!");
     }
 
 
@@ -212,7 +263,7 @@ public class App
                 break;
 
             case 3:
-                actualitzarAutor();
+                actualitzarAutor(DAOAutors);
                 break;
 
             case 4: 
@@ -250,11 +301,7 @@ public class App
 
         boolean afegit = DAOAutors.create(nouAutor);
 
-        if (afegit) {
-            System.out.println("Autor creat correctament!!");
-        } else {
-            System.out.println("Hi ha hagut algun problema en crear l'autor!!");
-        }
+        if (afegit) System.out.println("Autor creat correctament!!");
     }
 
 
@@ -281,7 +328,58 @@ public class App
 
 
     // 2.3 Actualitzar autor
-    public static void actualitzarAutor() {}
+    public static void actualitzarAutor(DAOAutors DAOAutors) {
+        sc.useDelimiter("\\n");
+
+        System.out.println("---------------------------------------------");
+
+        System.out.println();
+        System.out.println("Actualitzar un autor:");
+        System.out.println();
+
+        System.out.println("---------------------------------------------");
+
+        List<Autors> autors = DAOAutors.LlistarAutors();
+
+        int i = 1;
+
+        for (Autors autor : autors) {
+            System.out.println(i + ". " + autor.getNom() + " " + autor.getCognoms());
+            i++;
+            System.out.println("---------------------------------------------");
+        }
+
+        System.out.println();
+
+
+        Autors actualitzarAutor = new Autors();
+
+
+        System.out.print("Id de l'autor a actualizar: ");
+        actualitzarAutor.setId(sc.nextInt());
+
+        System.out.println();
+
+        System.out.println("NOTA: S'actualitzen totes les dades, si hi ha alguna dada que no vols actualitzar hauràs d'escriure la dada que ja hi havia!!");
+
+        System.out.println();
+        
+
+        System.out.print("Nom: ");
+        actualitzarAutor.setNom(sc.next());
+
+        System.out.print("Cognoms: ");
+        actualitzarAutor.setCognoms(sc.next());
+
+        System.out.print("Any de naixement (en format YYYY-MM-DD): ");
+        actualitzarAutor.setData(sc.next());
+
+        System.out.println();
+
+        boolean actualitzat = DAOAutors.update(actualitzarAutor);
+
+        if (actualitzat) System.out.println("Autor actualitzat correctament!!");
+    }
 
 
     // 2.4 Eliminar autor
@@ -319,11 +417,7 @@ public class App
 
         boolean eliminat = DAOAutors.delete(eliminarAutor.getId());
 
-        if (eliminat) {
-            System.out.println("Autor eliminat correctament!!");
-        } else {
-            System.out.println("Error en eliminar l'autor!!");
-        }
+        if (eliminat) System.out.println("Autor eliminat correctament!!");
     }
 
 
@@ -358,7 +452,7 @@ public class App
                 break;
 
             case 3:
-                actualitzarCategoria();
+                actualitzarCategoria(DAOCategories);
                 break;
 
             case 4:
@@ -390,11 +484,7 @@ public class App
 
         boolean afegit = DAOCategories.create(novaCategoria);
 
-        if (afegit) {
-            System.out.println("Categoria creada correctament!!");
-        } else {
-            System.out.println("Hi ha hagut algun problema en crear la categoria!!");
-        }
+        if (afegit) System.out.println("Categoria creada correctament!!");
     }
 
 
@@ -419,7 +509,46 @@ public class App
 
 
     // 2.3 Actualitzar categoria
-    public static void actualitzarCategoria() {}
+    public static void actualitzarCategoria(DAOCategories DAOCategories) {
+        sc.useDelimiter("\\n");
+
+        System.out.println("---------------------------------------------");
+
+        System.out.println();
+        System.out.println("Actualitzar una categoria:");
+        System.out.println();
+
+        Categories actualitzarCategoria = new Categories();
+
+        System.out.println("---------------------------------------------");
+
+        int i = 1;
+
+        List<Categories> categories = DAOCategories.LlistarCategories();
+
+        for (Categories categoria : categories) {
+            System.out.println(i + ". " + categoria.getNom());
+            i++;
+            System.out.println("---------------------------------------------");
+        }
+
+        System.out.println();
+
+        System.out.print("Id de la categoria a actualitzar: ");
+        actualitzarCategoria.setId(sc.nextInt());
+
+        System.out.println();
+
+        System.out.print("Escriu el nou nom de la categoria: ");
+        actualitzarCategoria.setNom(sc.next());
+
+        System.out.println();
+
+        boolean actualitzat = DAOCategories.update(actualitzarCategoria);
+
+        if (actualitzat) System.out.println("La categoria s'ha actualitzat correctament!!");
+
+    }
 
 
     // 2.4 Eliminar categoria
@@ -458,11 +587,7 @@ public class App
 
         boolean eliminat = DAOCategories.delete(eliminarCategoria.getId());
 
-        if (eliminat) {
-            System.out.println("Categoria eliminada correctament!!");
-        } else {
-            System.err.println("Error en eliminar la categoria!!");
-        }
+        if (eliminat) System.out.println("Categoria eliminada correctament!!");
     }
 
 }

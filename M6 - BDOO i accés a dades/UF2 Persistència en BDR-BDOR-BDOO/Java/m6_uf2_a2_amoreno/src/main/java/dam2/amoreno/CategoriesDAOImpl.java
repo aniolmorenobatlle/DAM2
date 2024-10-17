@@ -94,6 +94,19 @@ public class CategoriesDAOImpl implements DAOCategories {
 
     @Override
     public boolean update(Categories categoria) {
+        String query = "UPDATE Categoria SET nom_categoria = ? WHERE id = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, categoria.getNom());
+            stmt.setInt(2, categoria.getId());
+
+            return stmt.executeUpdate() > 0;
+
+        } catch(SQLException e) {
+            System.out.println("Error en actualitzar la categoria!!");
+        }
+        
         return false;
     }
 
