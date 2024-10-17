@@ -51,7 +51,22 @@ public class LlibresDAOImpl implements DAOLlibres {
 
     @Override
     public boolean create(Llibres llibre) {
-        return false;
+        String query = "INSERT INTO Llibre (titol, isbn, any_publicacio, autor_id, categoria_id) VALUES (?, ?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, llibre.getTitol());
+            stmt.setString(2, llibre.getISBN());
+            stmt.setString(3, llibre.getAny());
+            stmt.setString(4, llibre.getAutor());
+            stmt.setString(5, llibre.getCategoria());
+
+            return stmt.executeUpdate() > 0;
+            
+        } catch (SQLException e) {
+            System.out.println("Hi ha hagut algun problema en inserir el llibre!!");
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

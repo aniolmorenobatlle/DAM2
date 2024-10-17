@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<stock>
+	<article>
+		<id>1</id>
+		<descripcio>alsjdflakjsdf</descripcio>
+		<quantitat>6</quantitat>
+		<preu>3.99</preu>
+	</article>
+
+	<article>
+		<id>2</id>
+		<descripcio>1yiyqieywqiye</descripcio>
+		<quantitat>25</quantitat>
+		<preu>25.50</preu>
+	</article>
+	<article>
+		<id>3</id>
+		<descripcio>añsdkfjlakjdsf</descripcio>
+		<quantitat>80</quantitat>
+		<preu>1.25</preu>
+	</article>
+	<article>
+		<id>4</id>
+		<descripcio>akjeliajfoieua</descripcio>
+		<quantitat>5</quantitat>
+		<preu>5.0</preu>
+	</article>
+</stock>

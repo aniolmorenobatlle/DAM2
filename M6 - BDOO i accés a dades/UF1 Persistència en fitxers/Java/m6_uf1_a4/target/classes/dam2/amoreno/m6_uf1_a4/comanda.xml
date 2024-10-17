@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<comandes>
+    	
+    <comanda>
+        		
+        <id>1</id>
+        		
+        <client>
+            			
+            <nom>Hola</nom>
+            			
+            <adreca>hola@gmail.com</adreca>
+            		
+        </client>
+        		
+        <articles>
+            			
+            <article>
+                				
+                <idProducte>1</idProducte>
+                				
+                <quantitat>2</quantitat>
+                			
+            </article>
+            			
+            <article>
+                				
+                <idProducte>2</idProducte>
+                				
+                <quantitat>5</quantitat>
+                			
+            </article>
+            		
+        </articles>
+        	
+    </comanda>
+    	
+    <comanda>
+        		
+        <id>2</id>
+        		
+        <client>
+            			
+            <nom>prova2</nom>
+            			
+            <adreca>prova2@gmail.com</adreca>
+            		
+        </client>
+        		
+        <articles>
+            			
+            <article>
+                				
+                <idProducte>4</idProducte>
+                				
+                <quantitat>2</quantitat>
+                			
+            </article>
+            		
+        </articles>
+        	
+    </comanda>
+    
+    <comanda>
+        <id>3</id>
+        <client>
+            <nom>Prova24</nom>
+            <adreca>prova24@gmail.com</adreca>
+        </client>
+        <articles>
+            <article>
+                <idProducte>5</idProducte>
+                <quantitat>2</quantitat>
+            </article>
+        </articles>
+    </comanda>
+</comandes>

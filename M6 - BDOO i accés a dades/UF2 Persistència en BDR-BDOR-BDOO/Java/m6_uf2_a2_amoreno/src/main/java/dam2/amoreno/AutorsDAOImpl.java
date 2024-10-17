@@ -103,6 +103,21 @@ public class AutorsDAOImpl implements DAOAutors {
 
     @Override
     public boolean update(Autors autor) {
+        String query = "UPDATE Autor SET nom = ?, cognoms = ?, data_naixement = ? WHERE id = ? ";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            
+            stmt.setString(1, autor.getNom());
+            stmt.setString(2, autor.getCognoms());
+            stmt.setString(3, autor.getData());
+            stmt.setInt(4, autor.getId());
+
+            return stmt.executeUpdate() > 0;
+
+        } catch(SQLException e) {
+            System.out.println("Error en actualitzar l'autor!!");
+        }
+
         return false;
     }
 
