@@ -80,6 +80,9 @@ public class App
         System.out.print("Selecciona una opció: ");
         int opcio = sc.nextInt();
 
+        System.out.println();
+        System.out.println("---------------------------------------------");
+
         switch (opcio) {
             case 1:
                 afegirLlibre();
@@ -98,6 +101,7 @@ public class App
                 break;
         
             default:
+                System.out.println("Opció no vàlida.");
                 break;
         }
     }
@@ -105,11 +109,12 @@ public class App
 
     // 1.1 Afegir llibre
     public static void afegirLlibre() {
-        System.out.println("---------------------------------------------");
         sc.useDelimiter("\\n");
 
         System.out.println();
         System.out.println("Afegir un llibre: ");
+        System.out.println();
+        System.out.println("---------------------------------------------");
         System.out.println();
 
         Llibres nouLlibre = new Llibres();
@@ -122,22 +127,25 @@ public class App
 
         System.out.print("Data de llençament del llibre: ");
         nouLlibre.setAny(sc.next());
-
-
+        
+        
         System.out.println();
+
         List<Autors> autors = DAOAutors.LlistarAutors();
+
+        System.out.println("Autors: ");
 
         System.out.println("---------------------------------------------");
 
-        int i = 1;
 
         for (Autors autor : autors) {
-            System.out.println(i + ". " + autor.getNom() + autor.getCognoms());
-            i++;
+            System.out.println(autor.getId() + ". " + autor.getNom() + " " + autor.getCognoms());
             System.out.println("---------------------------------------------");
         }
 
-        System.out.print("Selecciona l'autor del llibre: ");
+        System.out.println();
+
+        System.out.print("ID de l'autor de llibre: ");
         nouLlibre.setAutor(sc.next());
 
         System.out.println();
@@ -145,17 +153,18 @@ public class App
 
         List<Categories> categories = DAOCategories.LlistarCategories();
 
+        System.out.println("Categories: ");
+
         System.out.println("---------------------------------------------");
 
-        int j = 1;
-
         for (Categories categoria : categories) {
-            System.out.println(j + ". " + categoria.getNom());
-            j++;
+            System.out.println(categoria.getId() + ". " + categoria.getNom());
             System.out.println("---------------------------------------------");
         }
 
-        System.out.print("Selecciona la categoria del llibre: ");
+        System.out.println();
+
+        System.out.print("ID de la categoria del llibre: ");
         nouLlibre.setCategoria(sc.next());
 
         System.out.println();
@@ -168,9 +177,8 @@ public class App
 
     // 1.2 Llistar llibres
     public static void llistarLlibres(DAOLlibres DAOLlibres) {
-
         System.out.println();
-        System.out.println("-------- Llistar llibres -------- ");
+        System.out.println("Llistar llibres: ");
         System.out.println();
 
         List<Llibres> llibres = DAOLlibres.LlistarLlibres();
@@ -186,12 +194,97 @@ public class App
 
             System.out.println("---------------------------------------------");
         }
+
+        System.out.println();
     }
 
 
     // 1.3 Actualitzar llibre
     public static void actualitzarLlibre() {
+        sc.useDelimiter("\\n");
+
+        System.out.println();
+        System.out.println("Afegir un llibre: ");
+        System.out.println();
+        System.out.println("---------------------------------------------");
+
+
+        List<Llibres> llibres = DAOLlibres.LlistarLlibres();
+
+        System.out.println();
+        System.out.println("Llibres: ");
+        System.out.println("---------------------------------------------");
+
+        for (Llibres llibre : llibres) {
+            System.out.println(llibre.getId() + ". " + llibre.getTitol() + " - " + llibre.getAutor());
+            System.out.println("---------------------------------------------");
+        }
+
+        System.out.println();
+
+
+        Llibres nouLlibre = new Llibres();
+
+        System.out.print("ID del llibre: ");
+        nouLlibre.setId(sc.nextInt());
+
+        System.out.println();
         
+        System.out.println("NOTA: S'actualitzen totes les dades, si hi ha alguna dada que no vols actualitzar hauràs d'escriure la dada que ja hi havia!!");
+
+        System.out.println();
+
+        System.out.print("Nou nom del llibre: ");
+        nouLlibre.setTitol(sc.next());
+
+        System.out.print("Nova data de llençament del llibre: ");
+        nouLlibre.setAny(sc.next());
+
+
+        System.out.println();
+
+        List<Autors> autors = DAOAutors.LlistarAutors();
+
+        System.out.println("Autors: ");
+
+        System.out.println("---------------------------------------------");
+
+
+        for (Autors autor : autors) {
+            System.out.println(autor.getId() + ". " + autor.getNom() + " " + autor.getCognoms());
+            System.out.println("---------------------------------------------");
+        }
+
+        System.out.println();
+
+        System.out.print("Selecciona l'ID l'autor del llibre: ");
+        nouLlibre.setAutor(sc.next());
+
+        System.out.println();
+
+
+        List<Categories> categories = DAOCategories.LlistarCategories();
+
+        System.out.println("Categories: ");
+
+        System.out.println("---------------------------------------------");
+
+        for (Categories categoria : categories) {
+            System.out.println(categoria.getId() + ". " + categoria.getNom());
+            System.out.println("---------------------------------------------");
+        }
+
+        System.out.println();
+
+        System.out.print("Selecciona l'ID la categoria del llibre: ");
+        nouLlibre.setCategoria(sc.next());
+
+        System.out.println();
+
+        boolean afegit = DAOLlibres.update(nouLlibre);
+
+        if (afegit) System.out.println("El llibre s'ha afegir correctament!!");
+
     }
 
 
@@ -199,31 +292,28 @@ public class App
     public static void eliminarLlibre(DAOLlibres DAOLlibres) {
         sc.useDelimiter("\\n");
 
-        System.out.println("---------------------------------------------");
-
         System.out.println();
         System.out.println("Eliminar llibre:");
         System.out.println();
-
-        System.out.println("Llibres: ");
+        System.out.println("---------------------------------------------");
+        
         System.out.println();
+        System.out.println("Llibres: ");
 
         List<Llibres> llibres = DAOLlibres.LlistarLlibres();
 
         System.out.println("---------------------------------------------");
 
-        int i = 1;
 
         for (Llibres llibre : llibres) {
-            System.out.println(i + ". " + llibre.getTitol() + " - " + llibre.getAutor());
-            i++;
+            System.out.println(llibre.getId() + ". " + llibre.getTitol() + " - " + llibre.getAutor());
             System.out.println("---------------------------------------------");
         }
 
         Llibres eliminarLlibre = new Llibres();
 
         System.out.println();
-        System.out.print("Id del llibre a eliminar: ");
+        System.out.print("ID del llibre a eliminar: ");
         eliminarLlibre.setId(sc.nextInt());
 
         System.out.println();
@@ -253,6 +343,9 @@ public class App
         System.out.print("Selecciona una opció: ");
         int opcio = sc.nextInt();
 
+        System.out.println();
+        System.out.println("---------------------------------------------");
+
         switch (opcio) {
             case 1:
                 afegirAutor();
@@ -271,6 +364,7 @@ public class App
                 break;
         
             default:
+                System.out.println("Opció no vàlida.");
                 break;
         }
     }
@@ -278,23 +372,25 @@ public class App
 
     // 2.1 Afegir autor
     public static void afegirAutor() {
-        System.out.println("---------------------------------------------");
+        sc.useDelimiter("\\n");
 
         System.out.println();
         System.out.println("Afegir autor:");
         System.out.println();
+        System.out.println("---------------------------------------------");
 
 
         Autors nouAutor = new Autors();
-        sc.useDelimiter("\\n");
 
-        System.out.print("Nom del l'autor: ");
+        System.out.println();
+
+        System.out.print("Nom del nou autor: ");
         nouAutor.setNom(sc.next());
 
-        System.out.print("Cognoms de l'autor: ");
+        System.out.print("Cognoms del nou autor: ");
         nouAutor.setCognoms(sc.next());
 
-        System.out.print("Data de naixement de l'autor (format YYYY-MM-DD): ");
+        System.out.print("Data de naixement del nou autor (format YYYY-MM-DD): ");
         nouAutor.setData(sc.next());
 
         System.out.println();
@@ -302,20 +398,20 @@ public class App
         boolean afegit = DAOAutors.create(nouAutor);
 
         if (afegit) System.out.println("Autor creat correctament!!");
+            
     }
 
 
     // 2.2 Llistar autors
     public static void llistarAutors(DAOAutors DAOAutors) {
-        System.out.println("---------------------------------------------");
+        sc.useDelimiter("\\n");
 
         System.out.println();
-        System.out.println("Autors: ");
+        System.out.println("Autor:");
         System.out.println();
+        System.out.println("---------------------------------------------");
 
         List<Autors> autors = DAOAutors.LlistarAutors();
-
-        System.out.println("---------------------------------------------");
 
         for (Autors autor : autors) {
             System.out.println("Nom: " + autor.getNom());
@@ -324,6 +420,8 @@ public class App
 
             System.out.println("---------------------------------------------");
         }
+
+        System.out.println();
     }
 
 
@@ -331,21 +429,16 @@ public class App
     public static void actualitzarAutor(DAOAutors DAOAutors) {
         sc.useDelimiter("\\n");
 
-        System.out.println("---------------------------------------------");
-
         System.out.println();
         System.out.println("Actualitzar un autor:");
         System.out.println();
-
         System.out.println("---------------------------------------------");
+
 
         List<Autors> autors = DAOAutors.LlistarAutors();
 
-        int i = 1;
-
         for (Autors autor : autors) {
-            System.out.println(i + ". " + autor.getNom() + " " + autor.getCognoms());
-            i++;
+            System.out.println(autor.getId() + ". " + autor.getNom() + " " + autor.getCognoms());
             System.out.println("---------------------------------------------");
         }
 
@@ -355,7 +448,7 @@ public class App
         Autors actualitzarAutor = new Autors();
 
 
-        System.out.print("Id de l'autor a actualizar: ");
+        System.out.print("ID de l'autor a actualizar: ");
         actualitzarAutor.setId(sc.nextInt());
 
         System.out.println();
@@ -386,10 +479,11 @@ public class App
     public static void eliminarAutor(DAOAutors DAOAutors) {
         sc.useDelimiter("\\n");
 
+        System.out.println();
+        System.out.println("Eliminar un autor:");
+        System.out.println();
         System.out.println("---------------------------------------------");
 
-        System.out.println();
-        System.out.println("Eliminar autor:");
         System.out.println();
 
         System.out.println("Autors: ");
@@ -399,18 +493,16 @@ public class App
 
         System.out.println("---------------------------------------------");
 
-        int i = 1;
 
         for (Autors autor : autors) {
-            System.out.println(i + ". " + autor.getNom() + autor.getCognoms());
-            i++;
+            System.out.println(autor.getId() + ". " + autor.getNom() + autor.getCognoms());
             System.out.println("---------------------------------------------");
         }
 
         Autors eliminarAutor = new Autors();
 
         System.out.println();
-        System.out.print("Id del autor a eliminar: ");
+        System.out.print("ID del autor a eliminar: ");
         eliminarAutor.setId(sc.nextInt());
 
         System.out.println();
@@ -441,9 +533,11 @@ public class App
         System.out.print("Selecciona una opció: ");
         int opcio = sc.nextInt();
 
+        System.out.println();
+        System.out.println("---------------------------------------------");
+
         switch (opcio) {
             case 1:
-                llistarCategories(DAOCategories);
                 afegirCategoria();
                 break;
 
@@ -460,6 +554,7 @@ public class App
                 break;
         
             default:
+                System.out.println("Opció no vàlida.");
                 break;
         }
     }
@@ -467,17 +562,18 @@ public class App
 
     // 2.1 Afegir categoria
     public static void afegirCategoria() {
+        sc.useDelimiter("\\n");
+
+        System.out.println();
+        System.out.println("Afegir una categoria:");
+        System.out.println();
         System.out.println("---------------------------------------------");
 
         System.out.println();
-        System.out.println("Afegir categoria:");
-        System.out.println();
-
 
         Categories novaCategoria = new Categories();
-        sc.useDelimiter("\\n");
 
-        System.out.print("Nom de la categoria (Ex: Ficció): ");
+        System.out.print("Nom de la nova categoria (Ex: Ficció): ");
         novaCategoria.setNom(sc.next());
 
         System.out.println();
@@ -490,21 +586,22 @@ public class App
 
     // 2.2 Llistar cateogires
     public static void llistarCategories(DAOCategories DAOCategories) {
-        System.out.println("---------------------------------------------");
+        sc.useDelimiter("\\n");
 
         System.out.println();
-        System.out.println("Categories: ");
+        System.out.println("Categories:");
         System.out.println();
+        System.out.println("---------------------------------------------");
 
         List<Categories> categories = DAOCategories.LlistarCategories();
-
-        System.out.println("---------------------------------------------");
 
         for (Categories categoria : categories) {
             System.out.println(categoria.getNom());
 
             System.out.println("---------------------------------------------");
         }
+    
+        System.out.println();
     }
 
 
@@ -512,30 +609,29 @@ public class App
     public static void actualitzarCategoria(DAOCategories DAOCategories) {
         sc.useDelimiter("\\n");
 
-        System.out.println("---------------------------------------------");
-
         System.out.println();
         System.out.println("Actualitzar una categoria:");
         System.out.println();
+        System.out.println("---------------------------------------------");
 
         Categories actualitzarCategoria = new Categories();
 
-        System.out.println("---------------------------------------------");
-
-        int i = 1;
 
         List<Categories> categories = DAOCategories.LlistarCategories();
 
         for (Categories categoria : categories) {
-            System.out.println(i + ". " + categoria.getNom());
-            i++;
+            System.out.println(categoria.getId() + ". " + categoria.getNom());
             System.out.println("---------------------------------------------");
         }
 
         System.out.println();
 
-        System.out.print("Id de la categoria a actualitzar: ");
+        System.out.print("ID de la categoria a actualitzar: ");
         actualitzarCategoria.setId(sc.nextInt());
+
+        System.out.println();
+
+        System.out.println("NOTA: S'actualitzen totes les dades, si hi ha alguna dada que no vols actualitzar hauràs d'escriure la dada que ja hi havia!!");
 
         System.out.println();
 
@@ -555,32 +651,28 @@ public class App
     public static void eliminarCategoria(DAOCategories DAOCategories) {
         sc.useDelimiter("\\n");
 
+        System.out.println();
+        System.out.println("Eliminar una categoria:");
+        System.out.println();
         System.out.println("---------------------------------------------");
 
         System.out.println();
-        System.out.println("Eliminar categoria:");
-        System.out.println();
-
 
         System.out.println("Categories Actuals: ");
-        System.out.println();
 
         List<Categories> categories = DAOCategories.LlistarCategories();
 
         System.out.println("---------------------------------------------");
 
-        int i = 1;
-
         for (Categories categoria : categories) {
-            System.out.println(i + ". " + categoria.getNom());
-            i++;
+            System.out.println(categoria.getId() + ". " + categoria.getNom());
             System.out.println("---------------------------------------------");
         }
 
         Categories eliminarCategoria = new Categories();
 
         System.out.println();
-        System.out.print("Id de la categoria a eliminar: ");
+        System.out.print("ID de la categoria a eliminar: ");
         eliminarCategoria.setId(sc.nextInt());
 
         System.out.println();

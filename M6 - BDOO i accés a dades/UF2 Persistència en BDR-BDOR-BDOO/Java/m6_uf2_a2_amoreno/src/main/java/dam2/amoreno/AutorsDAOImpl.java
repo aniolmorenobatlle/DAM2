@@ -23,7 +23,7 @@ public class AutorsDAOImpl implements DAOAutors {
 
         List<Autors> autors = new ArrayList<>();
 
-        String query = "SELECT * FROM Autor";
+        String query = "SELECT * FROM Autor WHERE id != 1";
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
 
@@ -69,7 +69,6 @@ public class AutorsDAOImpl implements DAOAutors {
 
         } catch (SQLException e) {
             System.out.println("Hi ha hagut algun problema en obtenir les dades de la taula d'autor!!");
-
             return false;
         }
     }
@@ -116,25 +115,31 @@ public class AutorsDAOImpl implements DAOAutors {
 
         } catch(SQLException e) {
             System.out.println("Error en actualitzar l'autor!!");
+            return false;
         }
-
-        return false;
     }
 
 
     @Override
     public boolean delete(int id) {
+        String updateLlibres = "UPDATE Llibre SET autor_id = ? WHERE autor_id = ?";
         String query = "DELETE FROM Autor WHERE id = ?";
 
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        try (PreparedStatement stmtUpdate = conn.prepareStatement(updateLlibres); 
+             PreparedStatement stmtDelete = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, id);
+            stmtUpdate.setInt(1, 1); // 1 es l'id de quan no esta assignat cap autor
+            stmtUpdate.setInt(2, id);
+            stmtUpdate.executeUpdate();
+        
 
-            return stmt.executeUpdate() > 0;
+            stmtDelete.setInt(1, id);
+            int rowsAffected = stmtDelete.executeUpdate();
+
+            return rowsAffected > 0;
             
         } catch (SQLException e) {
             System.out.println("Error en eliminar l'autor!!");
-
             return false;
         }
     }

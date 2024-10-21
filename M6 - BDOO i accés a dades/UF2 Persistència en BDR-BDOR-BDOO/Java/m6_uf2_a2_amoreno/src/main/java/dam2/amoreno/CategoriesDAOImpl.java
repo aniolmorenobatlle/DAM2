@@ -21,7 +21,7 @@ public class CategoriesDAOImpl implements DAOCategories {
 
         List<Categories> categories = new ArrayList<>();
 
-        String query = "SELECT * FROM Categoria";
+        String query = "SELECT * FROM Categoria WHERE id != 1"; // Per no mostrar el "sense categoria"
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
 
@@ -105,25 +105,32 @@ public class CategoriesDAOImpl implements DAOCategories {
 
         } catch(SQLException e) {
             System.out.println("Error en actualitzar la categoria!!");
+            return false;
         }
         
-        return false;
     }
 
 
     @Override
     public boolean delete(int id) {
+        String updateLlibres = "UPDATE Llibre SET categoria_id = ? WHERE categoria_id = ?";
         String query = "DELETE FROM Categoria WHERE id = ?";
 
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        try (PreparedStatement stmtUpdate = conn.prepareStatement(updateLlibres); 
+             PreparedStatement stmtDelete = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, id);
+            stmtUpdate.setInt(1, 1); // 1 es l'id de quan no esta assignat cap categoria
+            stmtUpdate.setInt(2, id);
+            stmtUpdate.executeUpdate();
+        
 
-            return stmt.executeUpdate() > 0;
+            stmtDelete.setInt(1, id);
+            int rowsAffected = stmtDelete.executeUpdate();
+
+            return rowsAffected > 0;
             
         } catch (SQLException e) {
             System.out.println("Error en eliminar la categoria!!");
-
             return false;
         }
     }    
