@@ -24,7 +24,8 @@ public class LlibresDAOImpl implements DAOLlibres {
                         + "Categoria.nom_categoria "
                         + "FROM Llibre "
                         + "JOIN Autor ON Llibre.autor_id = Autor.id "
-                        + "JOIN Categoria ON Llibre.categoria_id = Categoria.id";
+                        + "JOIN Categoria ON Llibre.categoria_id = Categoria.id "
+                        + "ORDER BY Llibre.id ASC";
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             ResultSet resultSet = stmt.executeQuery();
@@ -64,7 +65,6 @@ public class LlibresDAOImpl implements DAOLlibres {
             
         } catch (SQLException e) {
             System.out.println("Hi ha hagut algun problema en inserir el llibre!!");
-            e.printStackTrace();
             return false;
         }
     }
@@ -72,7 +72,22 @@ public class LlibresDAOImpl implements DAOLlibres {
 
     @Override
     public boolean update(Llibres llibre) {
-        return false;
+        String query = "UPDATE Llibre SET titol = ?, any_publicacio = ?, autor_id = ?, categoria_id = ? WHERE id = ? ";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, llibre.getTitol());
+            stmt.setString(2, llibre.getAny());
+            stmt.setString(3, llibre.getAutor());
+            stmt.setString(4, llibre.getCategoria());
+            stmt.setInt(5, llibre.getId());
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error en actualitzar el llibre. Comprova que totes les dades siguin correctes.");
+            return false;
+        }
     }
 
 
@@ -88,7 +103,6 @@ public class LlibresDAOImpl implements DAOLlibres {
             
         } catch (SQLException e) {
             System.out.println("Error en eliminar el llibre!!");
-
             return false;
         }
     }
