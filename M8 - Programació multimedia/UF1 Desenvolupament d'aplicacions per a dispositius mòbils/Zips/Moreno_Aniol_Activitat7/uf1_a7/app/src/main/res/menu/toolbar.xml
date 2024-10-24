@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/save"
+        android:icon="@drawable/save"
+        android:title="Save"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/bin"
+        android:icon="@drawable/bin"
+        android:title="Bin"
+        app:showAsAction="always" />
+
+
+    <item android:id="@+id/first_image" android:title="Image 1"/>
+    <item android:id="@+id/second_image" android:title="Image 2"/>
+    <item android:id="@+id/third_image" android:title="Image 3"/>
+    <item android:id="@+id/fourth_image" android:title="Image 4"/>
+</menu>
