@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ImageApp</string>
+
+    <string name="take_photo">Fer foto</string>
+
+    <string name="open_camera">Obre la càmera</string>
+    <string name="tancar_camera">Tancar càmera</string>
+</resources>

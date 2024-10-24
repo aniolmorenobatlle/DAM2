@@ -45,7 +45,7 @@ def decrypt (message):
     # Crear una llista amb el missatge.
     list_message = list(message)
 
-    # Recorrer la llista de dos numeros en dos.
+    # Recorrer la llista de dos en dos.
     for i in range(0, len(list_message), 2):
         row = int(list_message[i])
         column = int(list_message[i + 1])
