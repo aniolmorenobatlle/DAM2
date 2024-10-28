@@ -20,3 +20,6 @@ for grid in itertools.permutations(letters):
     # Decode the message using the current grid
     decoded = decode_polybius_4x4(grid, encrypted_message)
     print(f"Grid: {''.join(grid)} => Decoded Message: {decoded}")
+
+
+# paraula es: sari
