@@ -53,6 +53,8 @@ public class LlibresDAOImpl implements DAOLlibres {
 			em.persist(llibre);
 			transaction.commit();
 
+			System.out.println("Llibre afegit amb èxit!");
+
 			return true;
 
 		} catch (Exception e) {
@@ -96,7 +98,10 @@ public class LlibresDAOImpl implements DAOLlibres {
 			llibreId.setAutor(llibre.getAutor());
 			llibreId.setCategoria(llibre.getCategoria());
 	
+			em.merge(llibreId);
 			transaction.commit();
+
+			System.out.println("Llibre editat amb èxit!!");
 
 			return true;
 	
@@ -130,6 +135,8 @@ public class LlibresDAOImpl implements DAOLlibres {
 				em.remove(llibre);
 				
 				transaction.commit();
+
+				System.out.println("Llibre eliminat amb èxit!");
 				
 				return true;
 

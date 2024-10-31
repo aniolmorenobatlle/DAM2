@@ -53,6 +53,8 @@ public class CategoriesDAOImpl implements DAOCategories {
 			em.persist(categoria);
 			transaction.commit();
 
+			System.out.println("Categoria afegida amb èxit!");
+
 			return true;
 
 		} catch (Exception e) {
@@ -92,7 +94,10 @@ public class CategoriesDAOImpl implements DAOCategories {
 
 			categoria.setNom_categoria(categoria.getNom_categoria());
 	
+			em.merge(categoria);
 			transaction.commit();
+
+			System.out.println("Categoria actualitzada amb èxit!!");
 
 			return true;
 	
@@ -126,6 +131,8 @@ public class CategoriesDAOImpl implements DAOCategories {
 				em.remove(categoria);
 				
 				transaction.commit();
+
+				System.out.println("Categoria eliminada amb èxit!");
 				
 				return true;
 
