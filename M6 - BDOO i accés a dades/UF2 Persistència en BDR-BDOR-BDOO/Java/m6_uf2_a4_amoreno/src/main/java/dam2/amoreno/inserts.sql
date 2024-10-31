@@ -1,0 +1,32 @@
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (1, "Orwell", "1903-06-25", "George");
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (2, "Rowling", "1965-07-31", "J.K.");
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (3, "Tolkien", "1892-01-03", "J.R.R.");
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (4, "Austen", "1775-12-16", "Jane");
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (5, "Shelley", "1797-08-30", "Mary");
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (6, "Hemingway", "1899-07-21", "Ernest");
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (7, "Fitzgerald", "1896-09-24", "F. Scott");
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (8, "Bradbury", "1920-08-22", "Ray");
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (9, "Dickens", "1812-02-07", "Charles");
+INSERT INTO Autors (id, cognoms, data_naixement, nom) VALUES (10, "Dostoevsky", "1821-11-11", "Fyodor");
+
+INSERT INTO Categories (id, nom_categoria) VALUES (1, "Novel·la");
+INSERT INTO Categories (id, nom_categoria) VALUES (2, "Ciència Ficció");
+INSERT INTO Categories (id, nom_categoria) VALUES (3, "Fantasía");
+INSERT INTO Categories (id, nom_categoria) VALUES (4, "Romàntica");
+INSERT INTO Categories (id, nom_categoria) VALUES (5, "Horror");
+INSERT INTO Categories (id, nom_categoria) VALUES (6, "Clàssic");
+INSERT INTO Categories (id, nom_categoria) VALUES (7, "Drama");
+INSERT INTO Categories (id, nom_categoria) VALUES (8, "Aventura");
+INSERT INTO Categories (id, nom_categoria) VALUES (9, "Històrica");
+INSERT INTO Categories (id, nom_categoria) VALUES (10, "Contemporània");
+
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (1, 1949, "9780451524935", "1984", 1, 1);
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (2, 1997, "9780747532699", "Harry Potter i la pedra filosofal", 2, 3);
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (3, 1954, "9780618640157", "El senyor dels anells", 3, 3);
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (4, 1813, "9780141439518", "Orgull i prejudici", 4, 4);
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (5, 1818, "9780486282114", "Frankenstein", 5, 5);
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (6, 1926, "9780684803357", "El sol també surt", 6, 6);
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (7, 1925, "9780743273565", "El gran Gatsby", 7, 7);
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (8, 1953, "9781451673319", "Fahrenheit 451", 8, 2);
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (9, 1843, "9780486415864", "Cançó de Nadal", 9, 8);
+INSERT INTO Llibres (id, any_publicacio, isbn, titol, autor_id, categoria_id) VALUES (10, 1866, "9780140449136", "Crim i càstig", 10, 9);

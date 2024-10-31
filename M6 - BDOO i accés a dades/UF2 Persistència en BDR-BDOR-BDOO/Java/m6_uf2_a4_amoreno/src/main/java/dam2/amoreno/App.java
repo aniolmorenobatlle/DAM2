@@ -4,6 +4,9 @@ import java.util.Scanner;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class App 
 {
@@ -134,7 +137,7 @@ public class App
         String isbn = sc.next();
     
         System.out.print("Any de publicació: ");
-        String any = sc.next();
+        int any = sc.nextInt();
     
         System.out.print("ID de l'autor: ");
         int autorId = sc.nextInt();
@@ -142,8 +145,6 @@ public class App
         System.out.print("ID de la categoria: ");
         int categoriaId = sc.nextInt();
     
-        System.out.println();
-
 
         Autors autor = em.find(Autors.class, autorId);
         if (autor == null) {
@@ -156,70 +157,21 @@ public class App
             System.out.println("Categoria no trobada.");
             return;
         }
-    
+
+
+        System.out.println();
+
 
         Llibres llibre = new Llibres(titol, isbn, any, autor, categoria);
-    
-        em.getTransaction().begin();
-        em.persist(llibre);
-        em.getTransaction().commit();
+
+        llibresDAO.create(llibre);
 
     
-        System.out.println("Llibre afegit amb èxit!");
         System.out.println();
     }
     
-    
-    // 1.2 Llistar llibres
-    public static void llistarLlibres() {
-        sc.useDelimiter("\\n");
 
-        System.out.println();
-        System.out.println("------------------------------------");
-        System.out.println("Afegir Llibre");
-        System.out.println("------------------------------------");
-        
-        System.out.println();
-
-        for (Llibres llibre : llibresDAO.LlistarLlibres()) {
-
-            System.out.println("Titol: " + llibre.getTitol());
-            System.out.println("ISBN: " + llibre.getIsbn());
-            System.out.println("Any de publicació: " + llibre.getAny_publicacio());
-            System.out.println("ID de l'autor: " + llibre.getAutor());
-            System.out.println("ID de la categoria: " + llibre.getCategoria());
-
-            System.out.println("------------------------------------");
-        }
-    }
-
-
-    // 1.3 Eliminar llibre
-    public static void eliminarLlibre() {
-        sc.useDelimiter("\\n");
-
-        System.out.println();
-        System.out.println("------------------------------------");
-        System.out.println("Eliminar Llibre");
-        System.out.println("------------------------------------");
-        
-        System.out.println();
-
-        System.out.print("Introdueix l'ID del llibre a eliminar: ");
-        int id = sc.nextInt();
-
-        System.out.println();
-
-        em.getTransaction().begin();
-        em.remove(em.find(Llibres.class, id));
-        em.getTransaction().commit();
-
-        System.out.println("Llibre eliminat amb èxit!");
-        System.out.println();
-    }
-
-
-    // 1.4 Editar llibre
+    // 1.2 Editar llibre
     public static void editarLlibre() {
         sc.useDelimiter("\\n");
 
@@ -253,7 +205,7 @@ public class App
         String isbn = sc.next();
 
         System.out.print("Any de publicació: ");
-        String any = sc.next();
+        int any = sc.nextInt();
 
         System.out.print("ID de l'autor: ");
         int autorId = sc.nextInt();
@@ -277,17 +229,71 @@ public class App
             return;
         }
 
-        em.getTransaction().begin();
-
         llibre.setTitol(titol);
         llibre.setIsbn(isbn);
         llibre.setAny_publicacio(any);
         llibre.setAutor(autor);
         llibre.setCategoria(categoria);
 
-        em.getTransaction().commit();
+        llibresDAO.update(categoriaId, llibre);
 
-        System.out.println("Llibre editat amb èxit!!");
+        System.out.println();
+    }
+    
+
+    // 1.3 Llistar llibres
+    public static void llistarLlibres() {
+        sc.useDelimiter("\\n");
+
+        System.out.println();
+        System.out.println("------------------------------------");
+        System.out.println("Afegir Llibre");
+        System.out.println("------------------------------------");
+        
+        System.out.println();
+
+        for (Llibres llibre : llibresDAO.LlistarLlibres()) {
+
+            System.out.println("Titol: " + llibre.getTitol());
+            System.out.println("ISBN: " + llibre.getIsbn());
+            System.out.println("Any de publicació: " + llibre.getAny_publicacio());
+
+
+            if (llibre.getAutor() != null) {
+                System.out.println("Autor: " + llibre.getAutor().getNom());
+            } else {
+                System.out.println("Autor: Autor desconegut");
+            }
+
+            if (llibre.getCategoria() != null) {
+                System.out.println("Categoria: " + llibre.getCategoria().getNom_categoria());
+            } else {
+                System.out.println("Categoria: No té cap categoria assignada");
+            }
+
+            System.out.println("------------------------------------");
+        }
+    }
+
+
+    // 1.4 Eliminar llibre
+    public static void eliminarLlibre() {
+        sc.useDelimiter("\\n");
+
+        System.out.println();
+        System.out.println("------------------------------------");
+        System.out.println("Eliminar Llibre");
+        System.out.println("------------------------------------");
+        
+        System.out.println();
+
+        System.out.print("Introdueix l'ID del llibre a eliminar: ");
+        int id = sc.nextInt();
+
+        System.out.println();
+
+        llibresDAO.delete(id);
+
         System.out.println();
     }
 
@@ -363,69 +369,27 @@ public class App
         System.out.print("Cognom: ");
         String cognom = sc.next();
 
-        System.out.print("Data de naixement: ");
+        System.out.print("Data de naixement (format YYYY-MM-DD): ");
         String data = sc.next();
+
+        // Comprovar format data
+        if (!data.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            System.out.println("Format de data incorrecte. Comprova que el format sigui YYYY-MM-DD.");
+        }
+
 
         System.out.println();
 
 
         Autors autor = new Autors(nom, cognom, data);
 
-        em.getTransaction().begin();
-        em.persist(autor);
-        em.getTransaction().commit();
+        if (autorsDAO.create(autor)) System.out.println("Autor creat correctament!!");
         
-        System.out.println("Autor afegit amb èxit!");
         System.out.println();
     }
 
 
-    // 2.2 Llistar autors
-    public static void llistarAutors() {
-        sc.useDelimiter("\\n");
-
-        System.out.println();
-        System.out.println("------------------------------------");
-        System.out.println("Llistar Autors");
-        System.out.println("------------------------------------");
-        
-        System.out.println();
-
-        for (Autors autor : autorsDAO.LlistarAutors()) {
-            System.out.println("ID: " + autor.getId());
-            System.out.println("Nom: " + autor.getNom());
-            System.out.println("Cognom: " + autor.getCognoms());
-            System.out.println("Data de naixement: " + autor.getData_naixement());
-
-            System.out.println("------------------------------------");
-        }
-    }
-
-
-    // 2.3 Eliminar autor
-    public static void eliminarAutor() {
-        System.out.println();
-        System.out.println("------------------------------------");
-        System.out.println("Eliminar Autor");
-        System.out.println("------------------------------------");
-        
-        System.out.println();
-
-        System.out.print("Introdueix l'ID de l'autor a eliminar: ");
-        int id = sc.nextInt();
-
-        System.out.println();
-
-        em.getTransaction().begin();
-        em.remove(em.find(Autors.class, id));
-        em.getTransaction().commit();
-
-        System.out.println("Autor eliminat amb èxit!");
-        System.out.println();
-    }
-
-
-    // 2.4 Editar autor
+    // 2.2 Editar autor
     public static void editarAutor() {
         sc.useDelimiter("\\n");
 
@@ -450,7 +414,7 @@ public class App
 
 
         System.out.println("Introdueix les dades de l'autor:");
-        System.out.println("NOTA: Si hi ha alguna dada que no vols editar, hauràs d'escriure les dades previes de forma manual.");
+        System.out.println("NOTA: Si hi ha alguna dada que no vols editar, hauràs d'escriure la/es dada prèvia de forma manual.");
         System.out.println();
 
 
@@ -463,17 +427,64 @@ public class App
         System.out.print("Data de naixement (format YYYY-MM-DD): ");
         String data = sc.next();
 
+
+        // Comprovar format data
+        if (!data.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            System.out.println("Format de data incorrecte. Comprova que el format sigui YYYY-MM-DD.");
+        }
+        
         System.out.println();
 
-        em.getTransaction().begin();
 
         autor.setNom(nom);
         autor.setCognoms(cognoms);
         autor.setData_naixement(data);
 
-        em.getTransaction().commit();
+        if (autorsDAO.update(id, autor)) System.out.println("Autor actualitzat!!");
 
-        System.out.println("Autor editat amb èxit!!");
+        System.out.println();
+    }
+
+
+    // 2.3 Llistar autors
+    public static void llistarAutors() {
+        sc.useDelimiter("\\n");
+
+        System.out.println();
+        System.out.println("------------------------------------");
+        System.out.println("Llistar Autors");
+        System.out.println("------------------------------------");
+        
+        System.out.println();
+
+        for (Autors autor : autorsDAO.LlistarAutors()) {
+            System.out.println("ID: " + autor.getId());
+            System.out.println("Nom: " + autor.getNom());
+            System.out.println("Cognom: " + autor.getCognoms());
+            System.out.println("Data de naixement: " + autor.getData_naixement());
+
+            System.out.println("------------------------------------");
+        }
+    }
+
+
+    // 2.4 Eliminar autor
+    public static void eliminarAutor() {
+        System.out.println();
+        System.out.println("------------------------------------");
+        System.out.println("Eliminar Autor");
+        System.out.println("------------------------------------");
+        
+        System.out.println();
+
+        System.out.print("Introdueix l'ID de l'autor a eliminar: ");
+        int id = sc.nextInt();
+
+        System.out.println();
+
+
+        if (autorsDAO.delete(id)) System.out.println("Eliminació completada.");
+
         System.out.println();
     }
 
@@ -548,63 +559,13 @@ public class App
 
         Categories categoria = new Categories(nom);
 
-        em.getTransaction().begin();
-        em.persist(categoria);
-        em.getTransaction().commit();
+        categoriesDAO.create(categoria);
         
-        System.out.println("Categoria afegida amb èxit!");
         System.out.println();
     }
 
 
-    // 3.2 Llistar categories
-    public static void llistarCategories() {
-        sc.useDelimiter("\\n");
-
-        System.out.println();
-        System.out.println("------------------------------------");
-        System.out.println("Llistar Categories");
-        System.out.println("------------------------------------");
-        
-        System.out.println();
-
-
-        for (Categories categoria : categoriesDAO.LlistarCategories()) {
-            System.out.println("ID: " + categoria.getId());
-            System.out.println("Nom: " + categoria.getNom_categoria());
-
-            System.out.println("------------------------------------");
-        }
-    }
-
-
-    // 3.3 Eliminar categoria
-    public static void eliminarCategoria() {
-        sc.useDelimiter("\\n");
-
-        System.out.println();
-        System.out.println("------------------------------------");
-        System.out.println("Eliminar Categoria");
-        System.out.println("------------------------------------");
-        
-        System.out.println();
-
-
-        System.out.print("Introdueix l'ID de la categoria a eliminar: ");
-        int id = sc.nextInt();
-
-        System.out.println();
-
-        em.getTransaction().begin();
-        em.remove(em.find(Categories.class, id));
-        em.getTransaction().commit();
-
-        System.out.println("Categoria eliminada amb èxit!");
-        System.out.println();
-    }
-
-
-    // 3.4 Editar categoria
+    // 3.2 Editar categoria
     public static void editarCategoria() {
         sc.useDelimiter("\\n");
 
@@ -638,13 +599,55 @@ public class App
 
         System.out.println();
 
-        em.getTransaction().begin();
-
         categoria.setNom_categoria(nom);
 
-        em.getTransaction().commit();
+        categoriesDAO.update(id, categoria);
 
-        System.out.println("Categoria actualitzada amb èxit!!");
         System.out.println();
     }
+
+        
+    // 3.3 Llistar categories
+    public static void llistarCategories() {
+        sc.useDelimiter("\\n");
+
+        System.out.println();
+        System.out.println("------------------------------------");
+        System.out.println("Llistar Categories");
+        System.out.println("------------------------------------");
+        
+        System.out.println();
+
+
+        for (Categories categoria : categoriesDAO.LlistarCategories()) {
+            System.out.println("ID: " + categoria.getId());
+            System.out.println("Nom: " + categoria.getNom_categoria());
+
+            System.out.println("------------------------------------");
+        }
+    }
+
+
+    // 3.4 Eliminar categoria
+    public static void eliminarCategoria() {
+        sc.useDelimiter("\\n");
+
+        System.out.println();
+        System.out.println("------------------------------------");
+        System.out.println("Eliminar Categoria");
+        System.out.println("------------------------------------");
+        
+        System.out.println();
+
+
+        System.out.print("Introdueix l'ID de la categoria a eliminar: ");
+        int id = sc.nextInt();
+
+        System.out.println();
+
+        categoriesDAO.delete(id);
+
+        System.out.println();
+    }
+
 }

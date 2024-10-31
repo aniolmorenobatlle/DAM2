@@ -23,11 +23,11 @@ public class Llibres implements Serializable {
 
     private String isbn;
 
-    private String any_publicacio;
+    private int any_publicacio;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "autor_id")
-    private Autors autor;
+    private Autors autor;    
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -36,7 +36,7 @@ public class Llibres implements Serializable {
 
     public Llibres() {}
 
-    public Llibres(String titol, String isbn, String any_publicacio, Autors autor, Categories categoria) {
+    public Llibres(String titol, String isbn, int any_publicacio, Autors autor, Categories categoria) {
         this.titol = titol;
         this.isbn = isbn;
         this.any_publicacio = any_publicacio;
@@ -68,11 +68,11 @@ public class Llibres implements Serializable {
         this.isbn = isbn;
     }
 
-    public String getAny_publicacio() {
+    public int getAny_publicacio() {
         return any_publicacio;
     }
 
-    public void setAny_publicacio(String any_publicacio) {
+    public void setAny_publicacio(int any_publicacio) {
         this.any_publicacio = any_publicacio;
     }
 

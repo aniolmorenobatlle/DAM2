@@ -32,12 +32,17 @@ def main():
         return
     
     hash_type = sys.argv[1]
-    message = sys.argv[2]
+    filename = sys.argv[2]
 
+    try:
+        with open(filename, 'r') as file:
+            content = file.read().strip()
 
+        hasher = Hash(hash_type, content)
+        print(hasher.compute_hash())
 
-    hasher = Hash(hash_type, message)
-    print(hasher.compute_hash())
+    except FileNotFoundError:
+        print("Fitxer no trobat")
 
 
 if __name__ == "__main__":
