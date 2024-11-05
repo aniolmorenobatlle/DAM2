@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/IncludeOne" android:title="IncludeOne"/>
+    <item android:id="@+id/IncluideAll" android:title="IncluideAll"/>
+    <item android:id="@+id/ClearLast" android:title="ClearLast"/>
+    <item android:id="@+id/ClearAll" android:title="ClearAll"/>
+    <item android:id="@+id/UpdateOne" android:title="UpdateOne"/>
+    
+</menu>

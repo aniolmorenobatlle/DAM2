@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Whatsapp</string>
+
+    <string name="xats">Xats</string>
+
+    <string name="archive">Arxivats</string>
+    <string name="tancar_camera">Tancar càmera</string>
+</resources>

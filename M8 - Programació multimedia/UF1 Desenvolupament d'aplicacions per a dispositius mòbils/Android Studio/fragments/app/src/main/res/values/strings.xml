@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">fragments</string>
+    <string name="fragment_first">Sóc el primer fragment</string>
+    <string name="fragment_second">Sóc el segon fragment</string>
+    <string name="fragment_third">Sóc el tercer fragment</string>
+    <string name="fragment_fourth">Sóc el quart fragment</string>
+
+</resources>

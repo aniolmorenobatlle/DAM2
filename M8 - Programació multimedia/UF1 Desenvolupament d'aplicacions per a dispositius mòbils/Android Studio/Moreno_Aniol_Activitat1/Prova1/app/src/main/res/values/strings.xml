@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Prova1</string>
+
+    <string name="gestio">GESTIÓ ALUMNES</string>
+
+    <string name="nom_titol">Nom:</string>
+    <string name="cognoms_titol">Cognoms:</string>
+    <string name="edat_titol">Edat:</string>
+    <string name="poblacio_titol">Població:</string>
+
+    <string name="alumne1">ALUMNE 1</string>
+    <string name="alumne2">ALUMNE 2</string>
+
+    <string name="nom_alumne1">Aniol</string>
+    <string name="cognoms_alumne1">Moreno Batlle</string>
+    <string name="edat_alumne1">20</string>
+    <string name="poblacio_alumne1">Estartit</string>
+
+    <string name="nom_alumne2">John</string>
+    <string name="cognoms_alumne2">Doe</string>
+    <string name="edat_alumne2">25</string>
+    <string name="poblacio_alumne2">Palamós</string>
+
+</resources>

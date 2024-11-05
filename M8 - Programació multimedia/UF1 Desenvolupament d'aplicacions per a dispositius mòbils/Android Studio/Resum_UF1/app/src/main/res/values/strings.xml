@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Resum_UF1</string>
+
+    <!-- Spinner -->
+    <string-array name="spinner">
+        <item>Ciutats</item>
+        <item>Barcelona</item>
+        <item>Madrid</item>
+        <item>València</item>
+        <item>Sevilla</item>
+        <item>Bilbao</item>
+    </string-array>
+    <string name="guardar">Guardar</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+    <string name="nom">Nom:</string>
+</resources>

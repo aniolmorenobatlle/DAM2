@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">UF2_A2</string>
+
+    <string name="selecciona">Selecciona la teva comanda</string>
+    <string name="comanda">Fer comanda</string>
+    <string name="comanda_realitzada">Comanda realitzada</string>
+
+
+    <string-array name="plat1">
+        <item>Primer Plat</item>
+        <item>Gazpacho - 7€</item>
+        <item>Sopa - 5€</item>
+    </string-array>
+
+    <string-array name="plat2">
+        <item>Segon Plat</item>
+        <item>Filet - 20€</item>
+        <item>Entrecot - 25€</item>
+        <item>Macarrons - 10€</item>
+    </string-array>
+
+    <string-array name="plat3">
+        <item>Postres</item>
+        <item>Pastís - 5€</item>
+        <item>Cafe - 2€</item>
+        <item>Gelat - 3€</item>
+    </string-array>
+
+
+    <string name="productes">Productes:</string>
+    <string name="price">Preu:</string>
+</resources>

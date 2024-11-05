@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UF1_A10</string>
+    <string name="valoracions">Valoracions</string>
+    <string name="imatge">Imatge</string>
+    <string name="descripcio">Descripció</string>
+
+    <string name="afegir">Afegir</string>
+    <string name="editar">Editar Descripció</string>
+</resources>
