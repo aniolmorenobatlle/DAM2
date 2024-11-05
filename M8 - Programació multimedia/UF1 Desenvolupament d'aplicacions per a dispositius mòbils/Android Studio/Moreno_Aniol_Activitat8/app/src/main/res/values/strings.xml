@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Activitat 8</string>
+
+    <string name="fitxa">Fitxa Alumne</string>
+
+    <string name="email">Email:</string>
+    <string name="telefon">Telèfon:</string>
+    <string name="dni">DNI:</string>
+    <string name="repetidor">Repetidor:</string>
+
+    <string name="tornar">TORNAR A LA LLISTA</string>
+
+</resources>
