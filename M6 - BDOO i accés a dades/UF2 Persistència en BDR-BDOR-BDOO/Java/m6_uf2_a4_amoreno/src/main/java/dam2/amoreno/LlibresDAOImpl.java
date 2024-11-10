@@ -87,7 +87,7 @@ public class LlibresDAOImpl implements DAOLlibres {
 			Llibres llibreId = em.find(Llibres.class, id);
 			
 			if (llibreId == null) {
-				System.out.println("Usuari no trobat amb l'ID: " + id);
+				System.out.println("Llibre no trobat amb l'ID: " + id);
 
 				return false;
 			}
