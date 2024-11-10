@@ -235,7 +235,7 @@ public class App
         llibre.setAutor(autor);
         llibre.setCategoria(categoria);
 
-        llibresDAO.update(categoriaId, llibre);
+        llibresDAO.update(id, llibre);
 
         System.out.println();
     }

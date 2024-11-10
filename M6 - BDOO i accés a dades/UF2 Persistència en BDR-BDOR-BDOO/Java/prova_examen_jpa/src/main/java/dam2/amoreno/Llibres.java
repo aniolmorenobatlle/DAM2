@@ -1,16 +1,12 @@
 package dam2.amoreno;
 
 import java.io.Serializable;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 
 @Entity
 public class Llibres implements Serializable {
@@ -20,28 +16,27 @@ public class Llibres implements Serializable {
     private int id;
 
     private String titol;
-
     private String isbn;
-
     private int any_publicacio;
+    
+    // @ManyToOne
+    // @JoinColumn(name = "autor_id", nullable = true)
+    // private Autors autor;
 
-    @ManyToOne
-    @JoinColumn(name = "autor_id", nullable = true)
-    private Autors autor;    
+    // @ManyToOne
+    // @JoinColumn(name = "categoria_id", nullable = true)
+    // private Categories categoria;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id", nullable = true)
-    private Categories categoria;
+    
+    public Llibres() {
+    }
 
-
-    public Llibres() {}
-
-    public Llibres(String titol, String isbn, int any_publicacio, Autors autor, Categories categoria) {
+    public Llibres(String titol, String isbn, int any_publicacio) {
         this.titol = titol;
         this.isbn = isbn;
         this.any_publicacio = any_publicacio;
-        this.autor = autor;
-        this.categoria = categoria;
+        // this.autor = autor;
+        // this.categoria = categoria;
     }
 
     public int getId() {
@@ -76,19 +71,20 @@ public class Llibres implements Serializable {
         this.any_publicacio = any_publicacio;
     }
 
-    public Autors getAutor() {
-        return autor;
-    }
+    // public Autors getAutor() {
+    //     return autor;
+    // }
 
-    public void setAutor(Autors autor) {
-        this.autor = autor;
-    }
+    // public void setAutor(Autors autor) {
+    //     this.autor = autor;
+    // }
 
-    public Categories getCategoria() {
-        return categoria;
-    }
+    // public Categories getCategoria() {
+    //     return categoria;
+    // }
 
-    public void setCategoria(Categories categoria) {
-        this.categoria = categoria;
-    }
+    // public void setCategoria(Categories categoria) {
+    //     this.categoria = categoria;
+    // }
+
 }
