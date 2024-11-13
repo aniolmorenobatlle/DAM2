@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageViewBabyDriver"
+                android:layout_width="220dp"
+                android:layout_height="300dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/baby_driver" />
+
+            <ImageView
+                android:id="@+id/imageViewHttyd"
+                android:layout_width="220dp"
+                android:layout_height="300dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/httyd" />
+
+            <ImageView
+                android:id="@+id/imageViewTheDarkKnight"
+                android:layout_width="220dp"
+                android:layout_height="300dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/the_dark_knight" />
+
+            <ImageView
+                android:id="@+id/imageViewSW3"
+                android:layout_width="220dp"
+                android:layout_height="300dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/sw3" />
+
+            <ImageView
+                android:id="@+id/imageViewToyStory"
+                android:layout_width="220dp"
+                android:layout_height="300dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/toystory" />
+
+            <ImageView
+                android:id="@+id/imageViewLOTR"
+                android:layout_width="220dp"
+                android:layout_height="300dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/lotr" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/textViewTitol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <TextView
+        android:id="@+id/textViewAny"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitol" />
+
+    <TextView
+        android:id="@+id/textViewDescripcio"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAny" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="220dp" />
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
