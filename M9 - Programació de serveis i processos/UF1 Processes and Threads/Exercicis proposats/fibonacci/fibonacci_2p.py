@@ -2,7 +2,7 @@
 
 
 import sys
-import multiprocessing
+import multiprocessing as mp
 
 def fibonacci(n):
     if n == 0:
@@ -22,10 +22,10 @@ if len(sys.argv) > 1:
     number = sys.argv[1]
     if number.isnumeric():
         n = int(number)
-        queue = multiprocessing.Queue()
+        queue = mp.Queue()
 
         # Crear proces fill per calcular nomes fibonacci(n - 1)
-        p = multiprocessing.Process(target=calculate_fibonacci, args=(n - 1, queue))
+        p = mp.Process(target = calculate_fibonacci, args=(n - 1, queue))
         p.start()
         
         # Proces principal que calcula el fibonacci(n - 2)
