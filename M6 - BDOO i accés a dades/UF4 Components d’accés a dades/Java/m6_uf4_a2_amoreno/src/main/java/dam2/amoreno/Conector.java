@@ -16,6 +16,7 @@ public class Conector {
     private String nom_bbdd;
     private int port;
     private Connection connexio;
+    private ConectorListener listener;
 
 
     // Constructor que demana les dades
@@ -48,23 +49,18 @@ public class Conector {
         try {
 
             String url = generarURLConnexio();
-
             connexio = DriverManager.getConnection(url, usuari, contrasenya);
 
-            System.out.println("Connexió establerta!!");
+            if (listener != null) {
+                listener.onConnexioEstablerta();
+            }
 
             return true;
 
         } catch (SQLException e) {
 
-            if (e.getSQLState().equals("08001")) {
-                System.out.println("Error de connexió: No s'ha pogut establir connexió amb la base de dades.");
-            } else if (e.getSQLState().equals("28000")) {
-                System.out.println("Usuari o contrasenya incorrecte.");
-            } else if (e.getSQLState().equals("42000")) {
-                System.out.println("Nom de la base de dades no trobat.");
-            } else {
-                System.out.println("Error en establir la connexió: " + e.getMessage());
+            if (listener != null) {
+                listener.onErrorConnexio(e.getMessage());
             }
 
             return false;
@@ -73,20 +69,21 @@ public class Conector {
 
 
     // Tancar connexio
-    public boolean tancarConnexio() {
+       public boolean tancarConnexio() {
         try {
 
-            if (connexio !=  null && !connexio.isClosed()) {
+            if (connexio != null && !connexio.isClosed()) {
                 connexio.close();
 
-                System.out.println("Connexió tancada.");
-                
+                if (listener != null) {
+                    listener.onConnexioTancada();
+                }
+
                 return true;
             }
 
-            System.out.println("Connexio ja tancada.");
             return false;
-            
+
         } catch (SQLException e) {
             System.out.println("Error en tancar la connexió.");
             return false;
@@ -97,13 +94,19 @@ public class Conector {
     // Comprovar si la connexió esta activa
     public boolean connexioActiva() {
         try {
+
             if (connexio != null && !connexio.isClosed()) {
-                System.out.println("La connexió ja està activa.");
                 return true;
+
             } else {
-                System.out.println("La connexió no està activa.");
+
+                if (listener != null) {
+                    listener.onConnexioCaiguda();
+                }
+
                 return false;
             }
+
         } catch (SQLException e) {
             System.out.println("Error al comprovar l'estat de la connexió: " + e.getMessage());
             return false;
@@ -192,4 +195,15 @@ public class Conector {
     public void setConnexio(Connection connexio) {
         this.connexio = connexio;
     }
+
+
+    public ConectorListener getListener() {
+        return listener;
+    }
+
+
+    public void setListener(ConectorListener listener) {
+        this.listener = listener;
+    }
+
 }
