@@ -7,13 +7,14 @@ public class App
     {
         Conector conn = new Conector();
 
+        ConectorImpl listener = new ConectorImpl();
+
+        conn.setListener(listener);
+
         System.out.println();
 
-        if (conn.obrirConnexio()) {
-            conn.connexioActiva();
-
-
-            conn.tancarConnexio();
-        }
+        conn.obrirConnexio();
+        conn.connexioActiva();
+        conn.tancarConnexio();
     }
 }
