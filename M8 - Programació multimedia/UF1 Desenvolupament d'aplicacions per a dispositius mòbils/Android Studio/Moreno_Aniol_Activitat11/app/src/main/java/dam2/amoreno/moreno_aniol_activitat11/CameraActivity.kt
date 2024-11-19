@@ -103,7 +103,6 @@ class CameraActivity : AppCompatActivity() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = outputFileResults.savedUri
-                    Toast.makeText(this@CameraActivity, "Foto salvada", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent(this@CameraActivity, MainActivity::class.java).apply {
                         putExtra("imageUri", savedUri.toString())

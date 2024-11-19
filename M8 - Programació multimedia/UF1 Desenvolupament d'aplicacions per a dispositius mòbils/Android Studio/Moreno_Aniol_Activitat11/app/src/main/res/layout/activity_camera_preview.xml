@@ -33,6 +33,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/camera" />
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

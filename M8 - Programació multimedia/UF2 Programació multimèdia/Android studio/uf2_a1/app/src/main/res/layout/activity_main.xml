@@ -90,15 +90,16 @@
         android:id="@+id/textViewDescripcio"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="10dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAny" />
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -106,7 +107,7 @@
         <VideoView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_height="220dp" />
+            android:layout_height="200dp" />
 
     </FrameLayout>
 

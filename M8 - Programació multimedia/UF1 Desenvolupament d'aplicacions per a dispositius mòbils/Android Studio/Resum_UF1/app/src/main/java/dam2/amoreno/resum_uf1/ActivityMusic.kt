@@ -69,6 +69,16 @@ class ActivityMusic : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+            R.id.lists -> {
+                val intent = Intent(this, ActivityLists::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.fragments -> {
+                val intent = Intent(this, ActivityFragments::class.java)
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

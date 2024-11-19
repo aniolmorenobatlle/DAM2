@@ -21,7 +21,14 @@
         <activity
             android:name=".CameraActivity"
             android:exported="true">
-
+        </activity>
+        <activity
+            android:name=".InvertaryActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".FragmentsActivity"
+            android:exported="true">
         </activity>
         <activity
             android:name=".MainActivity"

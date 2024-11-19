@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             val videoPath = "android.resource://" + packageName + "/" + R.raw.baby_driver
             val uri : Uri = Uri.parse(videoPath)
             video.setVideoURI(uri)
+            video.start()
             val mediaController = MediaController(this)
             video.setMediaController(mediaController)
         }
@@ -54,6 +55,13 @@ class MainActivity : AppCompatActivity() {
                 "Descripció:",
                 "How to Train Your Dragon és una pel·lícula d'animació de 2010 dirigida per Chris Sanders i Dean DeBlois. La pel·lícula està basada en la sèrie de llibres del mateix nom de Cressida Cowell."
             )
+
+            val videoPath = "android.resource://" + packageName + "/" + R.raw.httyd
+            val uri : Uri = Uri.parse(videoPath)
+            video.setVideoURI(uri)
+            video.start()
+            val mediaController = MediaController(this)
+            video.setMediaController(mediaController)
         }
 
         dark_knight.setOnClickListener {
@@ -63,6 +71,13 @@ class MainActivity : AppCompatActivity() {
                 "Descripció:",
                 "The Dark Knight és una pel·lícula de 2008 dirigida per Christopher Nolan. La pel·lícula està protagonitzada per Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine, Maggie Gyllenhaal, Gary Oldman i Morgan Freeman."
             )
+
+            val videoPath = "android.resource://" + packageName + "/" + R.raw.dark_night
+            val uri : Uri = Uri.parse(videoPath)
+            video.setVideoURI(uri)
+            video.start()
+            val mediaController = MediaController(this)
+            video.setMediaController(mediaController)
         }
 
         sw.setOnClickListener {
@@ -72,6 +87,13 @@ class MainActivity : AppCompatActivity() {
                 "Descripció:",
                 "Star Wars: Episode III - Revenge of the Sith és una pel·lícula de 2005 dirigida per George Lucas. La pel·lícula està protagonitzada per Ewan McGregor, Natalie Portman, Hayden Christensen, Ian McDiarmid, Samuel L. Jackson, Christopher Lee i Anthony Daniels."
             )
+
+            val videoPath = "android.resource://" + packageName + "/" + R.raw.sw3
+            val uri : Uri = Uri.parse(videoPath)
+            video.setVideoURI(uri)
+            video.start()
+            val mediaController = MediaController(this)
+            video.setMediaController(mediaController)
         }
 
         toyStory.setOnClickListener {
@@ -81,6 +103,13 @@ class MainActivity : AppCompatActivity() {
                 "Descripció:",
                 "Toy Story és una pel·lícula d'animació de 1995 dirigida per John Lasseter. La pel·lícula està protagonitzada per Tom Hanks, Tim Allen, Don Rickles, Jim Varney, Wallace Shawn, John Ratzenberger i Annie Potts."
             )
+
+            val videoPath = "android.resource://" + packageName + "/" + R.raw.baby_driver
+            val uri : Uri = Uri.parse(videoPath)
+            video.setVideoURI(uri)
+            video.start()
+            val mediaController = MediaController(this)
+            video.setMediaController(mediaController)
         }
 
         rotr.setOnClickListener {
@@ -88,8 +117,15 @@ class MainActivity : AppCompatActivity() {
             any.text = createBoldLabel("Any:", "2003")
             descripcio.text = createBoldLabel(
                 "Descripció:",
-                "The Lord of the Rings: The Return of the King és una pel·lícula de 2003 dirigida per Peter Jackson. La pel·lícula està protagonitzada per Elijah Wood, Ian McKellen, Liv Tyler, Viggo Mortensen, Sean Astin, Cate Blanchett, John Rhys-Davies, Bernard Hill, Billy Boyd, Dominic Monaghan, Orlando Bloom, Hugo Weaving, Miranda Otto, David Wenham, Karl Urban, John Noble, Andy Serkis i Ian Holm."
+                "The Lord of the Rings: The Return of the King és una pel·lícula de 2003 dirigida per Peter Jackson. La pel·lícula està protagonitzada per Elijah Wood, Ian McKellen, Liv Tyler i Viggo Mortensen."
             )
+
+            val videoPath = "android.resource://" + packageName + "/" + R.raw.httyd
+            val uri : Uri = Uri.parse(videoPath)
+            video.setVideoURI(uri)
+            video.start()
+            val mediaController = MediaController(this)
+            video.setMediaController(mediaController)
         }
     }
 

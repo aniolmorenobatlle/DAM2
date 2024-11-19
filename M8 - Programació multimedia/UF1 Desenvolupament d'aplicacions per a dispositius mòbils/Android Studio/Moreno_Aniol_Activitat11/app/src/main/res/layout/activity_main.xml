@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/ligth_grey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -17,15 +18,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/modelProducte"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/modelProducteLayout"
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="@string/model_del_producte"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/marcaProducte" />
+        app:layout_constraintTop_toBottomOf="@+id/marcaProducte">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/modelProducte"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -36,7 +44,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modelProducte">
+        app:layout_constraintTop_toBottomOf="@+id/modelProducteLayout">
 
         <Spinner
             android:id="@+id/quantitatProducte"
@@ -50,11 +58,13 @@
         <Button
             android:id="@+id/botoImatge"
             android:layout_width="60dp"
+            android:backgroundTint="@color/main"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:textSize="18dp"
-            android:text="@string/fer_foto" />
+            android:text="@string/fer_foto"
+            app:cornerRadius="10dp"/>
 
     </LinearLayout>
 
@@ -69,21 +79,94 @@
 
     <Button
         android:id="@+id/guardarProducte"
+        android:backgroundTint="@color/main"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:text="@string/guardar_producte"
         android:textSize="18dp"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imatgeProducte" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:backgroundTint="@color/ligth_grey"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="59dp"
+        app:fabAlignmentMode="center"
+        app:fabCradleMargin="10dp"
+        app:fabCradleRoundedCornerRadius="10dp"
+        app:fabCradleVerticalOffset="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="BottomAppBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/add"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/add" />
+
+            <ImageView
+                android:id="@+id/list"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/list" />
+
+        </LinearLayout>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
+        android:id="@+id/cameraLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/cameraPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="50dp" />
+
+        <ImageView
+            android:id="@+id/tancarCamera"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/close" />
+
+        <ImageView
+            android:id="@+id/ferFoto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/camera" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
