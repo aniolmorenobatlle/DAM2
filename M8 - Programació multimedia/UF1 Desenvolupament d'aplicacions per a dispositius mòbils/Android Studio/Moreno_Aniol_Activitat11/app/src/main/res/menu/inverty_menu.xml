@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mac"
+        android:title="Veure Mac's" />
+
+
+    <item
+        android:id="@+id/samsung"
+        android:title="Veure Samsung's" />
+
+    <item
+        android:id="@+id/logitech"
+        android:title="Veure Logitech's" />
+
+    <item
+        android:id="@+id/lenovo"
+        android:title="Veure Lenovo's" />
+
+</menu>

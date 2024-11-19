@@ -15,4 +15,12 @@
     <item
         android:id="@+id/shared"
         android:title="Shared Preferences"/>
+
+    <item
+        android:id="@+id/lists"
+        android:title="Llistes"/>
+
+    <item
+        android:id="@+id/fragments"
+        android:title="Fragments"/>
 </menu>
