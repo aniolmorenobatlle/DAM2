@@ -36,17 +36,21 @@ class MainActivity : AppCompatActivity() {
         )
 
 
-        // Si tens un ActionBar per defecte, pots ocultar el títol
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        // Obtenim la mida de la pantalla
+        val displayMetrics = resources.displayMetrics
+        val screenWidth = displayMetrics.widthPixels
+
+        // Defineix la mida del logo com un percentatge de l'amplada de la pantalla
+        val logoWidth = (screenWidth * 0.3).toInt()  // 30% de l'amplada de la pantalla
+        val logoHeight = (logoWidth * 0.5).toInt()   // Alçada proporcional (50% de l'amplada)
 
         // Crear un ImageView amb el teu logotip
         val logo = ImageView(this).apply {
             setImageResource(R.drawable.primelogo)
 
-            // Establir les dimensions del logo directament en Kotlin
             val layoutParams = ActionBar.LayoutParams(
-                300, // Amplada del logo en píxels
-                150   // Alçada del logo en píxels
+                logoWidth,
+                logoHeight
             )
             this.layoutParams = layoutParams
         }
@@ -57,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         // Habilitar la personalització del ActionBar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
-
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         // Assignem la vista del view pager definit a l'XML
         viewPager = findViewById(R.id.slider)
