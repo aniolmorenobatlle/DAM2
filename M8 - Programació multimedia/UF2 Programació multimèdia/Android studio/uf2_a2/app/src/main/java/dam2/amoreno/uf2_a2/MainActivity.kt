@@ -1,18 +1,32 @@
 package dam2.amoreno.uf2_a2
 
-import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Html
 import android.view.Menu
-import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.viewpager2.widget.ViewPager2
+import dam2.amoreno.uf2_a2.Adapter.SliderAdapter
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var viewPager: ViewPager2
+
+    lateinit var sliderAdapter: SliderAdapter
+
+    // Llistat d'imatges a mostrar
+    val imageList = listOf(
+        R.drawable.burtalist,
+        R.drawable.dune2,
+        R.drawable.robot,
+        R.drawable.thebatman,
+    )
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,8 +35,103 @@ class MainActivity : AppCompatActivity() {
             ColorDrawable(ContextCompat.getColor(this, R.color.black))
         )
 
-        supportActionBar?.title = Html.fromHtml("<font color=\"#FFFFFF\"><b>Prime Video</b></font>")
 
+        // Si tens un ActionBar per defecte, pots ocultar el títol
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        // Crear un ImageView amb el teu logotip
+        val logo = ImageView(this).apply {
+            setImageResource(R.drawable.primelogo)
+
+            // Establir les dimensions del logo directament en Kotlin
+            val layoutParams = ActionBar.LayoutParams(
+                300, // Amplada del logo en píxels
+                150   // Alçada del logo en píxels
+            )
+            this.layoutParams = layoutParams
+        }
+
+        // Afegeix la imatge al ActionBar
+        supportActionBar?.setCustomView(logo)
+
+        // Habilitar la personalització del ActionBar
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+
+
+
+        // Assignem la vista del view pager definit a l'XML
+        viewPager = findViewById(R.id.slider)
+
+        // Creem una instància i assignem l'adaptador
+        sliderAdapter = SliderAdapter(this, imageList)
+        viewPager.adapter = sliderAdapter
+
+        // Mètode per gestionar l'slider
+        startImageSlideshow()
+
+
+        val pelicules = findViewById<Button>(R.id.pelicules)
+        val series = findViewById<Button>(R.id.series)
+        val esports = findViewById<Button>(R.id.esports)
+        val tv = findViewById<Button>(R.id.directes)
+        val documentals = findViewById<Button>(R.id.documentals)
+        val anime = findViewById<Button>(R.id.anime)
+
+        pelicules.setOnClickListener {
+            Toast.makeText(this, "Pelicules", Toast.LENGTH_SHORT).show()
+        }
+
+        series.setOnClickListener {
+            Toast.makeText(this, "Series", Toast.LENGTH_SHORT).show()
+        }
+
+        esports.setOnClickListener {
+            Toast.makeText(this, "Esports", Toast.LENGTH_SHORT).show()
+        }
+
+        tv.setOnClickListener {
+            Toast.makeText(this, "Directes", Toast.LENGTH_SHORT).show()
+        }
+
+        documentals.setOnClickListener {
+            Toast.makeText(this, "Documentals", Toast.LENGTH_SHORT).show()
+        }
+
+        anime.setOnClickListener {
+            Toast.makeText(this, "Anime", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun startImageSlideshow() {
+
+        // Handler per executar tasques amb delay
+        val handler = android.os.Handler()
+
+        // Codi per tal d'executar un fil
+        val runnable = object : Runnable {
+
+            // inicializtem la variable per mostrar la imatge actual
+            var currentPage = 0
+
+            // Codi que es crida cada cop que es llança el handler
+            override fun run() {
+                // Mostra la imatge actual
+                viewPager.setCurrentItem(currentPage, true)
+
+                // S'avança a la següent imatge
+                currentPage++
+
+                // Es passa de l'última imatge a la primera
+                if (currentPage >= imageList.size) {
+                    currentPage = 0
+                }
+
+                // Cada 3 segons es llança el codi anterior
+                handler.postDelayed(this, 5000)
+            }
+        }
+        // El procés s'inicia als 3 segons
+        handler.postDelayed(runnable, 5000)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
