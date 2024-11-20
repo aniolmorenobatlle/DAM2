@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">UF2_A3</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="veterinaris">Veterinaris</string>
+    <string name="mecanics">Mecànics</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="instituts">Instituts</string>
+</resources>
