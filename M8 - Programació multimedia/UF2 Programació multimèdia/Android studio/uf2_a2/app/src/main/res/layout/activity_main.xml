@@ -5,19 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/black"
     android:paddingBottom="20dp"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".MainActivity">
 
         <HorizontalScrollView
-            android:id="@+id/horizontalScrollView"
+            android:id="@+id/horizontalScrollViewMenus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,79 +30,72 @@
                 android:orientation="horizontal">
 
                 <Button
-                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:id="@+id/pelicules"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
                     android:text="Pelicules"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
 
                 <Button
-                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:id="@+id/series"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
                     android:text="Series"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
 
                 <Button
-                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:id="@+id/esports"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
                     android:text="Esports"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
 
                 <Button
-                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:id="@+id/directes"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
                     android:text="TV en directe"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
 
                 <Button
-                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:id="@+id/documentals"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
                     android:text="Documentals"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
 
                 <Button
-                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:id="@+id/anime"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
                     android:text="Anime"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
@@ -108,14 +103,14 @@
 
         </HorizontalScrollView>
 
-        <ImageView
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/slider"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollViewMenus"
             app:srcCompat="@drawable/trampa" />
 
         <TextView
@@ -147,37 +142,69 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imageViewBabyDriver"
-                    android:layout_width="200dp"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/truman" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="10dp">
 
-                <ImageView
-                    android:id="@+id/shrek"
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/shrek2" />
+                    <ImageView
+                        android:id="@+id/truman"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/truman" />
 
-                <ImageView
-                    android:id="@+id/oppenheimer"
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/oppenheimer" />
+                </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/walle"
-                    android:layout_width="200dp"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/walle" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="10dp">
+
+                    <ImageView
+                        android:id="@+id/shrek"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/shrek2" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="10dp">
+
+                    <ImageView
+                        android:id="@+id/oppenheimer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/oppenheimer" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="10dp">
+
+                    <ImageView
+                        android:id="@+id/walle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/walle" />
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
@@ -217,13 +244,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/theBatman"
-                        android:layout_width="200dp"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="180dp"
                         android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        app:srcCompat="@drawable/thebatman" />
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        android:layout_marginEnd="10dp">
+
+                        <ImageView
+                            android:id="@+id/theBatman"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/thebatman" />
+
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:layout_marginTop="5dp"
@@ -236,7 +271,7 @@
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_weight="1"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             app:srcCompat="@drawable/buy" />
 
                         <TextView
@@ -255,13 +290,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/httyd"
-                        android:layout_width="200dp"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="180dp"
                         android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        app:srcCompat="@drawable/httyd" />
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        android:layout_marginEnd="10dp">
+
+                        <ImageView
+                            android:id="@+id/httyd"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/httyd" />
+
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:layout_marginTop="5dp"
@@ -274,7 +317,7 @@
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_weight="1"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             app:srcCompat="@drawable/buy" />
 
                         <TextView
@@ -292,13 +335,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/toyStory"
-                        android:layout_width="200dp"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="180dp"
                         android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        app:srcCompat="@drawable/toystory" />
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        android:layout_marginEnd="10dp">
+
+                        <ImageView
+                            android:id="@+id/toyStory"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/toystory" />
+
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:layout_marginTop="5dp"
@@ -311,7 +362,7 @@
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_weight="1"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             app:srcCompat="@drawable/buy" />
 
                         <TextView
@@ -329,13 +380,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/gladiator"
-                        android:layout_width="200dp"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="180dp"
                         android:layout_height="100dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        app:srcCompat="@drawable/gladiator" />
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        android:layout_marginEnd="10dp">
+
+                        <ImageView
+                            android:id="@+id/gladiator"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/gladiator" />
+
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:layout_marginTop="5dp"
@@ -348,7 +407,7 @@
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_weight="1"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             app:srcCompat="@drawable/buy" />
 
                         <TextView
@@ -395,37 +454,69 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/babyDriver"
-                    android:layout_width="200dp"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/babydriver" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="10dp">
 
-                <ImageView
-                    android:id="@+id/starWars"
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/starwars" />
+                    <ImageView
+                        android:id="@+id/babyDriver"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/babydriver" />
 
-                <ImageView
-                    android:id="@+id/lotr"
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/lotr" />
+                </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/willHunting"
-                    android:layout_width="200dp"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/willhunting" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="10dp">
+
+                    <ImageView
+                        android:id="@+id/starWars"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/starwars" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="10dp">
+
+                    <ImageView
+                        android:id="@+id/lotr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/lotr" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="180dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="10dp">
+
+                    <ImageView
+                        android:id="@+id/willHunting"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/willhunting" />
+
+                </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
