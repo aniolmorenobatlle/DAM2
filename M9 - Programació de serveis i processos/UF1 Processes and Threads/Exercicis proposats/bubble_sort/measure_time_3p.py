@@ -32,8 +32,8 @@ def run_bubble_sort_3p(n):
 
 
 # Quins números ha de mirar el bubble_sort (per exemple, de 1000 a 20000)
-n_values = list(range(1000, 21000, 1000))
-
+n_values = list(range(1000, 21000))
+    
 times_1p = []
 times_3p = []
 
