@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Conector {
+public class Conector implements ConectorInterface {
     static Scanner sc = new Scanner(System.in);
 
 
@@ -19,31 +19,6 @@ public class Conector {
     private ConectorListener listener;
 
 
-    // Constructor que demana les dades
-    public Conector() {
-        System.out.println();
-
-        System.out.print("Gestor de base de dades: ");
-        this.gestor = sc.nextLine();
-
-        System.out.print("IP: ");
-        this.ip = sc.nextLine();
-
-        System.out.print("Port: ");
-        this.port = sc.nextInt();
-        sc.nextLine();
-
-        System.out.print("Nom d'usuari: ");
-        this.usuari = sc.nextLine();
-
-        System.out.print("Contrasenya: ");
-        this.contrasenya = sc.nextLine();
-
-        System.out.print("Nom de la base de dades a utilitzar: ");
-        this.nom_bbdd = sc.nextLine();
-    }
-
-    
     // Obrir connexio
     public boolean obrirConnexio() {
         try {

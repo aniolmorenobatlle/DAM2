@@ -3,10 +3,8 @@ package dam2.amoreno;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Scanner;
 
-public class Conector {
-    static Scanner sc = new Scanner(System.in);
+public class Conector implements ConectorInterface {
 
 
     private String gestor;
@@ -18,31 +16,6 @@ public class Conector {
     private Connection connexio;
 
 
-    // Constructor que demana les dades
-    public Conector() {
-        System.out.println();
-
-        System.out.print("Gestor de base de dades: ");
-        this.gestor = sc.nextLine();
-
-        System.out.print("IP: ");
-        this.ip = sc.nextLine();
-
-        System.out.print("Port: ");
-        this.port = sc.nextInt();
-        sc.nextLine();
-
-        System.out.print("Nom d'usuari: ");
-        this.usuari = sc.nextLine();
-
-        System.out.print("Contrasenya: ");
-        this.contrasenya = sc.nextLine();
-
-        System.out.print("Nom de la base de dades a utilitzar: ");
-        this.nom_bbdd = sc.nextLine();
-    }
-
-    
     // Obrir connexio
     public boolean obrirConnexio() {
         try {
@@ -58,7 +31,7 @@ public class Conector {
         } catch (SQLException e) {
 
             if (e.getSQLState().equals("08001")) {
-                System.out.println("Error de connexió: No s'ha pogut establir connexió amb la base de dades.");
+                System.out.println("Error de connexió: Gestor de base de dades no trobada.");
             } else if (e.getSQLState().equals("28000")) {
                 System.out.println("Usuari o contrasenya incorrecte.");
             } else if (e.getSQLState().equals("42000")) {

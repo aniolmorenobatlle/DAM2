@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "dam2.amoreno.uf2_a3"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "dam2.amoreno.uf2_a3"
-        minSdk = 35
+        minSdk = 33
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
