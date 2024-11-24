@@ -10,7 +10,7 @@
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="550dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -66,16 +66,6 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/veterinari"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:textSize="20sp"
-                android:text="@string/veterinaris"
-                app:cornerRadius="10dp"/>
-
-            <Button
                 android:id="@+id/institut"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -83,6 +73,16 @@
                 android:layout_weight="1"
                 android:textSize="20sp"
                 android:text="@string/instituts"
+                app:cornerRadius="10dp"/>
+
+            <Button
+                android:id="@+id/totes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:text="@string/totes"
                 app:cornerRadius="10dp"/>
 
         </LinearLayout>
