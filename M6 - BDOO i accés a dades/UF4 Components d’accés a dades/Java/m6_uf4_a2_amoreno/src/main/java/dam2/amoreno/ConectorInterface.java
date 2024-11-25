@@ -7,4 +7,5 @@ public interface ConectorInterface {
     boolean connexioActiva();
     String generarURLConnexio();
 
+    void setListener(ConectorListener listener);
 }

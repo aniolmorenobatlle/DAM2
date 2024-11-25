@@ -2,3 +2,6 @@
 2024-11-21 18:31:38 - Esdeveniment: Error en establir la connexio. Missatge d'error: Access denied for user 'aniol'@'localhost' (using password: YES)
 2024-11-21 18:31:58 - Esdeveniment: Connexió establerta!!
 2024-11-21 18:31:58 - Esdeveniment: Connexió tancada!!
+2024-11-25 19:22:53 - Esdeveniment: Connexió establerta!!
+2024-11-25 19:22:53 - Esdeveniment: Connexió tancada!!
+2024-11-25 19:23:02 - Esdeveniment: Error en establir la connexio. Missatge d'error: No suitable driver found for Gestor de base de dades no trobada.

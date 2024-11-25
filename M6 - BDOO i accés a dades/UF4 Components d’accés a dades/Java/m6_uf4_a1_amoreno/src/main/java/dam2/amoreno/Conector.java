@@ -15,6 +15,16 @@ public class Conector implements ConectorInterface {
     private int port;
     private Connection connexio;
 
+    
+    public Conector(String gestor, String ip, String usuari, String contrasenya, String nom_bbdd, int port) {
+        this.gestor = gestor;
+        this.ip = ip;
+        this.usuari = usuari;
+        this.contrasenya = contrasenya;
+        this.nom_bbdd = nom_bbdd;
+        this.port = port;
+    }
+
 
     // Obrir connexio
     public boolean obrirConnexio() {
