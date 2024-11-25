@@ -10,32 +10,32 @@ public class App
     
     public static void main( String[] args )
     {
-        Conector conn = new Conector();
 
         ConectorImpl listener = new ConectorImpl();
 
-        conn.setListener(listener);
-
         System.out.println();
-
+        
         System.out.print("Gestor de base de dades: ");
-        conn.setGestor(sc.nextLine());
+        String gestor = sc.nextLine();
 
         System.out.print("IP: ");
-        conn.setIp(sc.nextLine());
+        String ip = sc.nextLine();
 
         System.out.print("Port: ");
-        conn.setPort(sc.nextInt());
+        int port = sc.nextInt();
         sc.nextLine();
 
         System.out.print("Nom d'usuari: ");
-        conn.setUsuari(sc.nextLine());
+        String usuari = sc.nextLine();
 
         System.out.print("Contrasenya: ");
-        conn.setContrasenya(sc.nextLine());
+        String contrasenya = sc.nextLine();
 
         System.out.print("Nom de la base de dades: ");
-        conn.setNom_bbdd(sc.nextLine());
+        String nomdb = sc.nextLine();
+
+        ConectorInterface conn = new Conector(gestor, ip, usuari, contrasenya, nomdb, port);
+        conn.setListener(listener);
 
 
         System.out.println();
