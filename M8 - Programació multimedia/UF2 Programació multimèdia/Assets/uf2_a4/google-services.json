@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "239006815085",
+    "project_id": "exemplefirebase-87dde",
+    "storage_bucket": "exemplefirebase-87dde.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239006815085:android:8baf36354c4d950a390064",
+        "android_client_info": {
+          "package_name": "dam2.amoreno.a4_uf2_aniol_moreno"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtzcNftHf2F_6jdIr_E5NqU4KppdjjBwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

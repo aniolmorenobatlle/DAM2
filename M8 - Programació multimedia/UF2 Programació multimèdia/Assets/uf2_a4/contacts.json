@@ -1,0 +1,22 @@
+{
+  "contacts": {
+    "contact1": {
+      "id": 1,
+      "address": "Palamos",
+      "name": "Pere Pi Pla",
+      "position": ["43.3° N", "3° E"]
+    },
+    "contact2": {
+      "id": 2,
+      "address": "Barcelona",
+      "name": "Anna Pi",
+      "position": ["41.4° N", "2.2° E"]
+    },
+    "contact3": {
+      "id": 3,
+      "address": "Estartit",
+      "name": "Aniol Moreno",
+      "position": ["42.1° N", "3.2° E"]
+    }
+  }
+}

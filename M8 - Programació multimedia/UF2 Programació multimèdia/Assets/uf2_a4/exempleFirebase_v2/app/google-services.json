@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "818425641690",
+    "firebase_url": "https://exemplefirebase2-b5a98-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "exemplefirebase2-b5a98",
+    "storage_bucket": "exemplefirebase2-b5a98.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818425641690:android:c26854c26fce05c60dc3e3",
+        "android_client_info": {
+          "package_name": "com.example.exemplefirebase_v2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRCtxZbCvlNOmFl9L07XJCe1Npt41jqLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
