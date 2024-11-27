@@ -19,9 +19,8 @@ def bubble_sort(l_unsorted):
 
 
 # Funció que ordena una part de la llista i guarda el resultat.s
-def sort_half(part, result, index):
-    result[index] = bubble_sort(part)
-
+def sort_half(part):
+    return bubble_sort(part)
 
 
 if len(sys.argv) > 1:
@@ -37,26 +36,15 @@ if len(sys.argv) > 1:
 
         # Dividir la llista en dues parts
         mid = len(unsorted_list) // 2 # Per trobar la meitat de la llista. // perque aixi no dona decimals
-        part1 = unsorted_list[:mid] # De l'inici fins la meitat
-        part2 = unsorted_list[mid:] # De la meitat fins el final
+        parts = [unsorted_list[:mid], unsorted_list[mid:]]
 
-        # Compartir resultats entre els processos
-        manager = mp.Manager() # Manager permet compartir dades entre processos
-        result = manager.dict() # Crear un diccionari per guardar els resultats dels processos
+        # Pool per ordenar les parts
+        with mp.Pool(processes=2) as pool:
+            sorted_parts = pool.map(sort_half, parts)
 
-
-        # Crear els dos processos
-        p1 = mp.Process(target=sort_half, args=(part1, result, 0))
-        p2 = mp.Process(target=sort_half, args=(part2, result, 1))
-
-        p1.start()
-        p2.start()
-
-        p1.join()
-        p2.join()
-
-        # Unir resultats
-        sorted_list = result[0] + result[1]
+        
+        # Unir els resultats
+        sorted_list = sorted_parts[0] + sorted_parts[1]
 
         print(bubble_sort(sorted_list))
 

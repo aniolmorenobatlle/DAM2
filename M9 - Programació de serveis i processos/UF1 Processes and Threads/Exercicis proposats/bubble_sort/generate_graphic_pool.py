@@ -5,16 +5,20 @@ import matplotlib.pyplot as plt
 n_values = []
 times_1p = []
 times_3p = []
+times_pool = []
 
 
 # Obrir el fitxer i llegir les dades
-with open("times_3p.txt", "r") as f:
+with open("times_pool.txt", "r") as f:
+
     next(f)  # Ignorar la primera línia (encapçalament)
+
     for line in f:
-        n, t1, t3 = map(float, line.strip().split("\t"))
+        n, t1, t3, tPool = map(float, line.strip().split("\t"))
         n_values.append(int(n))  # Convertir n a enter per a l'eix X
         times_1p.append(t1)
         times_3p.append(t3)
+        times_pool.append(tPool)
 
 
 # Crear gràfic
@@ -29,6 +33,7 @@ index = range(len(n_values))
 # Dibuixar les barres
 plt.bar(index, times_1p, width, label="1 process", color="blue")
 plt.bar([i + width for i in index], times_3p, width, label="3 processes", color="red")
+plt.bar([i + 2 * width for i in index], times_pool, width, label = "Pool", color = "green")
 
 
 # Afegir etiquetes i títols

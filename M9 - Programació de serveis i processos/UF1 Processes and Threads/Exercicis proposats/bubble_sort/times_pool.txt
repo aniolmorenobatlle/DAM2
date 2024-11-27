@@ -1,0 +1,2 @@
+N	BubbleSort_1P	BubbleSort_3P
+1000	0.0451	0.0830	0.0676
