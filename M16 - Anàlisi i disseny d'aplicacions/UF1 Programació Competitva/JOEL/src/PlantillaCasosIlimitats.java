@@ -15,8 +15,7 @@ public class PlantillaCasosIlimitats {
 
 	public static void main(String[] args) {
 		casos = teclat.nextInt();
-		while (casosDeProva())
-			;
+		while (casosDeProva()) ;
 	}
 
 	public static boolean casosDeProva() {
