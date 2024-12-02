@@ -30,14 +30,14 @@ def generate_participants():
     return participants
 
 
+
 def throw_dice(participants):
     print('\nThrowing dice:')
-
     results = {}
 
     for participant in participants:
         results[participant] = random.randint(1, 6)
-    
+
     for participant, result in results.items():
         print(f'\t{participant} - {result}')
 
@@ -53,7 +53,7 @@ def compare_with_referee(results, participants):
 
     for participant, result in results.items():
         if participant != 'Referee' and result == referee_result:
-            print(f'{participant} eliminated, as they have the same number as the referee.')
+            print(f'\t{participant} is eliminated has they rolled the same number as the referee.')
             participants_to_remove.append(participant)
             same_result = True
 
@@ -61,21 +61,29 @@ def compare_with_referee(results, participants):
         participants.remove(participant)
 
     if not same_result:
-        print('Nobody has been elminated as they didn\'t rolled the same number as the referee.')
+        print('\tNobody has rolled the same number as the referee.')
 
     return participants
 
 
 def check_winner(participants):
-    print(f'\nThe Winner is:')
-
+    # Eliminar el referee de la llista
     if 'Referee' in participants:
         participants.remove('Referee')
 
-    print('\nRemaining participnats without the referee:')
-    for participant in participants:
-        print(f'\t{participant}')
+    if len(participants) == 1:
+        print(f'\nThe Winner is: {participants[0]}')
+        return True
+    else:
+        print('\nRemaining participants:')
+        for participant in participants:
+            print(f'\t{participant}')
 
+        # Afegir el referee a la primera posició
+        if 'Referee' not in participants:
+            participants.insert(0, 'Referee')
+
+        return False
 
 
 if __name__ == '__main__':
@@ -84,13 +92,9 @@ if __name__ == '__main__':
     for participant in participants:
         print(f'\t{participant}')
 
-    results = throw_dice(participants)
-    
-    participants = compare_with_referee(results, participants)
-    print('\nRemaining participants')
-    
-    for participant in participants:
-        print(f'\t{participant}')
-
-    check_winner(participants)
-    
+    while True:
+        results = throw_dice(participants)
+        participants = compare_with_referee(results, participants)
+        
+        if check_winner(participants):
+            break
