@@ -2,15 +2,16 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
 }
 
 android {
-    namespace = "dam2.amoreno.a4_uf2_aniol_moreno"
+    namespace = "dam2.amoreno.uf2_a4"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "dam2.amoreno.a4_uf2_aniol_moreno"
-        minSdk = 29
+        applicationId = "dam2.amoreno.uf2_a4"
+        minSdk = 30
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -34,10 +35,12 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-
     implementation(platform(libs.google.firebase.bom))
     implementation(libs.firebase.analytics)
 
@@ -47,8 +50,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.database.ktx)
-    implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

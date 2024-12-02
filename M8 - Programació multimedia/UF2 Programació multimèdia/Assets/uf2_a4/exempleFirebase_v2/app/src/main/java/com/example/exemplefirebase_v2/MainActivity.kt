@@ -63,10 +63,10 @@ class MainActivity : AppCompatActivity() {
                     // Recorrem cada document "registre" dintre de la "taula"
                     for (contactSnapshot in snapshot.children) {
                         // Convertim el "registre" actual a un objecte Contact
-                        val contact = contactSnapshot.getValue(Contact::class.java)
+                        val contact = contactSnapshot.getValue(66::class.java)
                         if (contact != null) {
                            // Assignem el nom del contacte al text view
-                           textView.text = contact.name;
+//                           textView.text = contact.name;
                         }
                     }
                 }

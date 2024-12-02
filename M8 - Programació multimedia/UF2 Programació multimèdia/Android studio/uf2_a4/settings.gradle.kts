@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "A4_UF2_Aniol_Moreno"
+rootProject.name = "UF2_A4"
 include(":app")
  

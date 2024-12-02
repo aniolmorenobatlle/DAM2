@@ -1,8 +1,8 @@
 package com.example.model
 
-data class Contact (
+data class Usuari (
     val id: Int = 0,
-    val name: String = "",
-    val address: String = "",
+    val nom: String = "",
+    val poblacio: String = "",
     val position: List<String> = listOf()
 )

@@ -30,28 +30,15 @@ def generate_participants():
     return participants
 
 
-def roll_dice(participant, result_queue):
-    result = random.randint(1, 6)
-    result_queue.put((participant, result))
-
 
 def throw_dice(participants):
     print('\nThrowing dice:')
-    result_queue = mp.Queue()
-    processes = []
+    results = {}
 
     for participant in participants:
-        p = mp.Process(target=roll_dice, args=(participant, result_queue))
-        processes.append(p)
-        p.start()
+        results[participant] = random.randint(1, 6)
 
-    for p in processes:
-        p.join()
-
-    results = {}
-    while not result_queue.empty():
-        participant, result = result_queue.get()
-        results[participant] = result
+    for participant, result in results.items():
         print(f'\t{participant} - {result}')
 
     return results
@@ -66,7 +53,7 @@ def compare_with_referee(results, participants):
 
     for participant, result in results.items():
         if participant != 'Referee' and result == referee_result:
-            print(f'\t{participant} is eliminated as they rolled the same number as the referee.')
+            print(f'\t{participant} is eliminated has they rolled the same number as the referee.')
             participants_to_remove.append(participant)
             same_result = True
 
@@ -74,27 +61,28 @@ def compare_with_referee(results, participants):
         participants.remove(participant)
 
     if not same_result:
-        print('\tNobody eliminated as they didn\'t roll the same number as the referee.')
+        print('\tNobody eliminated has they didn\'t rolled the same number as the referee.')
 
     return participants
 
 
 def check_winner(participants):
-    # Crear una llista temporal sense el referee
-    participants_without_referee = [participant for participant in participants if participant != 'Referee']
+    # Eliminar el referee de la llista
+    if 'Referee' in participants:
+        participants.remove('Referee')
 
-    if len(participants_without_referee) == 1:
-        print(f'\nThe Winner is: {participants_without_referee[0]}')
+    if len(participants) == 1:
+        print(f'\nThe Winner is: {participants[0]}')
         return True
     else:
         print('\nRemaining participants:')
-        for participant in participants_without_referee:
+        for participant in participants:
             print(f'\t{participant}')
-        
+
         # Afegir el referee a la primera posició
         if 'Referee' not in participants:
             participants.insert(0, 'Referee')
-        
+
         return False
 
 

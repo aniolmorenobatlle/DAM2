@@ -1,4 +1,4 @@
-package dam2.amoreno.a4_uf2_aniol_moreno
+package dam2.amoreno.uf2_a4
 
 import org.junit.Test
 
