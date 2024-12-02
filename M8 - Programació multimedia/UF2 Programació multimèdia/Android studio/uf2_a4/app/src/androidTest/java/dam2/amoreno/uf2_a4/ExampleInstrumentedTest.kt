@@ -1,4 +1,4 @@
-package dam2.amoreno.a4_uf2_aniol_moreno
+package dam2.amoreno.uf2_a4
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("dam2.amoreno.a4_uf2_aniol_moreno", appContext.packageName)
+        assertEquals("dam2.amoreno.uf2_a4", appContext.packageName)
     }
 }

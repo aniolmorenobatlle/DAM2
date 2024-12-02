@@ -1,0 +1,10 @@
+{
+  "usuari": {
+    "usuari1": {
+      "id": 1,
+      "nom": "Prova",
+      "poblacio": "Palamos",
+      "position": ["4.052", "3.185"]
+    }
+  }
+}

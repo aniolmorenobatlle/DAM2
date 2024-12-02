@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "239006815085",
-    "project_id": "exemplefirebase-87dde",
-    "storage_bucket": "exemplefirebase-87dde.firebasestorage.app"
+    "project_number": "231618493309",
+    "project_id": "m8-uf2-a4",
+    "storage_bucket": "m8-uf2-a4.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:239006815085:android:8baf36354c4d950a390064",
+        "mobilesdk_app_id": "1:231618493309:android:9609d4e69aa8d005e4aa14",
         "android_client_info": {
-          "package_name": "dam2.amoreno.a4_uf2_aniol_moreno"
+          "package_name": "dam2.amoreno.uf2_a4"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDtzcNftHf2F_6jdIr_E5NqU4KppdjjBwM"
+          "current_key": "AIzaSyBx95plHEwzHXRhikisTSsglCWLwwd3-8k"
         }
       ],
       "services": {

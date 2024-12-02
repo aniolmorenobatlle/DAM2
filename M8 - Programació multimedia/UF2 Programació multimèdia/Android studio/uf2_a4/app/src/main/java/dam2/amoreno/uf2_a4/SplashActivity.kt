@@ -1,4 +1,4 @@
-package dam2.amoreno.a4_uf2_aniol_moreno
+package dam2.amoreno.uf2_a4
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -15,17 +15,15 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        supportActionBar?.hide()
+
         // TODO : generar tot el procés de connexió al firebase de manera externa la main activity
         // Delay de 5 segons
         Handler(Looper.getMainLooper()).postDelayed({
             // TODO : generar una progress bar mentre s'executa l'spalsh activity
             startActivity(Intent(this, MainActivity::class.java))
             // tanquem l'spalsh de manera que no pogume tornar endarrera
-            extracted()
+            finish()
         }, 5000)
-    }
-
-    private fun extracted() {
-        finish()
     }
 }
