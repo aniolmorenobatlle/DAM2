@@ -16,57 +16,45 @@
 
 import multiprocessing as mp
 import random
+import time
+import sys
 
 
-def generate_participants():
-    print('\nList of Participants:')
+def generate_participants(num_players):
+    print(f"{time.time() - start_time:.6f} List of Participants:")
 
-    players = random.randint(2, 6)
     participants = ['Referee']
 
-    for i in range(1, players + 1):
+    for i in range(1, num_players + 1):
         participants.append(f'Player {i}')
 
     return participants
 
 
-def roll_dice(participant, result_queue):
-    result = random.randint(1, 6)
-    result_queue.put((participant, result))
-
-
 def throw_dice(participants):
-    print('\nThrowing dice:')
-    result_queue = mp.Queue()
-    processes = []
-
-    for participant in participants:
-        p = mp.Process(target=roll_dice, args=(participant, result_queue))
-        processes.append(p)
-        p.start()
-
-    for p in processes:
-        p.join()
+    print(f"{time.time() - start_time:.6f} Throwing dice:")
 
     results = {}
-    while not result_queue.empty():
-        participant, result = result_queue.get()
-        results[participant] = result
-        print(f'\t{participant} - {result}')
+
+    for participant in participants:
+        results[participant] = random.randint(1, 6)
+
+    for participant, result in results.items():
+        print(f"{time.time() - start_time:.6f} \t{participant} - {result}")
 
     return results
 
 
 def compare_with_referee(results, participants):
     referee_result = results['Referee']
-    print(f'\nReferee rolled: {referee_result}')
+    print(f'{time.time() - start_time:.6f} Referee rolled: {referee_result}')
 
     same_result = False
     participants_to_remove = []
 
     for participant, result in results.items():
         if participant != 'Referee' and result == referee_result:
-            print(f'\t{participant} is eliminated as they rolled the same number as the referee.')
+            print(f"{time.time() - start_time:.6f} \t{participant} is eliminated as they rolled the same number as the referee.")
             participants_to_remove.append(participant)
             same_result = True
 
@@ -74,7 +62,7 @@ def compare_with_referee(results, participants):
         participants.remove(participant)
 
     if not same_result:
-        print('\tNobody eliminated as they didn\'t roll the same number as the referee.')
+        print(f"{time.time() - start_time:.6f} \tNobody eliminated as they didn't roll the same number as the referee.")
 
     return participants
 
@@ -84,12 +72,12 @@ def check_winner(participants):
     participants_without_referee = [participant for participant in participants if participant != 'Referee']
 
     if len(participants_without_referee) == 1:
-        print(f'\nThe Winner is: {participants_without_referee[0]}')
+        print(f"{time.time() - start_time:.6f} The Winner is: {participants_without_referee[0]}")
         return True
     else:
         print('\nRemaining participants:')
         for participant in participants_without_referee:
-            print(f'\t{participant}')
+            print(f"{time.time() - start_time:.6f} \t{participant}")
         
         # Afegir el referee a la primera posició
         if 'Referee' not in participants:
@@ -99,10 +87,34 @@ def check_winner(participants):
 
 
 if __name__ == '__main__':
-    participants = generate_participants()
+    start_time = time.time()
     
+    if len(sys.argv) != 2:
+        print(f"{time.time() - start_time:.6f} The number of player must be specified")
+        print(f"{time.time() - start_time:.6f} Game has been interrupted")
+        sys.exit(1)
+
+
+    try:
+        num_players = int(sys.argv[1])
+    
+    except ValueError:
+        print(f"{time.time() - start_time:.6f} Incorrect number of players!")
+        print(f"{time.time() - start_time:.6f} Game has been interrupted!")
+        sys.exit(1)
+
+    if num_players < 2 or num_players > 6:
+        print(f"{time.time() - start_time:.6f} The number of players must be a minimum of two and a maximum of six")
+        print(f"{time.time() - start_time:.6f} Game has been interrupted!")
+        sys.exit(1)
+
+    print(f"{time.time() - start_time:.6f} Game is starting ...")
+
+    participants = generate_participants(num_players)
+
     for participant in participants:
-        print(f'\t{participant}')
+        print(f"{time.time() - start_time:.6f} \t{participant}")
+
 
     while True:
         results = throw_dice(participants)
@@ -110,3 +122,6 @@ if __name__ == '__main__':
         
         if check_winner(participants):
             break
+
+
+    print(f"{time.time() - start_time:.6f} Game over")
