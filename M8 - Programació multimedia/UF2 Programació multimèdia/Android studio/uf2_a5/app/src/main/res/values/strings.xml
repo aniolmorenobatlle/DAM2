@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GitHub Followers</string>
+
+    <!-- Enter user -->
+    <string name="enter_user_hint">User</string>
+    <string name="enter_user_button">Explore followers</string>
+</resources>
