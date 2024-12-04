@@ -1,9 +1,13 @@
 package dam2.amoreno.uf2_a4
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import com.example.model.Usuari
+import com.google.android.gms.location.LocationServices
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -62,17 +66,54 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     val latitud = usuari?.position?.get(0)?.toDouble()
                     val longitud = usuari?.position?.get(1)?.toDouble()
 
-                    val posicio = LatLng(latitud!!, longitud!!) // !! perque no sigui nullable
-                    mMap.addMarker(MarkerOptions()
-                        .position(posicio)
-                        .title(nom)
-                        .snippet(poblacio)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.user))
+                    val posicio = LatLng(latitud!!, longitud!!) // !! per assegurar-nos que no és nullable
+                    mMap.addMarker(
+                        MarkerOptions()
+                            .position(posicio)
+                            .title(nom)
+                            .snippet(poblacio)
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.user))
                     )
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(posicio))
 
-                    mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posicio, 5f))
                 }
+
+                // Obtenir la ubicació actual
+                val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this@MapsActivity)
+                if (ActivityCompat.checkSelfPermission(
+                        this@MapsActivity,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        this@MapsActivity,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return
+                }
+                fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
+                    if (location != null) {
+                        val ubicacioActual = LatLng(location.latitude, location.longitude)
+
+                        mMap.addMarker(
+                            MarkerOptions()
+                                .position(ubicacioActual)
+                                .title("Ubicació Actual")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                        )
+                    }
+                }
+
+                mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+                mMap.uiSettings.isZoomControlsEnabled = true
+                mMap.uiSettings.isMyLocationButtonEnabled = true
+
             }
 
             override fun onCancelled(error: DatabaseError) {
