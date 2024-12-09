@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "371081857215",
+    "project_id": "uf2-a6",
+    "storage_bucket": "uf2-a6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371081857215:android:a976ff4221c248e4b21e0a",
+        "android_client_info": {
+          "package_name": "dam2.amoreno.uf2_a6"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7C-F4cHP1hgAMXiZI45u0N8xejvCd9-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
