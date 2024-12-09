@@ -15,11 +15,18 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        supportActionBar?.hide()
+        val sharedPref = getSharedPreferences("sharedPref", MODE_PRIVATE)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+
+            if (sharedPref.getBoolean("registered", false)) {
+                val intent = Intent(this, ThirdActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
         }, 3000)
     }
 }
