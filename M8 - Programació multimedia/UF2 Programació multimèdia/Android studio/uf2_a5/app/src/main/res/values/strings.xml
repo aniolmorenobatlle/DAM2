@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GitHub Followers</string>
+    <string name="app_name">UF2_A5</string>
 
     <!-- Enter user -->
     <string name="enter_user_hint">User</string>
