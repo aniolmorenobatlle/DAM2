@@ -14,7 +14,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import dam2.amoreno.uf2_a6.model.Users
+import dam2.amoreno.uf2_a6.Adapter.SliderAdapter
+import dam2.amoreno.uf2_a6.Model.Users
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         val checkIfExist = findViewById<TextView>(R.id.checkIfExist)
 
 
-
         register.setOnClickListener {
             if (usernameInput.text.toString().isEmpty() && passwordInput.text.toString().isEmpty()) {
                 Toast.makeText(this, "Ni el nom d'usuari ni la contrasenya poden estar buides", Toast.LENGTH_SHORT).show()
@@ -49,23 +49,23 @@ class MainActivity : AppCompatActivity() {
                             if (user?.username == usernameInput.text.toString()) {
                                 checkIfExist.visibility = View.VISIBLE
                                 return
-                            } else {
-                                val newUser = Users(
-                                    username = usernameInput.text.toString(),
-                                    password = passwordInput.text.toString()
-                                )
-
-                                val userId = database.push().key
-                                if (userId != null) {
-                                    database.child(userId).setValue(newUser)
-                                }
-
-                                editor.putBoolean("registered", true)
-                                editor.apply()
-
-                                val intent = Intent(this@MainActivity, ThirdActivity::class.java)
-                                startActivity(intent)
                             }
+                            val newUser = Users(
+                                username = usernameInput.text.toString(),
+                                password = passwordInput.text.toString()
+                            )
+
+                            val userId = database.push().key
+                            if (userId != null) {
+                                database.child(userId).setValue(newUser)
+                            }
+
+                            editor.putBoolean("registered", true)
+                            editor.apply()
+
+                            val intent = Intent(this@MainActivity, ThirdActivity::class.java)
+                            startActivity(intent)
+
                         }
                         checkIfExist.visibility = View.GONE
                     }
