@@ -29,4 +29,3 @@ class UserListAdapter(private val userList: List<UserList>) : RecyclerView.Adapt
         val nameTextView: TextView = itemView.findViewById(R.id.item_name)
     }
 }
-

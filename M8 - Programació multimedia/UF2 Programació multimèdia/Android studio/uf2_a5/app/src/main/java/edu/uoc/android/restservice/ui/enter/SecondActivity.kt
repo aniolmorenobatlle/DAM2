@@ -23,7 +23,7 @@ class SecondActivity : AppCompatActivity() {
 
         userList = mutableListOf(
             UserList("John Doe", R.drawable.user),
-            UserList("Jane Smith", R.drawable.user)
+            UserList("Jane Smith", R.drawable.building)
         )
 
         userAdapter = UserListAdapter(userList)
