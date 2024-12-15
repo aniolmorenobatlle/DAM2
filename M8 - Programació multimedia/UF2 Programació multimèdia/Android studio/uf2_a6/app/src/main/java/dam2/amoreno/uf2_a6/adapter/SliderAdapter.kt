@@ -1,4 +1,4 @@
-package dam2.amoreno.uf2_a6.Adapter
+package dam2.amoreno.uf2_a6.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
