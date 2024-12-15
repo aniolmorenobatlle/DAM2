@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -14,9 +15,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import dam2.amoreno.uf2_a6.Adapter.SliderAdapter
-import dam2.amoreno.uf2_a6.Model.Users
-class ThirdActivity : AppCompatActivity() {
+import dam2.amoreno.uf2_a6.adapter.SliderAdapter
+import dam2.amoreno.uf2_a6.model.Users
+
+class HomeActivity : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
     lateinit var viewPager: ViewPager2
@@ -31,9 +33,9 @@ class ThirdActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_third)
+        setContentView(R.layout.activity_home)
 
-        val sharedPrefHouses = getSharedPreferences("houses", MODE_PRIVATE)
+//        val sharedPrefHouses = getSharedPreferences("houses", MODE_PRIVATE)
 
         database = FirebaseDatabase.getInstance().getReference("users")
 
@@ -52,7 +54,11 @@ class ThirdActivity : AppCompatActivity() {
         val home = findViewById<ImageView>(R.id.home)
 
 
-        estartit.setOnClickListener { showUnavailableFeatureToast() }
+        estartit.setOnClickListener {
+            val intent = Intent(this, RecycleActivity::class.java)
+            startActivity(intent)
+        }
+
         pals.setOnClickListener { showUnavailableFeatureToast() }
         palamos.setOnClickListener { showUnavailableFeatureToast() }
         calonge.setOnClickListener { showUnavailableFeatureToast() }
@@ -98,13 +104,13 @@ class ThirdActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        see.setOnClickListener {
-//            val intent = Intent(this, InvertaryActivity::class.java)
-//            startActivity(intent)
-//        }
+        see.setOnClickListener {
+            val intent = Intent(this, RecycleActivity::class.java)
+            startActivity(intent)
+        }
 
         home.setOnClickListener {
-            val intent = Intent(this, ThirdActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
     }
