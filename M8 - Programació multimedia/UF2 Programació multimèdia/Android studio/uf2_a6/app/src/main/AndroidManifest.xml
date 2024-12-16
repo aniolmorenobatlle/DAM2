@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UF2_A6"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBB0KizOiZqjB90xyrIC2tiJTsvjYQIVx4" />
 
         <activity
             android:name=".SplashActivity"
@@ -36,6 +44,10 @@
         </activity>
         <activity
             android:name=".RecycleActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".DetailActivity"
             android:exported="true">
         </activity>
     </application>
