@@ -35,8 +35,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-//        val sharedPrefHouses = getSharedPreferences("houses", MODE_PRIVATE)
-
         database = FirebaseDatabase.getInstance().getReference("users")
 
         val username = findViewById<TextView>(R.id.username)
