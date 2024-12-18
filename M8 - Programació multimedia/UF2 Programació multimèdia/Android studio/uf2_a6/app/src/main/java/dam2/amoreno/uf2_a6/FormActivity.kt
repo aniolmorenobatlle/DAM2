@@ -52,17 +52,17 @@ class FormActivity : AppCompatActivity() {
                 val gson = Gson()
 
                 // Obtenir la llista actual de cases des de SharedPreferences
-                val currentCasesJson = sharedPreferences.getString("houses_list", "[]")
-                val caseListType = object : TypeToken<MutableList<House>>() {}.type
-                val caseList = gson.fromJson<MutableList<House>>(currentCasesJson, caseListType)
+                val currentHousesJson = sharedPreferences.getString("houses_list", "[]")
+                val houseListType = object : TypeToken<MutableList<House>>() {}.type
+                val houseList = gson.fromJson<MutableList<House>>(currentHousesJson, houseListType)
 
-                caseList.add(house)
+                houseList.add(house)
 
                 // Convertir a JSON
-                val newCasesJson = gson.toJson(caseList)
+                val newHousesJson = gson.toJson(houseList)
 
                 try {
-                    editor.putString("houses_list", newCasesJson)
+                    editor.putString("houses_list", newHousesJson)
                     editor.apply()
 
                     Toast.makeText(this, "Casa/apartament afegida correctament!!", Toast.LENGTH_SHORT).show()
