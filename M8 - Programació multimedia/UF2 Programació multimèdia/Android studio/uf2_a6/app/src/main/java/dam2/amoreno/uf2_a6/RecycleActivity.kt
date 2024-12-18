@@ -60,8 +60,6 @@ class RecycleActivity : AppCompatActivity() {
                 putExtra("long", selectedHouse.long)
             }
 
-            Log.d("RecycleActivity", "Lat: ${selectedHouse.lat}, Long: ${selectedHouse.long}")
-
             startActivity(intent)
         }
 
