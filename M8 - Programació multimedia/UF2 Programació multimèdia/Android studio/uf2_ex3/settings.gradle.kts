@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "UF2_EX3"
+rootProject.name = "uf2_ex3"
 include(":app")
  

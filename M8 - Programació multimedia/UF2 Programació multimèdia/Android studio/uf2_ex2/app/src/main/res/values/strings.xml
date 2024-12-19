@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">UF2_EX2</string>
+    <string name="app_name">uf2_ex2</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

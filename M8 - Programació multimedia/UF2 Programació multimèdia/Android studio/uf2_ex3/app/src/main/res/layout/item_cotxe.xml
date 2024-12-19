@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10sp"
+    android:orientation="horizontal"
+    android:weightSum="3"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/marca"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Hola"
+        android:layout_gravity="center"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/preu"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Adeu"
+        android:layout_gravity="center"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/any"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="20"
+        android:layout_gravity="center"
+        android:layout_weight="1" />
+
+</LinearLayout>
