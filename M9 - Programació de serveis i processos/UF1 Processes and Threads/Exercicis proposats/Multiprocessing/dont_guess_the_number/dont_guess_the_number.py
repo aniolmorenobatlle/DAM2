@@ -1,127 +1,106 @@
-# 06. Create a Python program (dont_guess_the_number.py) that simulates the game “Don't guess the number” through multiprogramming.
-
-# The game works as follows:
-# ● The participants of the game are a referee and some players (between two and six).
-# ● All participants will throw a dice, first the referee and then all the players at the same time.
-# ● Once all the dice have been thrown, the number indicated by the referee's dice will be compared with the number indicated by each player's dice. Players with the   same number as the referee will be eliminated.
-# ● If there are players (not eliminated), the above process will be repeated until there is one player or none.
-# ● If there is one player at the end of the game, they will be the winner. 
-# 
-# Each player will be a child process that:
-# ● When it is ready to start, it will indicate it with a message on the screen.
-# ● While it is playing: it will roll the dice and then communicate the result to the main process which will be in charge of displaying the corresponding message.
-# ● Depending on the result, it will wait for his turn to roll the dice again or it will be eliminated by the main process.
-# 
-# The main process will take the role of the referee and each message that appears on the screen will be preceded by the time that has passed since the game started.
-
 import multiprocessing as mp
 import random
-import time
 import sys
+import time
 
 
-def generate_participants(num_players):
-    print(f"{time.time() - start_time:.6f} List of Participants:")
-
-    participants = ['Referee']
-
-    for i in range(1, num_players + 1):
-        participants.append(f'Player {i}')
-
-    return participants
+def log_time(start_time, message):
+    timer = time.time() - start_time
+    print(f" {timer:.6f} {message}")
 
 
-def throw_dice(participants):
-    print(f"{time.time() - start_time:.6f} Throwing dice:")
-
-    results = {}
-
-    for participant in participants:
-        results[participant] = random.randint(1, 6)
-
-    for participant, result in results.items():
-        print(f"{time.time() - start_time:.6f} \t{participant} - {result}")
-
-    return results
+def players_ready(start_time, player):
+    log_time(start_time, f"{player} is ready...")
 
 
-def compare_with_referee(results, participants):
-    referee_result = results['Referee']
-    print(f'{time.time() - start_time:.6f} Referee rolled: {referee_result}')
+def players_dice_roll(start_time, player, referee_roll, return_list):
+    dice_roll = random.randint(1, 6)
+    
+    if dice_roll == referee_roll:
+        log_time(start_time, f"{player} throws the dice and reports that it is a {dice_roll}, eliminated")
 
-    same_result = False
-    participants_to_remove = []
-
-    for participant, result in results.items():
-        if participant != 'Referee' and result == referee_result:
-            print(f"{time.time() - start_time:.6f} \t{participant} is eliminated as they rolled the same number as the referee.")
-            participants_to_remove.append(participant)
-            same_result = True
-
-    for participant in participants_to_remove:
-        participants.remove(participant)
-
-    if not same_result:
-        print(f"{time.time() - start_time:.6f} \tNobody eliminated as they didn't roll the same number as the referee.")
-
-    return participants
-
-
-def check_winner(participants):
-    # Crear una llista temporal sense el referee
-    participants_without_referee = [participant for participant in participants if participant != 'Referee']
-
-    if len(participants_without_referee) == 1:
-        print(f"{time.time() - start_time:.6f} The Winner is: {participants_without_referee[0]}")
-        return True
     else:
-        print('\nRemaining participants:')
-        for participant in participants_without_referee:
-            print(f"{time.time() - start_time:.6f} \t{participant}")
-        
-        # Afegir el referee a la primera posició
-        if 'Referee' not in participants:
-            participants.insert(0, 'Referee')
-        
-        return False
+        log_time(start_time, f"{player} throws the dice and reports that it is a {dice_roll}, continues")
+        return_list.append(player)
 
 
 if __name__ == '__main__':
-    start_time = time.time()
-    
-    if len(sys.argv) != 2:
-        print(f"{time.time() - start_time:.6f} The number of player must be specified")
-        print(f"{time.time() - start_time:.6f} Game has been interrupted")
-        sys.exit(1)
+    if len(sys.argv) > 1:
+        try:
+            num_players = int(sys.argv[1])
+        except ValueError:
+            print("Please provide a valid number of players.")
+            sys.exit(1)
+
+        if num_players < 2 or num_players > 6:
+            print("The number of players must be a minimum of two and a maximum of six")
+            sys.exit(1)
 
 
-    try:
-        num_players = int(sys.argv[1])
-    
-    except ValueError:
-        print(f"{time.time() - start_time:.6f} Incorrect number of players!")
-        print(f"{time.time() - start_time:.6f} Game has been interrupted!")
-        sys.exit(1)
-
-    if num_players < 2 or num_players > 6:
-        print(f"{time.time() - start_time:.6f} The number of players must be a minimum of two and a maximum of six")
-        print(f"{time.time() - start_time:.6f} Game has been interrupted!")
-        sys.exit(1)
-
-    print(f"{time.time() - start_time:.6f} Game is starting ...")
-
-    participants = generate_participants(num_players)
-
-    for participant in participants:
-        print(f"{time.time() - start_time:.6f} \t{participant}")
+        start_time = time.time()
+        print(" 0.000000 Game is starting...")
 
 
-    while True:
-        results = throw_dice(participants)
-        participants = compare_with_referee(results, participants)
+        participants = []
+        for i in range(1, num_players + 1):
+            participants.append(f'P{i}')
+
+
+        processes = []
+
+
+        # Proccess for the participants
+        for participant in participants:
+            p = mp.Process(target=players_ready, args=(start_time, participant))
+            processes.append(p)
+            p.start()
+
+
+        for p in processes:
+            p.join()
+
         
-        if check_winner(participants):
-            break
+        time.sleep(1)
+
+        while len(participants) > 1:
+
+            processes = []
+
+            return_manager = mp.Manager() # Manager to get the data from the processes
+            return_list = return_manager.list() # Create a shared list to store the data
+
+            # Referee rolls the dice
+            referee_roll = random.randint(1, 6)
+            log_time(start_time, f"Referee throws a dice and reports that it is a {referee_roll}")
 
 
-    print(f"{time.time() - start_time:.6f} Game over")
+            time.sleep(1)
+
+
+            # Players roll the dice
+            for participant in participants:
+                p = mp.Process(target=players_dice_roll, args=(start_time, participant, referee_roll, return_list))
+                processes.append(p)
+                p.start()
+
+            for p in processes:
+                p.join()
+
+            
+            # Update the participants list
+            participants = list(return_list)
+
+            time.sleep(1)
+
+
+        if len(participants) == 1:
+            log_time(start_time, f"Referee determines that the {participants[0]} wins")
+
+        elif len(participants) == 0:
+            log_time(start_time, "There is no winner")
+
+
+        log_time(start_time, "Game over")
+
+    else:
+        print("The number of players must be specified!")
