@@ -22,13 +22,14 @@ class EnterUserActivity : AppCompatActivity(), View.OnClickListener {
         btnFollowers.setOnClickListener(this)
     }
 
-    private fun initViews() {
-
-    }
-
     override fun onClick(v: View) {
         if (v === btnFollowers) {
-            val intent = Intent(this, SecondActivity::class.java)
+            val userInput = etUser?.text.toString()
+
+            val intent = Intent(this, SecondActivity::class.java).apply {
+                putExtra("userInput", userInput)
+            }
+
             startActivity(intent)
         }
     }

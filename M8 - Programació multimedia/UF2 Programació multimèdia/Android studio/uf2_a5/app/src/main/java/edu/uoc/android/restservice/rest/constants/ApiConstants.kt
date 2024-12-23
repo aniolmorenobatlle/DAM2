@@ -1,4 +1,4 @@
-package edu.uoc.android.restservice.rest.contants
+package edu.uoc.android.restservice.rest.constants
 
 object ApiConstants {
     // BASE URL

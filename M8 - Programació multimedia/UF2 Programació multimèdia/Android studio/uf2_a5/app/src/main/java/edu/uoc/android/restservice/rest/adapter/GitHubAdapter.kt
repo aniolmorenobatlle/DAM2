@@ -1,6 +1,6 @@
 package edu.uoc.android.restservice.rest.adapter
 
-import edu.uoc.android.restservice.rest.contants.ApiConstants
+import edu.uoc.android.restservice.rest.constants.ApiConstants
 import edu.uoc.android.restservice.rest.model.Owner
 import edu.uoc.android.restservice.rest.service.GitHubService
 import retrofit2.Call
@@ -13,5 +13,9 @@ class GitHubAdapter : BaseAdapter(ApiConstants.BASE_GITHUB_URL),
 
     override fun getOwner(@Path(value = "owner") owner: String?): Call<Owner?>? {
         return gitHubService.getOwner(owner)
+    }
+
+    override fun getFollowers(username: String): Call<List<Owner>> {
+        return gitHubService.getFollowers(username)
     }
 }
