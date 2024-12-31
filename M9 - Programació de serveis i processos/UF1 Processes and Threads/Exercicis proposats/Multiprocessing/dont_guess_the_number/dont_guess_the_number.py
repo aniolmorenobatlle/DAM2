@@ -13,15 +13,15 @@ def players_ready(start_time, player):
     log_time(start_time, f"{player} is ready...")
 
 
-def players_dice_roll(start_time, player, referee_roll, return_list):
+def players_dice_roll(start_time, player, referee_roll, queue):
     dice_roll = random.randint(1, 6)
     
     if dice_roll == referee_roll:
-        log_time(start_time, f"{player} throws the dice and reports that it is a {dice_roll}, eliminated")
+        log_time(start_time, f"{player} throws the dice and reports that it is a {dice_roll}, eliminated") # Since the player it is eliminated is not necessary to kill que process cause it's not necessary to put into the queue
 
     else:
         log_time(start_time, f"{player} throws the dice and reports that it is a {dice_roll}, continues")
-        return_list.append(player)
+        queue.put(player)
 
 
 if __name__ == '__main__':
@@ -66,8 +66,7 @@ if __name__ == '__main__':
 
             processes = []
 
-            return_manager = mp.Manager() # Manager to get the data from the processes
-            return_list = return_manager.list() # Create a shared list to store the data
+            queue = mp.Queue()
 
             # Referee rolls the dice
             referee_roll = random.randint(1, 6)
@@ -79,7 +78,7 @@ if __name__ == '__main__':
 
             # Players roll the dice
             for participant in participants:
-                p = mp.Process(target=players_dice_roll, args=(start_time, participant, referee_roll, return_list))
+                p = mp.Process(target=players_dice_roll, args=(start_time, participant, referee_roll, queue))
                 processes.append(p)
                 p.start()
 
@@ -87,8 +86,10 @@ if __name__ == '__main__':
                 p.join()
 
             
-            # Update the participants list
-            participants = list(return_list)
+            # Collect the remaining participants
+            participants = []
+            while not queue.empty():
+                participants.append(queue.get())
 
             time.sleep(1)
 
