@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "dam2.amoreno.uf2_a7"
-        minSdk = 35
+        minSdk = 30
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
