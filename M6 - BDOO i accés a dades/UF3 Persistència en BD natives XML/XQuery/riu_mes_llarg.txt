@@ -1,0 +1,12 @@
+(: Trobar el nom del riu més llarg de cada continent:)
+
+for $continent in /mondial/continent
+let $continent_countries := /mondial/country[encompassed/@continent = $continent/@id]
+let $rivers := /mondial/river[located/@country = $continent_countries/@id]
+
+return
+    <continent>
+        <name>{data($continent/@name)}</name>
+        <river>{data($rivers[@length = max(@length)]/@name)}</river>
+    </continent>
+    

@@ -1,0 +1,18 @@
+
+(: Indentificar els països on almenys dues religions tenen un percentatge superior al 40% :)
+
+for $country in /mondial/country
+let $religions := $country/religions[@percentage > 40]
+
+where count($religions) >= 2
+
+return
+    <country>
+        <name>{ $country/@name }</name>
+        <religions>
+            { 
+                for $religion in $religions 
+                return <religion>{$religion/text()}</religion> 
+            }
+        </religions>
+    </country>

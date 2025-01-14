@@ -1,0 +1,11 @@
+(: Obtenir ciutats amb població superior a 5000000 de persones :)
+for $city in /mondial/country/city
+
+where $city/population > 5000000
+
+return
+    <city>
+        <name>{data($city/name)}</name>
+        <population>{data($city/population)}</population>
+    </city>
+

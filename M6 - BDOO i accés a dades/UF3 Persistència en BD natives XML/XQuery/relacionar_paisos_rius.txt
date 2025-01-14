@@ -1,0 +1,18 @@
+(: Relacionar països amb rius :)
+
+for $river in /mondial/river
+
+let $river_country := distinct-values($river/located/@country)
+
+return 
+    <river>
+        <name>{data($river/@name)}</name>
+        <countries>
+            {
+                for $country in /mondial/country
+                where $country/@id = $river_country
+                return data($country/@name)
+            }
+        </countries>
+    </river>
+
