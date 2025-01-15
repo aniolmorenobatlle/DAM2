@@ -1,6 +1,7 @@
 package dam2.amoreno.uf2_a7.adapter
 
 import android.annotation.SuppressLint
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,12 +25,26 @@ class PostsListAdapter(private val userList: List<PostsListClass>) : RecyclerVie
         holder.avatar.setImageResource(currentUser.avatar)
         holder.username.text = currentUser.username
         holder.photo.setImageResource(currentUser.photo)
-        holder.comment.text = currentUser.comment
+
+        // Obtenir commentari original
+        val postComment = currentUser.comment
+
+        // Dividir el commentari entre la primera paraula i la resta del commentari
+        val firstWord = postComment.substringBefore(" ")
+        val restOfText = postComment.substringAfter(" ")
+
+        // Fem que la primera paraula sigui en negreta
+        val formattedText = "<b>$firstWord</b> $restOfText"
+
+        // Ho posem com a HTML perque ho reconegui
+        holder.comment.text = Html.fromHtml(formattedText, Html.FROM_HTML_MODE_LEGACY)
+
         holder.likes.text = currentUser.likes.toString()
         holder.comments.text = currentUser.comments.toString()
         holder.shareds.text = currentUser.shareds.toString()
         holder.date.text = currentUser.date
     }
+
 
     override fun getItemCount(): Int = userList.size
 
