@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "600494981513",
+    "project_id": "notis-android",
+    "storage_bucket": "notis-android.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600494981513:android:649626cfb95c61ed74a158",
+        "android_client_info": {
+          "package_name": "dam2.amoreno.exemple_notis"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHhn0gNYMZrCAAtxGR0zQumvSx0psE4kw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
