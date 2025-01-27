@@ -15,7 +15,7 @@ import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XQueryService;
 
 
-public class Ex1 {
+public class Ex2 {
 
     private static final String URI = "xmldb:exist://localhost:8080/exist/xmlrpc";
     private static final String USERNAME = "admin";
@@ -201,11 +201,6 @@ public class Ex1 {
             System.out.println("6. Exercici F ");
             System.out.println("7. Exercici G ");
             System.out.println("8. Exercici H ");
-            System.out.println("9. Exercici I ");
-            System.out.println("10. Exercici J ");
-            System.out.println("11. Exercici K ");
-            System.out.println("12. Exercici L ");
-            System.out.println("13. Exercici M ");
 
 
             System.out.println();
@@ -256,26 +251,6 @@ public class Ex1 {
                     ExerciciH(collectionPath);
                     break;
 
-                case 9:
-                    ExerciciI(collectionPath);
-                    break;
-
-                case 10:
-                    ExerciciJ(collectionPath);
-                    break;
-
-                case 11:
-                    ExerciciK(collectionPath);
-                    break;
-
-                case 12:
-                    ExerciciL(collectionPath);
-                    break;
-
-                case 13:
-                    ExerciciM(collectionPath);
-                    break;
-
                 
                 case 0:
                     System.out.println("Sortint del programa...");
@@ -288,7 +263,7 @@ public class Ex1 {
     }
 
     private static void ExerciciA(String collectionPath) throws XMLDBException {
-        String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row where $x/nom_comarca = \"Gironès\" and contains($x/codi_ensenyament, \"CF\") return <titol>{$x/nom_ensenyament/text()}</titol>";
+        String xquery = "for $x in doc('ex1/centres_educatius.xml')/response/row/row where number($x/total) < 30 return <resultat> <centre>{ $x/denominaci_completa/text() }</centre> <municipi>{ $x/nom_municipi/text() }</municipi> </resultat>";
     
         if (!collectionPath.startsWith("/db")) {
             collectionPath = "/db/" + collectionPath;
@@ -313,7 +288,7 @@ public class Ex1 {
     }
 
     private static void ExerciciB(String collectionPath) throws XMLDBException {
-        String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row where $x/nom_comarca = \"Gironès\" and contains($x/codi_ensenyament, \"CFPS\") return <titol>{$x/nom_ensenyament/text()}</titol>";
+        String xquery = "for $x in doc('ex1/centres_educatius.xml')/response/row/row where number($x/dones) > number($x/homes) return <resultat> <centre>{ $x/denominaci_completa/text() }</centre> <municipi>{ $x/nom_municipi/text() }</municipi> <homes>{ $x/homes/text() }</homes> <dones>{ $x/dones/text() }</dones> </resultat>";
     
         if (!collectionPath.startsWith("/db")) {
             collectionPath = "/db/" + collectionPath;
@@ -338,7 +313,7 @@ public class Ex1 {
     }
 
     private static void ExerciciC(String collectionPath) throws XMLDBException {
-        String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row where $x/nom_delegaci = \"Girona\" and contains($x/codi_ensenyament, \"CF\") return <resultat> <titol>{ $x/nom_ensenyament/text() }</titol> <centre>{ $x/denominaci_completa/text() }</centre> <places>{ $x/nombre_places/text() }</places> </resultat>";
+        String xquery = "for $x in doc('ex1/centres_educatius.xml')/response/row/row return <resultat> <centre>{ $x/denominaci_completa/text() }</centre> <municipi>{ $x/nom_municipi/text() }</municipi> <homes>{ $x/homes/text() }</homes> <dones>{ $x/dones/text() }</dones> </resultat>";
     
         if (!collectionPath.startsWith("/db")) {
             collectionPath = "/db/" + collectionPath;
@@ -363,7 +338,7 @@ public class Ex1 {
     }
 
     private static void ExerciciD(String collectionPath) throws XMLDBException {
-        String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row where number($x/nombre_places) < 30 return <resultat> <titol>{ $x/nom_ensenyament/text() }</titol> <centre>{ $x/denominaci_completa/text() }</centre> <places>{ $x/nombre_places/text() }</places> </resultat>";
+        String xquery = "let $x := doc('ex1/centres_educatius.xml')/response/row/row let $filtrat := $x[nom_municipi = \"PALAMÓS\"] return <resultat> <homes_total> { sum( for $total_homes in $filtrat/homes return $total_homes) } </homes_total> <dones_total> { sum( for $total_dones in $filtrat/dones return $total_dones) } </dones_total> </resultat>";
     
         if (!collectionPath.startsWith("/db")) {
             collectionPath = "/db/" + collectionPath;
@@ -388,7 +363,7 @@ public class Ex1 {
     }
 
     private static void ExerciciE(String collectionPath) throws XMLDBException {
-        String xquery = "let $arxiu := doc('centres_postobligatori.xml') let $filtrats := $arxiu/response/row/row[nom_naturalesa=\"Públic\"] for $delegacio in distinct-values($filtrats/nom_delegaci) let $centres := $filtrats[nom_delegaci = $delegacio]/denominaci_completa order by $delegacio return <resultat> <delegacio>{ $delegacio }</delegacio> <centres> { for $centre in $centres order by $centre return $centre } </centres> </resultat>";
+        String xquery = "for $x in doc('ex1/centres_educatius.xml')/response/row/row where $x/codi_municipi_5[starts-with(., \"17\")] and number($x/homes) < number($x/dones) return <resultat> <nom>{ $x/denominaci_completa/text() }</nom> <municipi>{ $x/nom_municipi/text() }</municipi> <homes>{ $x/homes/text() }</homes> <dones>{ $x/dones/text() }</dones> </resultat>";
     
         if (!collectionPath.startsWith("/db")) {
             collectionPath = "/db/" + collectionPath;
@@ -413,7 +388,7 @@ public class Ex1 {
     }
 
     private static void ExerciciF(String collectionPath) throws XMLDBException {
-        String xquery = "let $filtrats := doc('centres_postobligatori.xml')/response/row/row[ contains(codi_ensenyament, \"CFPM\") and nom_comarca = \"Gironès\" ] return <resultat> <comarca>Gironès</comarca> <cicles_formatius>Cicles Formatius de Grau Mitjà</cicles_formatius> <total_places>{ sum($filtrats/nombre_places) }</total_places> </resultat>";
+        String xquery = "for $x in doc('ex1/centres_educatius.xml')/response/row/row where $x/codi_municipi_5[starts-with(., \"17\")] and number($x/homes) > number($x/dones) return <resultat> <nom>{ $x/denominaci_completa/text() }</nom> <municipi>{ $x/nom_municipi/text() }</municipi> <homes>{ $x/homes/text() }</homes> <dones>{ $x/dones/text() }</dones> </resultat>";
     
         if (!collectionPath.startsWith("/db")) {
             collectionPath = "/db/" + collectionPath;
@@ -438,7 +413,7 @@ public class Ex1 {
     }
 
     private static void ExerciciG(String collectionPath) throws XMLDBException {
-        String xquery = "let $filtrats := doc('centres_postobligatori.xml')/response/row/row[ contains(codi_ensenyament, \"CFPS\") and nom_comarca = \"Gironès\" ] return <resultat> <comarca>Gironès</comarca> <cicles_formatius>Cicles Formatius de Grau Mitjà</cicles_formatius> <total_places>{ sum($filtrats/nombre_places) }</total_places> </resultat>";
+        String xquery = "for $x in doc('ex1/centres_educatius.xml')/response/row/row where $x/codi_municipi_5[starts-with(., \"17\")] and number($x/homes) = number($x/dones) return <resultat> <nom>{ $x/denominaci_completa/text() }</nom> <municipi>{ $x/nom_municipi/text() }</municipi> <homes>{ $x/homes/text() }</homes> <dones>{ $x/dones/text() }</dones> </resultat>";
     
         if (!collectionPath.startsWith("/db")) {
             collectionPath = "/db/" + collectionPath;
@@ -463,138 +438,9 @@ public class Ex1 {
     }
 
     private static void ExerciciH(String collectionPath) throws XMLDBException {
-        String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row where $x/torn = \"Matí\" return <resultat> <cicle_formatiu>{ $x/nom_ensenyament/text() }</cicle_formatiu> <centre>{ $x/denominaci_completa/text() }</centre> <comarca>{ $x/nom_comarca/text() }</comarca> <places_ofertades>{ $x/places_ofertades_a_la/text() }</places_ofertades> </resultat>";
-    
-        if (!collectionPath.startsWith("/db")) {
-            collectionPath = "/db/" + collectionPath;
-        }
-    
-        Collection col = DatabaseManager.getCollection(URI + collectionPath, USERNAME, PASSWORD);
-    
-        if (col == null) {
-            System.out.println("Col·lecció no trobada.");
-            return;
-        }
+        System.out.println("Query encara no implementar.");
 
-        XQueryService xQueryService = (XQueryService) col.getService("XQueryService", "1.0");
-        CompiledExpression compiledXQuery = xQueryService.compile(xquery);
-        ResourceSet result = xQueryService.execute(compiledXQuery);
-
-        System.out.println("Resultats de la consulta:");
-        for (ResourceIterator i = result.getIterator(); i.hasMoreResources(); ) {
-            Resource resource = i.nextResource();
-            System.out.println(resource.getContent());
-        }
-    }
-
-    private static void ExerciciI(String collectionPath) throws XMLDBException {
-        String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row where $x/torn = \"Tarda\" return <resultat> <cicle_formatiu>{ $x/nom_ensenyament/text() }</cicle_formatiu> <centre>{ $x/denominaci_completa/text() }</centre> <comarca>{ $x/nom_comarca/text() }</comarca> <places_ofertades>{ $x/places_ofertades_a_la/text() }</places_ofertades> </resultat>";
-    
-        if (!collectionPath.startsWith("/db")) {
-            collectionPath = "/db/" + collectionPath;
-        }
-    
-        Collection col = DatabaseManager.getCollection(URI + collectionPath, USERNAME, PASSWORD);
-    
-        if (col == null) {
-            System.out.println("Col·lecció no trobada.");
-            return;
-        }
-
-        XQueryService xQueryService = (XQueryService) col.getService("XQueryService", "1.0");
-        CompiledExpression compiledXQuery = xQueryService.compile(xquery);
-        ResourceSet result = xQueryService.execute(compiledXQuery);
-
-        System.out.println("Resultats de la consulta:");
-        for (ResourceIterator i = result.getIterator(); i.hasMoreResources(); ) {
-            Resource resource = i.nextResource();
-            System.out.println(resource.getContent());
-        }
-    }
-
-    private static void ExerciciJ(String collectionPath) throws XMLDBException {
-        String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row where $x/torn = \"Matí i tarda\" return <resultat> <cicle_formatiu>{ $x/nom_ensenyament/text() }</cicle_formatiu> <centre>{ $x/denominaci_completa/text() }</centre> <comarca>{ $x/nom_comarca/text() }</comarca> <places_ofertades>{ $x/places_ofertades_a_la/text() }</places_ofertades> </resultat>";
-    
-        if (!collectionPath.startsWith("/db")) {
-            collectionPath = "/db/" + collectionPath;
-        }
-    
-        Collection col = DatabaseManager.getCollection(URI + collectionPath, USERNAME, PASSWORD);
-    
-        if (col == null) {
-            System.out.println("Col·lecció no trobada.");
-            return;
-        }
-
-        XQueryService xQueryService = (XQueryService) col.getService("XQueryService", "1.0");
-        CompiledExpression compiledXQuery = xQueryService.compile(xquery);
-        ResourceSet result = xQueryService.execute(compiledXQuery);
-
-        System.out.println("Resultats de la consulta:");
-        for (ResourceIterator i = result.getIterator(); i.hasMoreResources(); ) {
-            Resource resource = i.nextResource();
-            System.out.println(resource.getContent());
-        }
-    }
-
-    private static void ExerciciK(String collectionPath) throws XMLDBException {
-        String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row[ contains(codi_ensenyament, \"CF\") and nom_comarca = \"Baix Empordà\" and curs = \"2021/2022\" ] let $cicle_2023 := doc('centres_postobligatori.xml')/response/row/row[ contains(codi_ensenyament, $x/codi_ensenyament) and nom_comarca = \"Baix Empordà\" and curs = \"2022/2023\" ] where not($cicle_2023) return <resultat> <cicle_formatiu>{ $x/nom_ensenyament/text() }</cicle_formatiu> <centre>{ $x/denominaci_completa/text() }</centre> <places_ofertades>{ $x/places_ofertades_a_la/text() }</places_ofertades> </resultat>";
-    
-        if (!collectionPath.startsWith("/db")) {
-            collectionPath = "/db/" + collectionPath;
-        }
-    
-        Collection col = DatabaseManager.getCollection(URI + collectionPath, USERNAME, PASSWORD);
-    
-        if (col == null) {
-            System.out.println("Col·lecció no trobada.");
-            return;
-        }
-
-        XQueryService xQueryService = (XQueryService) col.getService("XQueryService", "1.0");
-        CompiledExpression compiledXQuery = xQueryService.compile(xquery);
-        ResourceSet result = xQueryService.execute(compiledXQuery);
-
-        System.out.println("Resultats de la consulta:");
-        for (ResourceIterator i = result.getIterator(); i.hasMoreResources(); ) {
-            Resource resource = i.nextResource();
-            System.out.println(resource.getContent());
-        }
-    }
-
-    private static void ExerciciL(String collectionPath) throws XMLDBException {
-
-        System.out.println("Encara no implementat.");
-
-        // String xquery = "";
-    
-        // if (!collectionPath.startsWith("/db")) {
-        //     collectionPath = "/db/" + collectionPath;
-        // }
-    
-        // Collection col = DatabaseManager.getCollection(URI + collectionPath, USERNAME, PASSWORD);
-    
-        // if (col == null) {
-        //     System.out.println("Col·lecció no trobada.");
-        //     return;
-        // }
-
-        // XQueryService xQueryService = (XQueryService) col.getService("XQueryService", "1.0");
-        // CompiledExpression compiledXQuery = xQueryService.compile(xquery);
-        // ResourceSet result = xQueryService.execute(compiledXQuery);
-
-        // System.out.println("Resultats de la consulta:");
-        // for (ResourceIterator i = result.getIterator(); i.hasMoreResources(); ) {
-        //     Resource resource = i.nextResource();
-        //     System.out.println(resource.getContent());
-        // }
-    }
-
-    private static void ExerciciM(String collectionPath) throws XMLDBException {
-
-        System.out.println("Encara no implementat.");
-
-        // String xquery = "";
+        // String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row where $x/torn = \"Matí\" return <resultat> <cicle_formatiu>{ $x/nom_ensenyament/text() }</cicle_formatiu> <centre>{ $x/denominaci_completa/text() }</centre> <comarca>{ $x/nom_comarca/text() }</comarca> <places_ofertades>{ $x/places_ofertades_a_la/text() }</places_ofertades> </resultat>";
     
         // if (!collectionPath.startsWith("/db")) {
         //     collectionPath = "/db/" + collectionPath;
