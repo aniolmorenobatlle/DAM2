@@ -16,7 +16,7 @@ initial_position = html.find('dataLayer = [{')
 final_position = html.find('];', initial_position)
 
 # Extraure el contingut del 'dataLayer'
-data_layer_content = html[initial_position:final_position+1]
+data_layer_content = html[initial_position:final_position + 1]
 
 # Usar expressions regulars per obtenir la informació que necessitem
 temperature = re.search(r"'currentTemperature':'(.*?)'", data_layer_content)
