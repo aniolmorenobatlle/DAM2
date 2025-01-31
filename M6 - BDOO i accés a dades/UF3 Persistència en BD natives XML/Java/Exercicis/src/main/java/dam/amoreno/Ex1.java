@@ -288,7 +288,7 @@ public class Ex1 {
     }
 
     private static void ExerciciA(String collectionPath) throws XMLDBException {
-        String xquery = "for $x in doc('centres_postobligatori.xml')/response/row/row where $x/nom_comarca = \"Gironès\" and contains($x/codi_ensenyament, \"CF\") return <titol>{$x/nom_ensenyament/text()}</titol>";
+        String xquery = "distinct-values(for $x in doc('centres_postobligatori.xml')/response/row/row where $x/nom_comarca = \"Gironès\" and contains($x/codi_ensenyament, \"CF\") return <titol>{$x/nom_ensenyament/text()}</titol>)";
     
         if (!collectionPath.startsWith("/db")) {
             collectionPath = "/db/" + collectionPath;

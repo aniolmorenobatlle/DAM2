@@ -1,27 +1,52 @@
-import datetime as dati
+import random
 import socket
+import threading as th
 
-print(f"{dati.datetime.now()} server starts")
-# Create IPv4 socket as TCP.
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# Assigns localhost address and port 8000 to the socket.
-server_socket.bind(('127.0.0.1', 8000))
-# Listen to at most one connection at a time.
-server_socket.listen(1)
+HOST = "192.168.19.244"
+PORT = 8000
 
-try:
+
+def handle_client(conn, addr, toss_final):
+    """ Gestionar  cada client de forma independent """
+    print(f"[NOVA CONNEXIÓ] Client connectat des de {addr}")
+    print()
+
+    # Rebre dades del client
+    message = conn.recv(1024).decode('utf-8')
+
+    client_username, toss_result = message.split('|')
+
+    print(f"[MISSATGE] El client {addr} es diu {client_username} i el resultat del tir és {toss_result}")
+
+    # Enviar una resposta personalitzada
+    response = f"Hola {client_username}, benvingut! Connexió exitosa!!"
+    conn.sendall(response.encode('utf-8'))
+
+    # Tancar connexió
+    # conn.close()
+    # print(f"[DESCONNEXIÓ] Client {addr} s'ha desconnectat!!")
+
+
+if __name__ == '__main__':
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind((HOST, PORT))
+    server_socket.listen()
+
+    print(f"Servidor escoltant a {HOST}:{PORT}")
+
+
+    # Multiples clients
     while True:
-        print(f"{dati.datetime.now()} server is ready")
-        # Set up a new connection from a client.
-        client_socket, client_address = server_socket.accept()
-        print(f"{dati.datetime.now()} server has established a connection")
-        request = client_socket.recv(1024)
-        print(f"{dati.datetime.now()} request: {request}")
-        response = b"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\nHello World!"
-        client_socket.send(response)
-        print(f"{dati.datetime.now()} response: {response}")
-        client_socket.close() # Because server_socket.listen(1).
-except KeyboardInterrupt:
-    print(f"\n{dati.datetime.now()} server interrupted!") # Control + C.
-    
-print(f"{dati.datetime.now()} server ends")
+
+        conn, addr = server_socket.accept()
+
+        toss = random.randint(1, 2)
+        toss_final = ''
+
+        if toss == 1:
+            toss_final = 'Coin'
+        else:
+            toss_final = 'Tail'
+
+        client_thread = th.Thread(target=handle_client, args=(conn, addr, toss_final))
+        client_thread.start()

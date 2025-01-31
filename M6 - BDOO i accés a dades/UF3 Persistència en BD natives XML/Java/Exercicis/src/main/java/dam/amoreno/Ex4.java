@@ -521,31 +521,28 @@ public class Ex4 {
     }
 
     private static void ExerciciJ(String collectionPath) throws XMLDBException {
-
-        System.out.println("Query encara no implementar.");
-
-        // String xquery = "";
+        String xquery = "for $x in doc('ex1/meteorite-landings.xml')/response/row/row where empty($x/name) or empty($x/id) or empty($x/nametype) or empty($x/recclass) or empty($x/mass) or empty($x/fall) or empty($x/year) or empty($x/reclat) or empty($x/reclong) or empty($x/geolocation) return <result> <nom>{ $x/name/text() }</nom> </result>";
     
-        // if (!collectionPath.startsWith("/db")) {
-        //     collectionPath = "/db/" + collectionPath;
-        // }
+        if (!collectionPath.startsWith("/db")) {
+            collectionPath = "/db/" + collectionPath;
+        }
     
-        // Collection col = DatabaseManager.getCollection(URI + collectionPath, USERNAME, PASSWORD);
+        Collection col = DatabaseManager.getCollection(URI + collectionPath, USERNAME, PASSWORD);
     
-        // if (col == null) {
-        //     System.out.println("Col·lecció no trobada.");
-        //     return;
-        // }
+        if (col == null) {
+            System.out.println("Col·lecció no trobada.");
+            return;
+        }
 
-        // XQueryService xQueryService = (XQueryService) col.getService("XQueryService", "1.0");
-        // CompiledExpression compiledXQuery = xQueryService.compile(xquery);
-        // ResourceSet result = xQueryService.execute(compiledXQuery);
+        XQueryService xQueryService = (XQueryService) col.getService("XQueryService", "1.0");
+        CompiledExpression compiledXQuery = xQueryService.compile(xquery);
+        ResourceSet result = xQueryService.execute(compiledXQuery);
 
-        // System.out.println("Resultats de la consulta:");
-        // for (ResourceIterator i = result.getIterator(); i.hasMoreResources(); ) {
-        //     Resource resource = i.nextResource();
-        //     System.out.println(resource.getContent());
-        // }
+        System.out.println("Resultats de la consulta:");
+        for (ResourceIterator i = result.getIterator(); i.hasMoreResources(); ) {
+            Resource resource = i.nextResource();
+            System.out.println(resource.getContent());
+        }
     }
 
     private static void ExerciciK(String collectionPath) throws XMLDBException {

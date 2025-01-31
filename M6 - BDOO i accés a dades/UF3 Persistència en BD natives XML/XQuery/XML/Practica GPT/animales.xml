@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animales>
+  <animal>
+    <nombre>León</nombre>
+    <especie>Panthera leo</especie>
+    <habitat>Savanas</habitat>
+    <dieta>Carnívoro</dieta>
+    <peso>190</peso> <!-- en kg -->
+    <amenaza>En peligro de extinción</amenaza>
+  </animal>
+  <animal>
+    <nombre>Elefante africano</nombre>
+    <especie>Loxodonta africana</especie>
+    <habitat>Savanas y bosques</habitat>
+    <dieta>Herbívoro</dieta>
+    <peso>6000</peso> <!-- en kg -->
+    <amenaza>Vulnerable</amenaza>
+  </animal>
+  <animal>
+    <nombre>Tigre</nombre>
+    <especie>Panthera tigris</especie>
+    <habitat>Bosques y selvas</habitat>
+    <dieta>Carnívoro</dieta>
+    <peso>220</peso> <!-- en kg -->
+    <amenaza>En peligro de extinción</amenaza>
+  </animal>
+  <animal>
+    <nombre>Oso panda</nombre>
+    <especie>Ailuropoda melanoleuca</especie>
+    <habitat>Bosques de bambú</habitat>
+    <dieta>Herbívoro</dieta>
+    <peso>100</peso> <!-- en kg -->
+    <amenaza>Vulnerable</amenaza>
+  </animal>
+  <animal>
+    <nombre>Cebra</nombre>
+    <especie>Equus quagga</especie>
+    <habitat>Savanas y praderas</habitat>
+    <dieta>Herbívoro</dieta>
+    <peso>350</peso> <!-- en kg -->
+    <amenaza>Preocupación menor</amenaza>
+  </animal>
+  <animal>
+    <nombre>Gorila</nombre>
+    <especie>Gorilla gorilla</especie>
+    <habitat>Selvas tropicales</habitat>
+    <dieta>Omnívoro</dieta>
+    <peso>180</peso> <!-- en kg -->
+    <amenaza>En peligro de extinción</amenaza>
+  </animal>
+  <animal>
+    <nombre>Leopardo</nombre>
+    <especie>Panthera pardus</especie>
+    <habitat>Bosques y sabanas</habitat>
+    <dieta>Carnívoro</dieta>
+    <peso>70</peso> <!-- en kg -->
+    <amenaza>Casi amenazado</amenaza>
+  </animal>
+  <animal>
+    <nombre>Jirafa</nombre>
+    <especie>Giraffa camelopardalis</especie>
+    <habitat>Savanas</habitat>
+    <dieta>Herbívoro</dieta>
+    <peso>800</peso> <!-- en kg -->
+    <amenaza>Preocupación menor</amenaza>
+  </animal>
+  <animal>
+    <nombre>Rinoceronte negro</nombre>
+    <especie>Diceros bicornis</especie>
+    <habitat>Sabana y bosques</habitat>
+    <dieta>Herbívoro</dieta>
+    <peso>1400</peso> <!-- en kg -->
+    <amenaza>En peligro crítico</amenaza>
+  </animal>
+  <animal>
+    <nombre>Pantera de nieve</nombre>
+    <especie>Panthera uncia</especie>
+    <habitat>Montañas</habitat>
+    <dieta>Carnívoro</dieta>
+    <peso>55</peso> <!-- en kg -->
+    <amenaza>Vulnerable</amenaza>
+  </animal>
+  <animal>
+    <nombre>Ángel de mar</nombre>
+    <especie>Manta birostris</especie>
+    <habitat>Océano abierto</habitat>
+    <dieta>Plankton</dieta>
+    <peso>1500</peso> <!-- en kg -->
+    <amenaza>Preocupación menor</amenaza>
+  </animal>
+  <animal>
+    <nombre>Cocodrilo del Nilo</nombre>
+    <especie>Crocodylus niloticus</especie>
+    <habitat>Ríos y lagos</habitat>
+    <dieta>Carnívoro</dieta>
+    <peso>1000</peso> <!-- en kg -->
+    <amenaza>Preocupación menor</amenaza>
+  </animal>
+  <animal>
+    <nombre>Lince ibérico</nombre>
+    <especie>Lynx pardinus</especie>
+    <habitat>Sierra de España y Portugal</habitat>
+    <dieta>Carnívoro</dieta>
+    <peso>15</peso> <!-- en kg -->
+    <amenaza>En peligro crítico</amenaza>
+  </animal>
+</animales>
