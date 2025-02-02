@@ -1,0 +1,63 @@
+Nom del Videojoc: prova1
+Plataforma: PlayStation
+Classificació: Tots els Públics
+Perifèrics: Ulleres VR
+Temàtica: FPS
+Data de Sortida: 2025-01-07
+---
+Nom del Videojoc: prova2
+Plataforma: PlayStation
+Classificació: Tots els Públics
+Perifèrics: Ulleres VR, Estora Luminica
+Temàtica: FPS
+Data de Sortida: 2025-01-07
+---
+Nom del Videojoc: COD BO6
+Plataforma: PlayStation
+Classificació: Tots els Públics
+Perifèrics: Ulleres VR, Estora Luminica
+Temàtica: FPS
+Data de Sortida: 2025-01-08
+---
+Nom del Videojoc: Fifa 20
+Plataforma: PlayStation
+Classificació: Tots els Públics
+Perifèrics: Joystick Retro
+Temàtica: Esports
+Data de Sortida: 2025-01-02
+---
+Nom del Videojoc: fifa 17
+Plataforma: PlayStation
+Classificació: Tots els Públics
+Perifèrics: Joystick Retro
+Temàtica: Esports
+Data de Sortida: 2024-08-29
+---
+Nom del Videojoc: prova6
+Plataforma: PlayStation
+Classificació: Tots els Públics
+Perifèrics: Ulleres VR, Estora Luminica
+Temàtica: FPS
+Data de Sortida: 2025-01-13
+---
+Nom del Videojoc: prova7
+Plataforma: PlayStation
+Classificació: Tots els Públics
+Perifèrics: Ulleres VR, Estora Luminica
+Temàtica: Esports
+Data de Sortida: 2025-01-07
+---
+Nom del Videojoc: prova8
+Plataforma: Xbox
+Classificació: Majors de 18
+Perifèrics: Volant i Pedals, Joystick Retro
+Temàtica: Survival
+Data de Sortida: 2025-01-02
+---
+Nom del Videojoc: prova9
+Plataforma: Xbox
+Classificació: Majors de 18
+Perifèrics: Joystick Retro
+Temàtica: Terror
+Data de Sortida: 2025-01-15
+---
