@@ -1,26 +1,30 @@
 import random
 import socket
+import time
 
-ip_server = input("Introdueix la ip del servidor: ")
-port_server = int(input("Introduexi el port del servidor: "))
+ip_server = input("Introdueix la IP del servidor: ")
+port_server = int(input("Introdueix el port del servidor: "))
 
-HOST = ip_server
-PORT = port_server
-
-username = input("Introdueix el teu nom per la partida: ")
-
-toss = random.randint(1, 2)
-toss_result = ''
-
-if toss == 1:
-    toss_result = 'Coin'
-else:
-    toss_result = 'Tail'
+username = input("Introdueix el teu nom: ")
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+    client_socket.connect((ip_server, port_server))
 
-    client_socket.connect((HOST, PORT))
+    client_socket.sendall(username.encode('utf-8'))
 
-    message = f"{username}|{toss_result}"
+    while True:
+        response = client_socket.recv(1024).decode('utf-8')
+        if not response:
+            break
 
-    client_socket.sendall(message.encode('utf-8'))
+        print(response)
+
+        if "eliminat" in response or "guanyat" in response:
+            break
+
+        time.sleep(random.uniform(1, 3))
+        
+        toss = 'Coin' if random.randint(1, 2) == 1 else 'Tail'
+
+        message = f"{username}|{toss}"
+        client_socket.sendall(message.encode('utf-8'))
