@@ -16,5 +16,4 @@ Aquest repositori recull les aplicacions i els apunts creats durant el curs. Aqu
 - **Disseny d'Interfícies:** Dissenyar i implementar interfícies d'usuari adaptatives i atractives.
 - **Integració de Serveis:** Connectar aplicacions amb serveis externs i gestionar dades.
 - **Proves i Desplegament:** Realitzar proves i desplegar aplicacions en diversos entorns.
-
 ---
