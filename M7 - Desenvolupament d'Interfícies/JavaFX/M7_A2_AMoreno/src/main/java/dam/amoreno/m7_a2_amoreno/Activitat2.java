@@ -1,6 +1,7 @@
 package dam.amoreno.m7_a2_amoreno;
 
 import javafx.application.Application;
+import javafx.css.Match;
 import javafx.event.ActionEvent;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -14,16 +15,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Activitat2 extends Application {
+    private int paginaActual = 0;
+    private static final int ELEMENTS_PER_PAGINA = 4;
+    private Text textPagina;
+    private GridPane gridPane;
 
-    // Variable global per guardar els vehicles
-    ArrayList<RegistreVehicle> vehicles = new ArrayList<>();
+    private List<RegistreVehicle> vehicles;
 
 
     // Metode per canviar d'escena
@@ -39,11 +45,13 @@ public class Activitat2 extends Application {
     @Override
     public void start(Stage teatre) throws Exception {
         // Afegir vehicles prova
-        vehicles.add(new RegistreVehicle("Ford", "Focus", 20000));
-        vehicles.add(new RegistreVehicle("Audi", "A3", 25000));
-        vehicles.add(new RegistreVehicle("Audi", "A1", 15000));
-        vehicles.add(new RegistreVehicle("BMW", "X1", 30000));
-        vehicles.add(new RegistreVehicle("Mercedes", "GLC", 35000));
+        vehicles = new ArrayList<>();
+        vehicles.add(new RegistreVehicle("Ford", "Focus", "20000"));
+        vehicles.add(new RegistreVehicle("Audi", "A3", "25000"));
+        vehicles.add(new RegistreVehicle("Audi", "A1", "15000"));
+        vehicles.add(new RegistreVehicle("BMW", "X1", "30000"));
+        vehicles.add(new RegistreVehicle("Mercedes", "GLC", "35000"));
+        vehicles.add(new RegistreVehicle("Toyota", "Yaris", "20000"));
 
 
         // ---------- Escena 1 ----------------------------
@@ -126,6 +134,13 @@ public class Activitat2 extends Application {
             vehicles.forEach(vehicle -> {
                 if (vehicle.getMarca().equals(marques.getValue()) && vehicle.getModel().equals(models.getValue())) {
                     preu.setText(vehicle.getPreu() + " €");
+
+                    File fitxerImatge = new File("imatges/" + vehicle.getMarca() + "." + vehicle.getModel() + ".jpg");
+                    if (fitxerImatge.exists()) {
+                        imatgeCotxe.setImage(new Image(fitxerImatge.toURI().toString()));
+                    } else {
+                        System.out.println("No s'ha trobat la imatge: " + fitxerImatge.getPath());
+                    }
                 }
             });
         });
@@ -253,77 +268,39 @@ public class Activitat2 extends Application {
         VBox vboxTercera = new VBox(20);
         vboxTercera.setAlignment(Pos.CENTER);
 
-        GridPane gridPane = new GridPane();
+        gridPane = new GridPane();
         gridPane.setHgap(30);
         gridPane.setVgap(10);
         gridPane.setAlignment(Pos.CENTER);
 
-        // Titols
-        Text marcaTitol3 = new Text("Marca");
-        Text modelTitol3 = new Text("Model");
-        Text preuTitol3 = new Text("Preu");
-        Text imatgeTitol3 = new Text("Imatge");
-
-        Arrays.asList(marcaTitol3, modelTitol3, preuTitol3, imatgeTitol3).forEach(text -> {
-            text.setUnderline(true);
-            text.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
-        });
-
-        gridPane.add(marcaTitol3, 0, 0);
-        gridPane.add(modelTitol3, 1, 0);
-        gridPane.add(preuTitol3, 2, 0);
-        gridPane.add(imatgeTitol3, 3, 0);
-
-        // Llistar vehicles
-        int fila = 1; // Començar des de la fila 1 per després dels títols
-        for (RegistreVehicle vehicle : vehicles) {
-            Text marca3 = new Text(vehicle.getMarca());
-            Text model3 = new Text(vehicle.getModel());
-            Text preu3 = new Text(vehicle.getPreu() + " €");
-
-            Arrays.asList(marca3, model3, preu3).forEach(text -> text.setStyle("-fx-font-size: 20;"));
-
-            gridPane.add(marca3, 0, fila);
-            gridPane.add(model3, 1, fila);
-            gridPane.add(preu3, 2, fila);
-
-            Image cotxe3 = new Image(new FileInputStream("imatges/" + vehicle.getMarca() + "." + vehicle.getModel() + ".jpg"));
-            ImageView imatgeCotxe3 = new ImageView(cotxe3);
-            imatgeCotxe3.setFitHeight(60);
-            imatgeCotxe3.setFitWidth(100);
-
-            gridPane.add(imatgeCotxe3, 3, fila);
-
-            fila++;
-        }
-
-
         // Navegacio
         HBox hboxNavegacio = new HBox(30);
         hboxNavegacio.setAlignment(Pos.CENTER);
-
         Button botoPrimeraPagina = new Button("<<");
         Button botoPaginaAnterior = new Button("<");
         Button botoPaginaSeguent = new Button(">");
         Button botoUltimaPagina = new Button(">>");
-
         Arrays.asList(botoPrimeraPagina, botoPaginaAnterior, botoPaginaSeguent, botoUltimaPagina).forEach(boto -> boto.setStyle("-fx-font-size: 20;"));
 
-        Text textPagina = new Text("Plana 2 de 4");
+        textPagina = new Text();
         textPagina.setStyle("-fx-font-size: 20;");
 
         hboxNavegacio.getChildren().addAll(botoPrimeraPagina, botoPaginaAnterior, botoPaginaSeguent, botoUltimaPagina, textPagina);
 
+        // Funcionalitats dels botons
+        botoPrimeraPagina.setOnAction(_ -> canviarPagina(0));
+        botoPaginaAnterior.setOnAction(_ -> canviarPagina(paginaActual - 1));
+        botoPaginaSeguent.setOnAction(_ -> canviarPagina(paginaActual + 1));
+        botoUltimaPagina.setOnAction(_ -> canviarPagina((vehicles.size() - 1) / ELEMENTS_PER_PAGINA));
 
         vboxTercera.getChildren().addAll(gridPane, hboxNavegacio);
-
         botons3.getChildren().addAll(botoCanviEscena3, vboxTercera);
-
 
         escena3.getChildren().addAll(botons3);
         escena3.setStyle("-fx-background-color: lightgreen;");
         Scene escenari3 = new Scene(escena3, 600, 700);
 
+        canviarPagina(0);
 
 
         // ---------- Escena 4 ----------------------------
@@ -403,6 +380,71 @@ public class Activitat2 extends Application {
         afegirCotxe.setStyle("-fx-font-size: 20;");
         afegirCotxe.setAlignment(Pos.CENTER);
 
+        afegirImatge.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Selecciona una imatge");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imatges JPG", "*.jpg"));
+
+            File fitxerImatge = fileChooser.showOpenDialog(teatre);
+            if (fitxerImatge == null) return;
+
+            try {
+                // Comprovar que els camps no estiguin buits
+                String marcaCotxe = marcaResultat.getText().trim();
+                String modelCotxe = modelResultat.getText().trim();
+
+                if (marcaCotxe.isEmpty() || modelCotxe.isEmpty()) {
+                    showError("Has d'introduir marca i model abans d'afegir la imatge!");
+                    return;
+                }
+
+                File carpetaImatges = new File("imatges");
+
+                // Generar el nom del fitxer (ex: "Ford.Focus.jpg")
+                String nomFitxer = marcaCotxe + "." + modelCotxe + ".jpg";
+                File desti = new File(carpetaImatges, nomFitxer);
+
+                // Copiar la imatge a la carpeta imatges/
+                try (InputStream in = new FileInputStream(fitxerImatge);
+                     OutputStream out = new FileOutputStream(desti)) {
+
+                    byte[] buffer = new byte[1024];
+                    int llargada;
+                    while ((llargada = in.read(buffer)) > 0) {
+                        out.write(buffer, 0, llargada);
+                    }
+                }
+
+                // Mostrar la imatge en el ImageView
+                Image imatge = new Image(desti.toURI().toString());
+                imatgeCotxe4.setImage(imatge);
+
+
+            } catch (Exception ex) {
+                showError("Error carregant la imatge: " + ex.getMessage());
+            }
+
+        });
+
+        afegirCotxe.setOnAction(e -> {
+            String marcaCotxe = marcaResultat.getText();
+            String modelCotxe = modelResultat.getText();
+            String preuCotxe = preuResultat.getText();
+
+            if (marcaCotxe.isEmpty() || modelCotxe.isEmpty() || preuCotxe.isEmpty()) {
+                showError("Has d'omplir tots els camps!");
+                return;
+            }
+
+            vehicles.add(new RegistreVehicle(marcaCotxe, modelCotxe, preuCotxe));
+
+            showOk();
+
+            marcaResultat.clear();
+            modelResultat.clear();
+            preuResultat.clear();
+        });
+
 
         vboxQuarta.getChildren().addAll(hboxSuperior, afegirCotxe);
 
@@ -426,4 +468,80 @@ public class Activitat2 extends Application {
         teatre.setScene(escenari4);
         teatre.show();
     }
+
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showOk() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("OK");
+        alert.setHeaderText(null);
+        alert.setContentText("Videojoc guardat correctament!");
+        alert.showAndWait();
+    }
+
+    private void canviarPagina(int novaPagina) {
+        int totalPagines = (int) Math.ceil((double) vehicles.size() / ELEMENTS_PER_PAGINA);
+        if (novaPagina < 0 || novaPagina >= totalPagines) return;
+
+        paginaActual = novaPagina;
+
+        gridPane.getChildren().clear();
+
+        // Titols
+        Text marcaTitol = new Text("Marca");
+        Text modelTitol = new Text("Model");
+        Text preuTitol = new Text("Preu");
+        Text imatgeTitol = new Text("Imatge");
+
+        Arrays.asList(marcaTitol, modelTitol, preuTitol, imatgeTitol).forEach(text -> {
+            text.setUnderline(true);
+            text.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
+        });
+
+        gridPane.add(marcaTitol, 0, 0);
+        gridPane.add(modelTitol, 1, 0);
+        gridPane.add(preuTitol, 2, 0);
+        gridPane.add(imatgeTitol, 3, 0);
+
+        // Llistar vehicles
+        int fila = 1;
+        int inici = paginaActual * ELEMENTS_PER_PAGINA;
+        int ultima = Math.min(inici + ELEMENTS_PER_PAGINA, vehicles.size());
+
+        for (int i = inici; i < ultima; i++) {
+            RegistreVehicle vehicle = vehicles.get(i);
+
+            Text marca = new Text(vehicle.getMarca());
+            Text model = new Text(vehicle.getModel());
+            Text preu = new Text(vehicle.getPreu() + " €");
+
+            Arrays.asList(marca, model, preu).forEach(text -> text.setStyle("-fx-font-size: 20;"));
+
+            gridPane.add(marca, 0, fila);
+            gridPane.add(model, 1, fila);
+            gridPane.add(preu, 2, fila);
+
+            try {
+                Image cotxe = new Image(new FileInputStream("imatges/" + vehicle.getMarca() + "." + vehicle.getModel() + ".jpg"));
+                ImageView imatgeCotxe = new ImageView(cotxe);
+                imatgeCotxe.setFitWidth(150);
+                imatgeCotxe.setFitHeight(100);
+                gridPane.add(imatgeCotxe, 3, fila);
+            } catch (Exception e) {
+                System.out.println("Error carregant la imatge de " + vehicle.getMarca() + " " + vehicle.getModel());
+            }
+
+            fila++;
+        }
+
+        // Actualitzar el text de la pàgina
+        textPagina.setText("Plana " + (paginaActual + 1) + " de " + totalPagines);
+    }
+
 }
