@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<hotels>
+  <hotel>
+    <nom>Hotel Sol</nom>
+    <adreca>Carrer del Sol, 123</adreca>
+    <habitacions>
+      <habitacio>
+        <numero>101</numero>
+        <tipus>doble</tipus>
+        <preu>80</preu>
+      </habitacio>
+      <habitacio>
+        <numero>102</numero>
+        <tipus>individual</tipus>
+        <preu>60</preu>
+      </habitacio>
+    </habitacions>
+  </hotel>
+  <hotel>
+    <nom>Hotel Mar</nom>
+    <adreca>Carrer del Mar, 2</adreca>
+    <habitacions>
+      <habitacio>
+        <numero>1201</numero>
+        <tipus>doble</tipus>
+        <preu>120</preu>
+      </habitacio>
+      <habitacio>
+        <numero>102</numero>
+        <tipus>individual</tipus>
+        <preu>60</preu>
+      </habitacio>
+    </habitacions>
+  </hotel>
+  <hotel>
+    <nom>Prova1</nom>
+    <adreca>prova1 22</adreca>
+    <habitacions>
+      <habitacio>
+        <numero>101</numero>
+        <tipus>double</tipus>
+        <preu>25</preu>
+      </habitacio>
+      <habitacio>
+        <numero>102</numero>
+        <tipus>individual</tipus>
+        <preu>60</preu>
+      </habitacio>
+    </habitacions>
+  </hotel>
+  <hotel>
+    <nom>Prova2</nom>
+    <adreca>prova2 32</adreca>
+    <habitacions>
+      <habitacio>
+        <numero>201</numero>
+        <tipus>individual</tipus>
+        <preu>15</preu>
+      </habitacio>
+      <habitacio>
+        <numero>202</numero>
+        <tipus>doble</tipus>
+        <preu>20</preu>
+      </habitacio>
+      <habitacio>
+        <numero>203</numero>
+        <tipus>doble</tipus>
+        <preu>30</preu>
+      </habitacio>
+    </habitacions>
+  </hotel>
+</hotels>

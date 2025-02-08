@@ -1,0 +1,26 @@
+<tasques>
+  <tasca>
+    <nom>Comprar menjar</nom>
+    <data>2024-10-03</data>
+    <prioritat>Alta</prioritat>
+    <categoria>Personal</categoria>
+  </tasca>
+  <tasca>
+    <nom>Acabar projecte XML</nom>
+    <data>2024-10-05</data>
+    <prioritat>Moderada</prioritat>
+    <categoria>Feina</categoria>
+  </tasca>
+  <tasca>
+    <nom>Fer exercici</nom>
+    <data>2024-10-04</data>
+    <prioritat>Baixa</prioritat>
+    <categoria>Personal</categoria>
+  </tasca>
+  <tasca>
+    <nom>Aniol</nom>
+    <data>2024-12-12</data>
+    <prioritat>Moderada</prioritat>
+    <categoria>Personal</categoria>
+  </tasca>
+</tasques>
