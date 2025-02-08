@@ -1,0 +1,26 @@
+{"agenda": {"persona": [
+    {
+        "mail": "aniol@example.com",
+        "telefon": 123456789,
+        "nom": "Aniol",
+        "cognom": "Moreno"
+    },
+    {
+        "mail": "maria@example.com",
+        "telefon": 987654321,
+        "nom": "Maria",
+        "cognom": "Perez"
+    },
+    {
+        "mail": "pere.prova@gmail.com",
+        "telefon": 541254789,
+        "nom": "Pere",
+        "cognom": "Prova"
+    },
+    {
+        "mail": "prova2@gmail.com",
+        "telefon": 1456321456632,
+        "nom": "Prova2",
+        "cognom": "prova2"
+    }
+]}}
