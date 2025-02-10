@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <hotels>
   <hotel>
     <nom>Hotel Sol</nom>
@@ -7,12 +6,12 @@
       <habitacio>
         <numero>101</numero>
         <tipus>doble</tipus>
-        <preu>80</preu>
+        <preu>80.0</preu>
       </habitacio>
       <habitacio>
         <numero>102</numero>
         <tipus>individual</tipus>
-        <preu>60</preu>
+        <preu>60.0</preu>
       </habitacio>
     </habitacions>
   </hotel>
@@ -23,12 +22,12 @@
       <habitacio>
         <numero>1201</numero>
         <tipus>doble</tipus>
-        <preu>120</preu>
+        <preu>120.0</preu>
       </habitacio>
       <habitacio>
         <numero>102</numero>
         <tipus>individual</tipus>
-        <preu>60</preu>
+        <preu>60.0</preu>
       </habitacio>
     </habitacions>
   </hotel>
@@ -39,12 +38,12 @@
       <habitacio>
         <numero>101</numero>
         <tipus>double</tipus>
-        <preu>50</preu>
+        <preu>50.0</preu>
       </habitacio>
       <habitacio>
         <numero>102</numero>
         <tipus>individual</tipus>
-        <preu>60</preu>
+        <preu>60.0</preu>
       </habitacio>
     </habitacions>
   </hotel>
@@ -55,17 +54,33 @@
       <habitacio>
         <numero>201</numero>
         <tipus>individual</tipus>
-        <preu>15</preu>
+        <preu>15.0</preu>
       </habitacio>
       <habitacio>
         <numero>202</numero>
         <tipus>doble</tipus>
-        <preu>20</preu>
+        <preu>20.0</preu>
       </habitacio>
       <habitacio>
         <numero>203</numero>
         <tipus>doble</tipus>
-        <preu>30</preu>
+        <preu>30.0</preu>
+      </habitacio>
+    </habitacions>
+  </hotel>
+  <hotel>
+    <nom>Prova3</nom>
+    <adreca>prova3</adreca>
+    <habitacions>
+      <habitacio>
+        <numero>301</numero>
+        <tipus>suite</tipus>
+        <preu>150.0</preu>
+      </habitacio>
+      <habitacio>
+        <numero>302</numero>
+        <tipus>suite</tipus>
+        <preu>200.0</preu>
       </habitacio>
     </habitacions>
   </hotel>

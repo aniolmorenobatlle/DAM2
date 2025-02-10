@@ -23,4 +23,10 @@
     <prioritat>Moderada</prioritat>
     <categoria>Personal</categoria>
   </tasca>
+  <tasca>
+    <nom>prova3</nom>
+    <data>2020-10-10</data>
+    <prioritat>Moderada</prioritat>
+    <categoria>Personal</categoria>
+  </tasca>
 </tasques>

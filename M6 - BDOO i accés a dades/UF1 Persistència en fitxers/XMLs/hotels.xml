@@ -2,34 +2,34 @@
 <hotels>
   <hotel>
     <nom>Hotel Sol</nom>
-    <adreça>Carrer del Sol, 123</adreça>
+    <adreca>Carrer del Sol, 123</adreca>
     <habitacions>
-      <habitació>
-        <número>101</número>
+      <habitacio>
+        <numero>101</numero>
         <tipus>doble</tipus>
         <preu>80</preu>
-      </habitació>
-      <habitació>
-        <número>102</número>
+      </habitacio>
+      <habitacio>
+        <numero>102</numero>
         <tipus>individual</tipus>
         <preu>60</preu>
-      </habitació>
+      </habitacio>
     </habitacions>
   </hotel>
   <hotel>
     <nom>Hotel Mar</nom>
-    <adreça>Carrer del Mar, 2</adreça>
+    <adreca>Carrer del Mar, 2</adreca>
     <habitacions>
-      <habitació>
-        <número>1201</número>
+      <habitacio>
+        <numero>1201</numero>
         <tipus>doble</tipus>
         <preu>120</preu>
-      </habitació>
-      <habitació>
-        <número>102</número>
+      </habitacio>
+      <habitacio>
+        <numero>102</numero>
         <tipus>individual</tipus>
         <preu>60</preu>
-      </habitació>
+      </habitacio>
     </habitacions>
   </hotel>
 </hotels>
