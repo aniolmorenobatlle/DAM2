@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <hotels>
   <hotel>
     <nom>Hotel Sol</nom>
@@ -81,6 +82,22 @@
         <numero>302</numero>
         <tipus>suite</tipus>
         <preu>200.0</preu>
+      </habitacio>
+    </habitacions>
+  </hotel>
+  <hotel>
+    <nom>prova5</nom>
+    <adreca>prova5</adreca>
+    <habitacions>
+      <habitacio>
+        <numero>501</numero>
+        <tipus>doble</tipus>
+        <preu>500.0</preu>
+      </habitacio>
+      <habitacio>
+        <numero>502</numero>
+        <tipus>individual</tipus>
+        <preu>502.0</preu>
       </habitacio>
     </habitacions>
   </hotel>
