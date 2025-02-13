@@ -7,12 +7,17 @@
       <habitacio>
         <numero>101</numero>
         <tipus>doble</tipus>
-        <preu>80.0</preu>
+        <preu>100.0</preu>
       </habitacio>
       <habitacio>
         <numero>102</numero>
         <tipus>individual</tipus>
         <preu>60.0</preu>
+      </habitacio>
+      <habitacio>
+        <numero>103</numero>
+        <tipus>individual</tipus>
+        <preu>200</preu>
       </habitacio>
     </habitacions>
   </hotel>

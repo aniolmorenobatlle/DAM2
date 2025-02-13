@@ -1,6 +1,9 @@
 package dam.amoreno;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -28,6 +31,9 @@ public class DOM {
             System.out.println("1. Llegir");
             System.out.println("2. Escriure");
             System.out.println("3. Llegir sub etiquetes");
+            System.out.println("4. Llegir ordenat");
+            System.out.println("5. Modificar etiqueta");
+            System.out.println("6. Afegir habitació");
         
             System.out.println();
             System.out.println("========================================");
@@ -53,6 +59,19 @@ public class DOM {
                 case 3:
                     LlegirSub();
                     break;
+
+                case 4:
+                    LlegirOrdernat();
+                    break;
+
+                case 5:
+                    ModificarEtiqueta();
+                    break;
+
+                case 6:
+                    AfegirHabitacio();
+                    break;
+
         
                 case 0:
                     System.out.println("Sortint del programa...");
@@ -249,4 +268,277 @@ public class DOM {
         }
     }
 
+    public static void LlegirOrdernat() {
+        try {
+            File fitxer = new File("prova_extraodinaria/xmls/tasques.xml");
+
+            if (!fitxer.exists()) {
+                System.out.println("El fitxer no existeix.");
+                return;
+            }
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(fitxer);
+            document.getDocumentElement().normalize();
+
+            NodeList nodeListTasca = document.getElementsByTagName("tasca");
+            List<Ordernar> listPrioritat = new ArrayList<>();
+
+            for (int i = 0; i < nodeListTasca.getLength(); i++) {
+                Node node = nodeListTasca.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    String nom = element.getElementsByTagName("nom").item(0).getTextContent();
+                    String data = element.getElementsByTagName("data").item(0).getTextContent();
+                    String prioritat = element.getElementsByTagName("prioritat").item(0).getTextContent();
+                    String categoria = element.getElementsByTagName("categoria").item(0).getTextContent();
+
+                    listPrioritat.add(new Ordernar(nom, data, prioritat, categoria));
+                }
+            }
+
+            listPrioritat.sort(Comparator.comparingInt(Ordernar::getNivellPrioritat));
+
+            for (Ordernar o : listPrioritat) {
+                System.out.println(o);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ModificarEtiqueta() {
+        try {
+            File fitxer = new File("prova_extraodinaria/xmls/hotels.xml");
+
+            if (!fitxer.exists()) {
+                System.out.println("El fitxer no existeix.");
+                return;
+            }
+
+            System.out.print("Introdueix el nom de l'hotel: ");
+            String nomHotel = sc.nextLine();
+            System.out.print("Introdueix el numero d'habitació: ");
+            int numHabitacio = sc.nextInt();
+
+            sc.nextLine();
+            System.out.println();
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(fitxer);
+            document.getDocumentElement().normalize();
+
+            NodeList nodeListHotel = document.getElementsByTagName("hotel");
+
+            boolean hotelTrobat = false;
+            boolean habitacioTrobada = false;
+
+            for (int i = 0; i < nodeListHotel.getLength(); i++) {
+                Element elementHotel = (Element) nodeListHotel.item(i);
+
+                String nom = elementHotel.getElementsByTagName("nom").item(0).getTextContent();
+
+                if (nom.equalsIgnoreCase(nomHotel)) {
+                    hotelTrobat = true;
+
+                    NodeList nodeListHabitacio = elementHotel.getElementsByTagName("habitacio");
+
+                    for (int j = 0; j < nodeListHabitacio.getLength(); j++) {
+                        Element elementHabitacio = (Element) nodeListHabitacio.item(j);
+
+                        String numero = elementHabitacio.getElementsByTagName("numero").item(0).getTextContent();
+
+                        if (numero.equals(String.valueOf(numHabitacio))) {
+                            habitacioTrobada = true;
+
+                            String preuActual = elementHabitacio.getElementsByTagName("preu").item(0).getTextContent();
+
+                            System.out.println("Preu actual: " + preuActual);
+
+                            Element preu = (Element) elementHabitacio.getElementsByTagName("preu").item(0);
+                            System.out.print("Introdueix el nou preu: ");
+                            double preuFinal = sc.nextDouble();
+
+                            preu.setTextContent(String.valueOf(preuFinal));
+
+                            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                            Transformer transformer = transformerFactory.newTransformer();
+                            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+                            DOMSource source = new DOMSource(document);
+                            StreamResult result = new StreamResult(fitxer);
+
+                            transformer.transform(source, result);
+
+                            System.out.println("Preu canviat correctament!!");
+                        }
+                    }
+                }
+            }
+
+            if (!hotelTrobat) System.out.println("No s'ha trobat cap hotel amb aquest nom.");
+            if (!habitacioTrobada) System.out.println("No s'ha trobat el numero d'habitacio en aquest hotel.");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void AfegirHabitacio() {
+        try {
+            File fitxer = new File("prova_extraodinaria/xmls/hotels.xml");
+
+            if (!fitxer.exists()) {
+                System.out.println("El fitxer no existeix.");
+                return;
+            }
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(fitxer);
+            document.getDocumentElement().normalize();
+
+            System.out.print("Introdueix el nom de l'hotel: ");
+            String nomHotel = sc.nextLine();
+
+            NodeList nodeListHotel = document.getElementsByTagName("hotel");
+            Element hotelTrobat = null;
+
+            for (int i = 0; i < nodeListHotel.getLength(); i++) {
+                Element elementHotel = (Element) nodeListHotel.item(i);
+
+                String hotel = elementHotel.getElementsByTagName("nom").item(0).getTextContent();
+
+                if (hotel.equalsIgnoreCase(nomHotel)) {
+                    hotelTrobat = elementHotel;
+                    break;
+                }
+            }
+
+            if (hotelTrobat == null) {
+                System.out.println("Hotel no trobat."); 
+                return;
+            }
+
+            Element habitacions = (Element) hotelTrobat.getElementsByTagName("habitacions").item(0);
+
+            // Crear nova habitacio
+            Element habitacio = document.createElement("habitacio");
+
+            Element numero = document.createElement("numero");
+            System.out.print("Introdueix el numero d'habitació: ");
+            int numResult = sc.nextInt();
+            numero.appendChild(document.createTextNode(String.valueOf(numResult)));
+
+            Element tipus = document.createElement("tipus");
+            System.out.print("Tipus d'habitació (1. individual - 2. doble): ");
+            int tipusHabitacio = sc.nextInt();
+    
+            String tipusHabitacioResult = (tipusHabitacio == 1) ? "individual" : "doble";
+            tipus.appendChild(document.createTextNode(tipusHabitacioResult));
+    
+            Element preu = document.createElement("preu");
+            System.out.print("Preu d'habitació: ");
+            int preuHabitacio = sc.nextInt();
+            preu.appendChild(document.createTextNode(String.valueOf(preuHabitacio)));
+    
+            sc.nextLine();
+
+            habitacio.appendChild(numero);
+            habitacio.appendChild(tipus);
+            habitacio.appendChild(preu);
+
+            habitacions.appendChild(habitacio);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(fitxer);
+            transformer.transform(source, result);
+
+            System.out.println("\nS'ha afegit l'habitació correctament!");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+class Ordernar {
+    private String nom, data, prioritat, categoria;
+
+    public Ordernar() {
+    }
+
+    public Ordernar(String nom, String data, String prioritat, String categoria) {
+        this.nom = nom;
+        this.data = data;
+        this.prioritat = prioritat;
+        this.categoria = categoria;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getPrioritat() {
+        return prioritat;
+    }
+
+    public void setPrioritat(String prioritat) {
+        this.prioritat = prioritat;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public int getNivellPrioritat() {
+        switch (prioritat) {
+            case "Alta":
+                return 1;
+
+            case "Moderada":
+                return 2;
+            
+            case "Baixa":
+                return 3;
+        
+            default:
+                return 4;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Nom: " + nom
+        + "\nData: " + data
+        + "\nPrioritat: " + prioritat
+        + "\nCategoria: " + categoria
+        + "\n---------------";
+    }
 }
