@@ -29,6 +29,7 @@ public class DOM3 {
             System.out.println("2. Afegir hotel");
             System.out.println("3. Afegir habitació");
             System.out.println("4. Modificar preu habitació");
+            System.out.println("5. Llistar habitacions hotel");
             
             System.out.println();
             System.out.println("========================================");
@@ -55,6 +56,10 @@ public class DOM3 {
 
                 case 4:
                     ModificarPreuHabitacio();
+                    break;
+
+                case 5:
+                    LlistarHabitacionsHotel();
                     break;
         
         
@@ -383,4 +388,75 @@ public class DOM3 {
         }
     }
 
+    public static void LlistarHabitacionsHotel() {
+        try {
+            File fitxer = new File("prova_extraodinaria/xmls/hotels.xml");
+
+            if (!fitxer.exists()) {
+                System.out.println("El fitxer no existeix");
+                return;
+            }
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(fitxer);
+            document.getDocumentElement().normalize();
+
+            System.out.print("Introdueix l'hotel a llistar les habitacions: ");
+            String nomHotel = sc.nextLine();
+
+            System.out.println();
+
+
+            NodeList nodeListHotel = document.getElementsByTagName("hotel");
+            boolean hotelTrobat = false;
+
+            for (int i = 0; i < nodeListHotel.getLength(); i++) {
+                Node nodeHotel = nodeListHotel.item(i);
+
+                if (nodeHotel.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elementHotel = (Element) nodeHotel;
+
+                    String nom = elementHotel.getElementsByTagName("nom").item(0).getTextContent();
+
+                    if (nom.equalsIgnoreCase(nomHotel)) {
+                        hotelTrobat = true;
+
+                        String adreca = elementHotel.getElementsByTagName("adreca").item(0).getTextContent();
+
+                        System.out.println("Hotel: " + nom);
+                        System.out.println("Adreça: " + adreca);
+                        System.out.println("Habitacions:");
+
+                        NodeList nodeListHabitacions = elementHotel.getElementsByTagName("habitacio");
+
+                        for (int j = 0; j < nodeListHabitacions.getLength(); j++) {
+                            Node nodeHabitacio = nodeListHabitacions.item(j);
+
+                            if (nodeHabitacio.getNodeType() == Node.ELEMENT_NODE) {
+                                Element elementHabitacio = (Element) nodeHabitacio;
+
+                                String numero = elementHabitacio.getElementsByTagName("numero").item(0).getTextContent();
+                                String tipus = elementHabitacio.getElementsByTagName("tipus").item(0).getTextContent();
+                                String preu = elementHabitacio.getElementsByTagName("preu").item(0).getTextContent();
+
+                                System.out.println("\tNumero: " + numero);
+                                System.out.println("\tTipus: " + tipus);
+                                System.out.println("\tPreu: " + preu);
+                                System.out.println("\t--------------");
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (hotelTrobat == false) {
+                System.out.println("No s'ha trobat cap hotel amb aquest nom.");
+                return;
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
