@@ -22,16 +22,4 @@ public class RegistreVehicle {
     public String getPreu() {
         return preuCompra;
     }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setPreu(String preuCompra) {
-        this.preuCompra = preuCompra;
-    }
 }

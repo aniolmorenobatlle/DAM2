@@ -52,6 +52,8 @@ public class Activitat2 extends Application {
         vehicles.add(new RegistreVehicle("BMW", "X1", "30000"));
         vehicles.add(new RegistreVehicle("Mercedes", "GLC", "35000"));
         vehicles.add(new RegistreVehicle("Toyota", "Yaris", "20000"));
+        vehicles.add(new RegistreVehicle("Mercedes", "ClasseA", "60000"));
+        vehicles.add(new RegistreVehicle("Ferrari", "F40", "2000000"));
 
 
         // ---------- Escena 1 ----------------------------
@@ -130,20 +132,18 @@ public class Activitat2 extends Application {
         preuTitol.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
         Text preu = new Text();
 
-        models.setOnAction((ActionEvent _) -> {
-            vehicles.forEach(vehicle -> {
-                if (vehicle.getMarca().equals(marques.getValue()) && vehicle.getModel().equals(models.getValue())) {
-                    preu.setText(vehicle.getPreu() + " €");
+        models.setOnAction((ActionEvent _) -> vehicles.forEach(vehicle -> {
+            if (vehicle.getMarca().equals(marques.getValue()) && vehicle.getModel().equals(models.getValue())) {
+                preu.setText(vehicle.getPreu() + " €");
 
-                    File fitxerImatge = new File("imatges/" + vehicle.getMarca() + "." + vehicle.getModel() + ".jpg");
-                    if (fitxerImatge.exists()) {
-                        imatgeCotxe.setImage(new Image(fitxerImatge.toURI().toString()));
-                    } else {
-                        System.out.println("No s'ha trobat la imatge: " + fitxerImatge.getPath());
-                    }
+                File fitxerImatge = new File("imatges/" + vehicle.getMarca() + "." + vehicle.getModel() + ".jpg");
+                if (fitxerImatge.exists()) {
+                    imatgeCotxe.setImage(new Image(fitxerImatge.toURI().toString()));
+                } else {
+                    System.out.println("No s'ha trobat la imatge: " + fitxerImatge.getPath());
                 }
-            });
-        });
+            }
+        }));
 
         preu.setStyle("-fx-font-size: 20;");
 
@@ -362,7 +362,7 @@ public class Activitat2 extends Application {
         imatgeTitol4.setUnderline(true);
         imatgeTitol4.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
 
-        Image cotxe4 = new Image(new FileInputStream("imatges/Ford.Focus.jpg"));
+        Image cotxe4 = new Image(new FileInputStream("imatges/Default.jpg"));
         ImageView imatgeCotxe4 = new ImageView(cotxe4);
         imatgeCotxe4.setFitHeight(120);
         imatgeCotxe4.setFitWidth(200);
@@ -398,25 +398,7 @@ public class Activitat2 extends Application {
                     return;
                 }
 
-                File carpetaImatges = new File("imatges");
-
-                // Generar el nom del fitxer (ex: "Ford.Focus.jpg")
-                String nomFitxer = marcaCotxe + "." + modelCotxe + ".jpg";
-                File desti = new File(carpetaImatges, nomFitxer);
-
-                // Copiar la imatge a la carpeta imatges/
-                try (InputStream in = new FileInputStream(fitxerImatge);
-                     OutputStream out = new FileOutputStream(desti)) {
-
-                    byte[] buffer = new byte[1024];
-                    int llargada;
-                    while ((llargada = in.read(buffer)) > 0) {
-                        out.write(buffer, 0, llargada);
-                    }
-                }
-
-                // Mostrar la imatge en el ImageView
-                Image imatge = new Image(desti.toURI().toString());
+                Image imatge = guardarImatge(marcaCotxe, modelCotxe, fitxerImatge);
                 imatgeCotxe4.setImage(imatge);
 
 
@@ -426,10 +408,12 @@ public class Activitat2 extends Application {
 
         });
 
-        afegirCotxe.setOnAction(e -> {
-            String marcaCotxe = marcaResultat.getText();
-            String modelCotxe = modelResultat.getText();
-            String preuCotxe = preuResultat.getText();
+        afegirCotxe.setOnAction(_ -> {
+            String marcaCotxe = marcaResultat.getText().trim();
+            String modelCotxe = modelResultat.getText().trim();
+            String preuCotxe = preuResultat.getText().trim();
+
+            System.out.println(marcaCotxe);
 
             if (marcaCotxe.isEmpty() || modelCotxe.isEmpty() || preuCotxe.isEmpty()) {
                 showError("Has d'omplir tots els camps!");
@@ -443,6 +427,7 @@ public class Activitat2 extends Application {
             marcaResultat.clear();
             modelResultat.clear();
             preuResultat.clear();
+            imatgeCotxe4.setImage(new Image("imatges/Default.jpg"));
         });
 
 
@@ -465,8 +450,30 @@ public class Activitat2 extends Application {
 
 
         // ---------- Escenari Inicial ----------------------------
-        teatre.setScene(escenari4);
+        teatre.setScene(escenari1);
         teatre.show();
+    }
+
+    private static Image guardarImatge(String marcaCotxe, String modelCotxe, File fitxerImatge) throws IOException {
+        File carpetaImatges = new File("imatges");
+
+        // Generar el nom del fitxer
+        String nomFitxer = marcaCotxe + "." + modelCotxe + ".jpg";
+        File desti = new File(carpetaImatges, nomFitxer);
+
+        // Copiar la imatge a la carpeta imatges/
+        try (InputStream in = new FileInputStream(fitxerImatge);
+             OutputStream out = new FileOutputStream(desti)) {
+
+            byte[] buffer = new byte[1024];
+            int llargada;
+            while ((llargada = in.read(buffer)) > 0) {
+                out.write(buffer, 0, llargada);
+            }
+        }
+
+        // Mostrar la imatge en el ImageView
+        return new Image(desti.toURI().toString());
     }
 
     private void showError(String message) {
@@ -481,7 +488,7 @@ public class Activitat2 extends Application {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("OK");
         alert.setHeaderText(null);
-        alert.setContentText("Videojoc guardat correctament!");
+        alert.setContentText("Cotxe guardat correctament!");
         alert.showAndWait();
     }
 
