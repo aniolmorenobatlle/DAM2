@@ -224,6 +224,8 @@ public class Activitat2 extends Application {
         // Imatge
         Image cotxe2 = new Image(new FileInputStream("imatges/Ford.Focus.jpg"));
         ImageView imatgeCotxe2 = new ImageView(cotxe2);
+        imatgeCotxe2.setPreserveRatio(true);
+        imatgeCotxe2.setSmooth(true);
         imatgeCotxe2.setFitHeight(200);
         imatgeCotxe2.setFitWidth(300);
 
@@ -235,13 +237,26 @@ public class Activitat2 extends Application {
         vboxBarraIndex.setAlignment(Pos.CENTER);
 
         // Barra desplaçament
-        Slider barraDesplacament = new Slider(0, 100, 50);
-        barraDesplacament.setPrefWidth(100);
+        ScrollBar barraDesplacament = new ScrollBar();
+        barraDesplacament.setMin(0);
+        barraDesplacament.setMax(vehicles.size() - 1);
+        barraDesplacament.setValue(0);
+        barraDesplacament.setUnitIncrement(1);
+        barraDesplacament.setBlockIncrement(1);
         barraDesplacament.setOrientation(Orientation.HORIZONTAL);
-        int valor = (int) barraDesplacament.getValue();
+        barraDesplacament.setPrefWidth(300);
 
         // Index
-        Text index = new Text("Cotxe " + valor);
+        Text index = new Text();
+
+        // Canviar el cotxe quan es mou la barra
+        barraDesplacament.valueProperty().addListener((_, _, newValue) -> {
+            int valor = newValue.intValue();
+            mostrarCotxe(valor, marca2, model2, preu2, imatgeCotxe2, index);
+        });
+
+        // Cotxe per defecte
+        mostrarCotxe(0, marca2, model2, preu2, imatgeCotxe2, index);
 
         vboxBarraIndex.getChildren().addAll(barraDesplacament, index);
 
@@ -452,6 +467,21 @@ public class Activitat2 extends Application {
         // ---------- Escenari Inicial ----------------------------
         teatre.setScene(escenari1);
         teatre.show();
+    }
+
+    private void mostrarCotxe(int index, Text marca, Text model, Text preu, ImageView imatge, Text indexText) {
+        RegistreVehicle vehicle = vehicles.get(index);
+        marca.setText(vehicle.getMarca());
+        model.setText(vehicle.getModel());
+        preu.setText(vehicle.getPreu() + " €");
+        indexText.setText("Cotxe " + (index + 1) + " de " + vehicles.size());
+
+        try {
+            Image cotxe = new Image(new FileInputStream("imatges/" + vehicle.getMarca() + "." + vehicle.getModel() + ".jpg"));
+            imatge.setImage(cotxe);
+        } catch (Exception e) {
+            System.out.println("Error carregant la imatge de " + vehicle.getMarca() + " " + vehicle.getModel());
+        }
     }
 
     private static Image guardarImatge(String marcaCotxe, String modelCotxe, File fitxerImatge) throws IOException {
