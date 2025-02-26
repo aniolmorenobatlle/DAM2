@@ -36,7 +36,7 @@ export default function Search() {
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <Text style={[globalStyles.textBase, styles.popularTitle]}>Most popular</Text>
 
         <View style={styles.movieGrid}>

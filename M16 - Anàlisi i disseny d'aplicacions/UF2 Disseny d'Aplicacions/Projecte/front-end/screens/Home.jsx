@@ -27,7 +27,7 @@ export default function Home() {
         <Image style={styles.menuIcon} source={userIcon} />
       </View>
 
-      <ScrollView style={globalStyles.container}>
+      <ScrollView style={globalStyles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.main}>
 
           <View>
