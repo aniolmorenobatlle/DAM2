@@ -1,5 +1,6 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Dimensions, Image, ScrollView, Text, View } from "react-native";
+import { Dimensions, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "../globalStyles";
 
@@ -11,13 +12,13 @@ import pulpFiction from '../assets/films/pulpfiction.jpg';
 import theBatman from '../assets/films/thebatman.jpg';
 
 const films = [
-  { name: "The Batman", image: theBatman },
-  { name: "Pulp Fiction", image: pulpFiction },
-  { name: "Avatar", image: avatar },
-  { name: "Baby Driver", image: babyDriver },
+  { title: "The Batman", image: theBatman },
+  { title: "Pulp Fiction", image: pulpFiction },
+  { title: "Avatar", image: avatar },
+  { title: "Baby Driver", image: babyDriver },
 ];
 
-// Generar llista 4x8
+// llista 4x8
 const repeatedFilms = Array.from({ length: 32 }, (_, i) => films[i % films.length]);
 
 const numColumns = 4;
@@ -25,6 +26,8 @@ const screenWidth = Dimensions.get("window").width;
 const itemSize = screenWidth / numColumns - 10;
 
 export default function Search() {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={[globalStyles.container, styles.mainContainer]}>
       <View style={styles.header}>
@@ -42,7 +45,9 @@ export default function Search() {
         <View style={styles.movieGrid}>
           {repeatedFilms.map((item, index) => (
             <View key={index} style={[styles.movieItem, { width: itemSize, height: itemSize * 1.5 }]}>
-              <Image source={item.image} style={styles.movieImage} />
+              <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate("Film", { title: item.title })}>
+                <Image source={item.image} style={styles.movieImage} />
+              </TouchableOpacity>
             </View>
           ))}
         </View>

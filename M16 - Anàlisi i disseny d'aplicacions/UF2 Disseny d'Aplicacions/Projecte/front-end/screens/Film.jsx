@@ -14,6 +14,13 @@ import paulDano from '../assets/actors/paul-dano.jpg';
 import robertPattinson from '../assets/actors/robert-pattinson.jpg';
 import zoeKravitz from '../assets/actors/zoe-kravitz.jpg';
 
+import { useNavigation } from "@react-navigation/native";
+import appleTv from '../assets/sites/appletv.png';
+import disneyPlus from '../assets/sites/disney-plus.png';
+import max from '../assets/sites/max.png';
+import netflix from '../assets/sites/netflix.png';
+import primeVideo from '../assets/sites/prime.png';
+
 const reviews = [
   { name: "David", image: robertPattinson, review: "The Batman is a great movie. I loved the action scenes and the plot. The actors were amazing and the soundtrack was perfect." },
   { name: "David", image: robertPattinson, review: "The Batman is a great movie. I loved the action scenes and the plot. The actors were amazing and the soundtrack was perfect." },
@@ -22,21 +29,27 @@ const reviews = [
   { name: "David", image: robertPattinson, review: "The Batman is a great movie. I loved the action scenes and the plot. The actors were amazing and the soundtrack was perfect." }
 ]
 
-export default function Film() {
+export default function Film({ route }) {
+  const { title } = route.params;
+
   const [activeButton, setActiveButton] = useState("casts");
 
   const handleButtonPress = (buttonName) => {
     setActiveButton(buttonName);
   }
 
+  const navigation = useNavigation();
+
   return (
     <ScrollView vertical={true} showsVerticalScrollIndicator={false} style={{ backgroundColor: "#1F1D36" }} contentContainerStyle={{ paddingBottom: 10}}>
       <ImageBackground source={thebatmanBackground} style={styles.imageBackground}>
-        {/* <SafeAreaView style={styles.overlay}>
+        <SafeAreaView style={styles.overlay}>
           <View style={styles.backButton}>
-            <Text style={styles.backArrow}>←</Text>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.goBack()}>
+              <Text style={styles.backArrow}>←</Text>
+            </TouchableOpacity>
           </View>
-        </SafeAreaView> */}
+        </SafeAreaView>
       </ImageBackground>
 
       <SafeAreaView style={[globalStyles.container, styles.mainContainer]}>
@@ -79,12 +92,14 @@ export default function Film() {
         <View style={styles.castContainer}>
           <View style={styles.buttonOptions}>
             <TouchableOpacity
+              activeOpacity={1}
               style={[styles.buttonCast, activeButton === 'casts' && styles.buttonCastActive]}
               onPress={() => handleButtonPress('casts')}
             >
               <Text style={[globalStyles.textBase, styles.buttonCastText]}>Casts</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={1}
               style={[styles.buttonCast, activeButton === 'watch' && styles.buttonCastActive]}
               onPress={() => handleButtonPress('watch')}
             >
@@ -93,17 +108,64 @@ export default function Film() {
           </View>
 
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.cast}>
-              <Image style={styles.castImage} source={robertPattinson} />
-              <Image style={styles.castImage} source={zoeKravitz} />
-              <Image style={styles.castImage} source={paulDano} />
-              <Image style={styles.castImage} source={robertPattinson} />
-              <Image style={styles.castImage} source={zoeKravitz} />
-              <Image style={styles.castImage} source={paulDano} />
-              <Image style={styles.castImage} source={robertPattinson} />
-              <Image style={styles.castImage} source={zoeKravitz} />
-              <Image style={styles.castImage} source={paulDano} />
-            </View>
+            {activeButton === "casts" && (
+              <View style={styles.cast}>
+                <View>
+                  <Image style={styles.castImage} source={robertPattinson} />
+                  <View style={styles.castNameContainer}>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Robert</Text>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Pattinson</Text>
+                  </View>
+                </View>
+                <View>
+                  <Image style={styles.castImage} source={zoeKravitz} />
+                  <View style={styles.castNameContainer}>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Zoë</Text>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Kravitz</Text>
+                  </View>
+                </View>
+                <View>
+                  <Image style={styles.castImage} source={paulDano} />
+                  <View style={styles.castNameContainer}>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Paul</Text>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Dano</Text>
+                  </View>
+                </View>
+
+                <View>
+                  <Image style={styles.castImage} source={robertPattinson} />
+                  <View style={styles.castNameContainer}>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Robert</Text>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Pattinson</Text>
+                  </View>
+                </View>
+                <View>
+                  <Image style={styles.castImage} source={zoeKravitz} />
+                  <View style={styles.castNameContainer}>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Zoë</Text>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Kravitz</Text>
+                  </View>
+                </View>
+
+                <View>
+                  <Image style={styles.castImage} source={paulDano} />
+                  <View style={styles.castNameContainer}>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Paul</Text>
+                    <Text style={[globalStyles.textBase, styles.castName]}>Dano</Text>
+                  </View>
+                </View>
+              </View>
+            )}
+
+            {activeButton === "watch" && (
+              <View style={{ flexDirection: "row", gap: 10 }}>
+                <Image style={styles.streamingImage} source={netflix}/>
+                <Image style={styles.streamingImage} source={primeVideo}/>
+                <Image style={styles.streamingImage} source={disneyPlus}/>
+                <Image style={styles.streamingImage} source={max}/>
+                <Image style={styles.streamingImage} source={appleTv}/>
+              </View>
+            )}
           </ScrollView>
         </View>
 
@@ -148,7 +210,7 @@ const styles = {
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: -180,
+    marginTop: -150,
   },
 
   backArrow: {
@@ -214,7 +276,7 @@ const styles = {
     marginBottom: 10,
     backgroundColor: "#E9A6A6",
     width: 150,
-    height: 35,
+    height: 40,
     borderRadius: 10,
   },
 
@@ -244,6 +306,21 @@ const styles = {
 
   castContainer: {
     marginTop: 20,
+  },
+
+  castNameContainer: {
+    marginTop: 5,
+    alignItems: "center",
+  },
+
+  castName: {
+    fontSize: 10
+  },
+
+  streamingImage: {
+    width: 60,
+    height: 60,
+    objectFit: "contain",
   },
 
   buttonOptions: {

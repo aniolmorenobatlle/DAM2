@@ -1,7 +1,9 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "../globalStyles";
+
 
 import avatar from '../assets/films/avatar.jpg';
 import babyDriver from '../assets/films/babydriver.jpg';
@@ -38,6 +40,8 @@ const { width } = Dimensions.get("window");
 const carouselWidth = width - 30;
 
 export default function Recommend() {
+  const navigation = useNavigation();
+  
   const [activeMarks, setActiveMarks] = useState({});
 
   const handlePress = (name) => {
@@ -49,30 +53,38 @@ export default function Recommend() {
 
   return (
     <SafeAreaView style={[globalStyles.container, styles.mainContainer]}>
+      <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.goBack()}>
+        <Text style={styles.closeButton}>×</Text>
+      </TouchableOpacity>
+
       <Carousel
         width={width}
-        height={570}
+        height={580}
         data={films}
-        
         renderItem={({ index }) => (
-          <View style={[styles.header, { width: carouselWidth }]}>
-            <View style={styles.filmInfo}>
-              <Text style={[globalStyles.textBase, styles.headerTitle]}>
-                {films[index].title}
-              </Text>
-              <Text style={[globalStyles.textBase, styles.headerYear]}>
-                {films[index].year}
-              </Text>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate('Film', { title: films[index].title })}
+          >
+            <View style={[styles.header, { width: carouselWidth }]}>
+              <View style={styles.filmInfo}>
+                <Text style={[globalStyles.textBase, styles.headerTitle]}>
+                  {films[index].title}
+                </Text>
+                <Text style={[globalStyles.textBase, styles.headerYear]}>
+                  {films[index].year}
+                </Text>
+              </View>
+              <Image style={styles.filmImage} source={films[index].image} />
             </View>
-            <Image style={styles.filmImage} source={films[index].image} />
-          </View>
+          </TouchableOpacity>
         )}
       />
 
       <View style={styles.marks}>
         {marks.map((mark, index) => (
           <View key={index} style={styles.mark}>
-            <TouchableOpacity onPress={() => handlePress(mark.name)}>
+            <TouchableOpacity activeOpacity={0.8} onPress={() => handlePress(mark.name)}>
               <Image
                 style={styles.markImage}
                 source={activeMarks[mark.name] ? mark.activeImage : mark.image}
@@ -89,13 +101,19 @@ export default function Recommend() {
 const styles = {
   mainContainer: {
     paddingHorizontal: 15,
-    paddingTop: 10,
   },
 
   header: {
     flexDirection: "column",
     alignItems: "center",
     gap: 10,
+  },
+
+  closeButton: {
+    fontSize: 30,
+    color: "#D3D3D3",
+    marginBottom: 10,
+    alignSelf: "flex-end",
   },
 
   filmInfo: {
@@ -115,7 +133,7 @@ const styles = {
 
   filmImage: {
     width: "100%",
-    height: 520,
+    height: 530,
     borderRadius: 10,
     marginTop: 10,
     borderWidth: 1,
