@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Film from "./screens/Film";
 import Home from "./screens/Home";
 import Notifications from "./screens/Notifications";
+import Profile from "./screens/Profile";
 import Recommend from "./screens/Recommend";
 
 const Stack = createStackNavigator();
@@ -54,6 +55,11 @@ export default function App() {
           <Stack.Screen 
             name="Notifications"
             component={Notifications} 
+            options={{ headerShown: false }} 
+          />
+          <Stack.Screen 
+            name="Profile"
+            component={Profile} 
             options={{ headerShown: false }} 
           />
         </Stack.Navigator>

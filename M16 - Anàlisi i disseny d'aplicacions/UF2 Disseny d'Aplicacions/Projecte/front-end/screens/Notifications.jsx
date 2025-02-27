@@ -103,7 +103,6 @@ export default function Notifications() {
               <Image style={styles.avatar} source={activity.avatar} />
               <Text style={[globalStyles.textBase, styles.notificationText]}>{activity.text}</Text>
               <Text style={[globalStyles.textBase, styles.notificationTime]}>{activity.time}</Text>
-              <View style={styles.line}></View>
             </View>
           ))}
         </ScrollView>
@@ -119,7 +118,6 @@ export default function Notifications() {
               <Text style={[globalStyles.textBase, styles.chatTextMessage]}>{activity.message}</Text>
             </View>
             <Text style={[globalStyles.textBase, styles.notificationTime]}>{activity.time}</Text>
-            <View style={styles.line}></View>
           </View>
         ))}
       </ScrollView>
@@ -171,7 +169,6 @@ const styles = {
   },
 
   body: {
-    backgroundColor: "#323048",
     marginHorizontal: -15,
   },
 
@@ -180,6 +177,9 @@ const styles = {
     justifyContent: "space-between",
     padding: 10,
     alignItems: "center",
+    backgroundColor: "#323048",
+    borderTopWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.1)",
   },
 
   avatar: {
@@ -212,15 +212,6 @@ const styles = {
     fontSize: 12,
     color: "rgba(255, 255, 255, 0.5)",
     paddingLeft: 10,
-  },
-
-  line: {
-    height: 1,
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    width: "130%",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
   },
 };
 

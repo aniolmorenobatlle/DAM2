@@ -1,7 +1,9 @@
+import { useNavigation } from '@react-navigation/native';
 import React from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { globalStyles } from "../globalStyles";
+
 
 import avatar from '../assets/films/avatar.jpg';
 import babyDriver from '../assets/films/babydriver.jpg';
@@ -20,11 +22,15 @@ const films = [
 ]
 
 export default function Home() {
+  const navigation = useNavigation();
+  
   return (
     <SafeAreaView style={[globalStyles.container, styles.mainContainer]}>
       <View style={styles.header}>
         <Image style={styles.menuIcon} source={hamburger} />
-        <Image style={styles.menuIcon} source={userIcon} />
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Image style={styles.menuIcon} source={userIcon} />
+        </TouchableOpacity>
       </View>
 
       <ScrollView style={globalStyles.container} showsVerticalScrollIndicator={false}>

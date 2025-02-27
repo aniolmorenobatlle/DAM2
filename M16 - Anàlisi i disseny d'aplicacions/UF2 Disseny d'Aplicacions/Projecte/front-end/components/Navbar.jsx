@@ -28,8 +28,8 @@ export default function Navbar() {
       navigation.navigate('Recommend');
     } else if (page === 'notifications') {
       navigation.navigate('Notifications');
-    } else if (page === 'user') {
-      navigation.navigate('User');
+    } else if (page === 'profile') {
+      navigation.navigate('Profile');
     }
   };
 
@@ -63,10 +63,10 @@ export default function Navbar() {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleIconClick('user')}>
+      <TouchableOpacity onPress={() => handleIconClick('profile')}>
         <Image
           style={styles.navbarIcon}
-          source={currentPage === 'user' ? userNavActive : userNav}
+          source={currentPage === 'profile' ? userNavActive : userNav}
         />
       </TouchableOpacity>
     </View>
