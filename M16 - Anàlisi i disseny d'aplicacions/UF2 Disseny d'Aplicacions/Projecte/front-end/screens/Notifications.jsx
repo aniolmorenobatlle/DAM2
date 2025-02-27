@@ -151,7 +151,7 @@ const styles = {
 
   navButton: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: 8,
     paddingHorizontal: 15,
     borderRadius: 100,
     justifyContent: "center",

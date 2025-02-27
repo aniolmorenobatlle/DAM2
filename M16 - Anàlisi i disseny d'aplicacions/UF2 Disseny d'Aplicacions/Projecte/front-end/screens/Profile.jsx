@@ -27,8 +27,8 @@ export default function Profile() {
       <View style={styles.contentContainer}>
         <View style={styles.avatarContainer}>
           <Image style={styles.avatar} source={roberPattinson}/>
-          <Text style={[globalStyles.textBase, styles.name]}>Jana</Text>
-          <Text style={[globalStyles.textBase, styles.username]}>@jana_2002</Text>
+          <Text style={[globalStyles.textBase, styles.name]}>Robert</Text>
+          <Text style={[globalStyles.textBase, styles.username]}>@robertpattinson</Text>
         </View>
 
         <View style={styles.stats}>
@@ -47,7 +47,7 @@ export default function Profile() {
         </View>
 
         <View style={styles.favoritesContainer}>
-          <Text style={[globalStyles.textBase, styles.favoritesTitle]}>Jana's Favorite Films</Text>
+          <Text style={[globalStyles.textBase, styles.favoritesTitle]}>Robert's Favorite Films</Text>
 
           <View style={styles.favorites}>
             <Image style={styles.favoritesImage} source={thebatman}/>
@@ -107,7 +107,6 @@ const styles = {
     borderRadius: "50%",
     borderWidth: 2,
     borderColor: 'white',
-    marginBottom: 10,
     position: 'absolute',
     top: -120,
   },
@@ -115,11 +114,11 @@ const styles = {
   name: {
     fontSize: 25,
     fontWeight: 'bold',
+    marginVertical: 5
   },
 
   username: {
     fontSize: 12,
-    marginTop: 5,
   },
 
   stats: {

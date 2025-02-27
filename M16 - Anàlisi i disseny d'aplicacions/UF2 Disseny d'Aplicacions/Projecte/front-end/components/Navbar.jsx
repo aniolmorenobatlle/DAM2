@@ -10,7 +10,6 @@ import userNav from '../assets/icons/userNav.png';
 
 import bellActive from '../assets/icons/bellActive.png';
 import homeActive from '../assets/icons/homeActive.png';
-import recomendIconActive from '../assets/icons/recomendIconActive.png';
 import searchActive from '../assets/icons/searchActive.png';
 import userNavActive from '../assets/icons/userNavActive.png';
 
@@ -40,7 +39,7 @@ export default function Navbar({ currentPage }) {
       <TouchableOpacity onPress={() => handleIconClick('Recommend')}>
         <Image
           style={styles.navbarIcon}
-          source={currentPage === 'Recommend' ? recomendIconActive : recomendIcon}
+          source={currentPage === 'Recommend' ? recomendIcon : recomendIcon}
         />
       </TouchableOpacity>
 

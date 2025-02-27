@@ -39,7 +39,7 @@ export default function Home() {
 
           <View>
             <Text style={[globalStyles.textBase, styles.welcomeback]}>
-              Hello, <Text style={styles.welcomebackUser}>Jana</Text>!
+              Hello, <Text style={styles.welcomebackUser}>Robert</Text>!
             </Text>
 
             <Text style={[globalStyles.textBase, styles.newToday]}>
