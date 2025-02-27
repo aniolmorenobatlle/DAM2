@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 
 import bell from '../assets/icons/bell.png';
@@ -14,59 +14,47 @@ import recomendIconActive from '../assets/icons/recomendIconActive.png';
 import searchActive from '../assets/icons/searchActive.png';
 import userNavActive from '../assets/icons/userNavActive.png';
 
-export default function Navbar() {
-  const [currentPage, setCurrentPage] = useState('home');
+export default function Navbar({ currentPage }) {
   const navigation = useNavigation();
 
   const handleIconClick = (page) => {
-    setCurrentPage(page);
-    if (page === 'home') {
-      navigation.navigate('Home');
-    } else if (page === 'search') {
-      navigation.navigate('Search');
-    } else if (page === 'recommend') {
-      navigation.navigate('Recommend');
-    } else if (page === 'notifications') {
-      navigation.navigate('Notifications');
-    } else if (page === 'profile') {
-      navigation.navigate('Profile');
-    }
+    navigation.navigate(page);
   };
 
   return (
     <View style={styles.navbar}>
-      <TouchableOpacity onPress={() => handleIconClick('home')}>
+      <TouchableOpacity onPress={() => handleIconClick('Home')}>
         <Image
           style={styles.navbarIcon}
-          source={currentPage === 'home' ? homeActive : home}
+          source={currentPage === 'Home' ? homeActive : home}
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleIconClick('search')}>
+      <TouchableOpacity onPress={() => handleIconClick('Search')}>
         <Image
           style={styles.navbarIcon}
-          source={currentPage === 'search' ? searchActive : search}
+          source={currentPage === 'Search' ? searchActive : search}
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleIconClick('recommend')}>
+      <TouchableOpacity onPress={() => handleIconClick('Recommend')}>
         <Image
           style={styles.navbarIcon}
-          source={currentPage === 'recommend' ? recomendIconActive : recomendIcon}
+          source={currentPage === 'Recommend' ? recomendIconActive : recomendIcon}
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleIconClick('notifications')}>
+      <TouchableOpacity onPress={() => handleIconClick('Notifications')}>
         <Image
           style={styles.navbarIcon}
-          source={currentPage === 'notifications' ? bellActive : bell}
+          source={currentPage === 'Notifications' ? bellActive : bell}
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => handleIconClick('profile')}>
+      <TouchableOpacity onPress={() => handleIconClick('Profile')}>
         <Image
           style={styles.navbarIcon}
-          source={currentPage === 'profile' ? userNavActive : userNav}
+          source={currentPage === 'Profile' ? userNavActive : userNav}
         />
       </TouchableOpacity>
     </View>
@@ -91,4 +79,4 @@ const styles = {
     width: 30,
     height: 30,
   }
-}
+};

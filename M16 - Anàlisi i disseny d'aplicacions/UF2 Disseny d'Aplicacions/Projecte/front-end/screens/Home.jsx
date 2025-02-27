@@ -12,13 +12,14 @@ import theBatman from '../assets/films/thebatman.jpg';
 
 import clockIcon from '../assets/icons/clock.png';
 import hamburger from '../assets/icons/menu.png';
-import userIcon from '../assets/icons/user.png';
+
+import roberPattinson from '../assets/actors/robert-pattinson.jpg';
 
 const films = [
-  { name: "The Batman", image: theBatman, year: 2022, duration: "175min" },
-  { name: "Pulp Fiction", image: pulpFiction, year: 1994, duration: "154min" },
-  { name: "Avatar", image: avatar, year: 2009, duration: "162min" },
-  { name: "Baby Driver", image: babyDriver, year: 2017, duration: "113min" },
+  { name: "The Batman", image: theBatman, year: 2022, duration: "175 min" },
+  { name: "Pulp Fiction", image: pulpFiction, year: 1994, duration: "154 min" },
+  { name: "Avatar", image: avatar, year: 2009, duration: "162 min" },
+  { name: "Baby Driver", image: babyDriver, year: 2017, duration: "113 min" },
 ]
 
 export default function Home() {
@@ -29,7 +30,7 @@ export default function Home() {
       <View style={styles.header}>
         <Image style={styles.menuIcon} source={hamburger} />
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-          <Image style={styles.menuIcon} source={userIcon} />
+          <Image style={[styles.menuIcon, styles.menuIconAvatar]} source={roberPattinson} />
         </TouchableOpacity>
       </View>
 
@@ -54,7 +55,9 @@ export default function Home() {
 
                 {films.map((film, index) => (
                   <View key={index} style={styles.filmsCard}>
-                    <Image style={styles.filmCardImage} source={film.image} />
+                    <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate('Film', { film })}>
+                      <Image style={styles.filmCardImage} source={film.image} />
+                    </TouchableOpacity>
                     <Text style={[globalStyles.textBase, styles.filmCardName]}>{film.name}</Text>
                   </View>
                 ))}
@@ -67,7 +70,8 @@ export default function Home() {
             <Text style={[globalStyles.textBase, styles.latestTitle]}>Favorite</Text>
 
             <View style={styles.favoriteFilms}>
-              {films.map((film, index) => ( 
+              {films.map((film, index) => (
+                <TouchableOpacity key={index} activeOpacity={0.8} onPress={() => navigation.navigate('Film', { film })}>
                 <View key={index} style={styles.favoriteCard}>
                   <Image style={styles.favoriteCardImage} source={film.image} /> 
                   <View style={styles.favoriteCardInfo}> 
@@ -79,6 +83,7 @@ export default function Home() {
                     </View> 
                   </View> 
                 </View>
+                </TouchableOpacity>
               ))} 
             </View>
           </View>
@@ -101,8 +106,12 @@ const styles = {
   },
 
   menuIcon: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
+  },
+
+  menuIconAvatar: {
+    borderRadius: "50%",
   },
 
   main: {

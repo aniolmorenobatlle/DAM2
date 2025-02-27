@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const navigationRef = useNavigationContainerRef();
-  const [routeName, setRouteName] = useState();
+  const [routeName, setRouteName] = useState("Home");
 
   useEffect(() => {
     const unsubscribe = navigationRef.addListener('state', () => {
@@ -63,8 +63,8 @@ export default function App() {
             options={{ headerShown: false }} 
           />
         </Stack.Navigator>
-        {routeName !== 'Recommend' && routeName !== 'Film' && <Navbar />}
-      </NavigationContainer>
+        {routeName !== 'Recommend' && routeName !== 'Film' && <Navbar currentPage={routeName} />}
+        </NavigationContainer>
     </>
   );
 }
