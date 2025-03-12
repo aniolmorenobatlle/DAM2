@@ -1,0 +1,50 @@
+{"tasques": {"tasca": [
+    {
+        "data": "2024-10-03",
+        "categoria": "Personal",
+        "nom": "Comprar menjar",
+        "prioritat": "Alta"
+    },
+    {
+        "data": "2024-10-05",
+        "categoria": "Feina",
+        "nom": "Acabar projecte XML",
+        "prioritat": "Moderada"
+    },
+    {
+        "data": "2024-10-04",
+        "categoria": "Personal",
+        "nom": "Fer exercici",
+        "prioritat": "Baixa"
+    },
+    {
+        "data": "2024-12-12",
+        "categoria": "Personal",
+        "nom": "Aniol",
+        "prioritat": "Moderada"
+    },
+    {
+        "data": "2020-10-10",
+        "categoria": "Personal",
+        "nom": "prova3",
+        "prioritat": "Moderada"
+    },
+    {
+        "data": "2025-02-05",
+        "categoria": "Personal",
+        "nom": "prova4",
+        "prioritat": "Baixa"
+    },
+    {
+        "data": "2025-02-02",
+        "categoria": "Feina",
+        "nom": "Prova5",
+        "prioritat": "Alta"
+    },
+    {
+        "data": "2025-03-03",
+        "categoria": "Personal",
+        "nom": "Prova6",
+        "prioritat": "Moderada"
+    }
+]}}

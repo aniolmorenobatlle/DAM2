@@ -1,0 +1,46 @@
+{"competicions": {"competicio": [
+    {
+        "edicio": 1,
+        "data": "08/03/2025",
+        "modalitat": "Padel",
+        "preu": 30,
+        "inscripcions": 64,
+        "localitzacio": "Palamos",
+        "id": 1,
+        "equips": {"equip": [
+            {
+                "categoria": 1,
+                "nom": "Pere-Pau",
+                "jugadors": 2
+            },
+            {
+                "categoria": 2,
+                "nom": "Aniol-Aitor",
+                "jugadors": 2
+            }
+        ]},
+        "nom": "Premier Padel Palamos"
+    },
+    {
+        "edicio": 1,
+        "data": "12/12/2025",
+        "modalitat": "Natacio",
+        "preu": 20,
+        "inscripcions": 64,
+        "localitzacio": "palamos",
+        "id": 2,
+        "equips": {"equip": [
+            {
+                "categoria": 1,
+                "nom": "aniol",
+                "jugadors": 1
+            },
+            {
+                "categoria": 1,
+                "nom": "joan",
+                "jugadors": 1
+            }
+        ]},
+        "nom": "natacio"
+    }
+]}}

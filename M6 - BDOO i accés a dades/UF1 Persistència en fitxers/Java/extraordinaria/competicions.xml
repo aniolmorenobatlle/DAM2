@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<competicions>
+  <competicio>
+  	<id>1</id>
+  	<nom>Premier Padel Palamos</nom>
+  	<modalitat>Padel</modalitat>
+  	<edicio>1</edicio>
+  	<localitzacio>Palamos</localitzacio>
+  	<data>08/03/2025</data>
+  	<inscripcions>32</inscripcions>
+  	<preu>30</preu>
+  	<equips>
+  	  <equip>
+  	    <nom>Pere-Pau</nom>
+  	    <categoria>1</categoria>
+  	    <jugadors>2</jugadors>
+  	  </equip>
+  	  <equip>
+  	    <nom>Aniol-Aitor</nom>
+  	    <categoria>2</categoria>
+  	    <jugadors>2</jugadors>
+  	  </equip>
+  	</equips>
+  </competicio>
+	<competicio>
+		<id>2</id>
+		<nom>natacio</nom>
+		<modalitat>Natacio</modalitat>
+		<edicio>1</edicio>
+		<localitzacio>palamos</localitzacio>
+  	<inscripcions>64</inscripcions>
+		<data>12/12/2025</data>
+		<preu>20</preu>
+		<equips>
+			<equip>
+				<nom>aniol</nom>
+				<categoria>1</categoria>
+				<jugadors>1</jugadors>
+			</equip>
+			<equip>
+				<nom>joan</nom>
+				<categoria>1</categoria>
+				<jugadors>1</jugadors>
+			</equip>
+		</equips>
+	</competicio>
+</competicions>

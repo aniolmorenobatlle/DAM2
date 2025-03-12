@@ -30,4 +30,22 @@
     <prioritat>Moderada</prioritat>
     <categoria>Personal</categoria>
   </tasca>
+  <tasca>
+    <nom>prova4</nom>
+    <data>2025-02-05</data>
+    <prioritat>Baixa</prioritat>
+    <categoria>Personal</categoria>
+  </tasca>
+  <tasca>
+    <nom>Prova5</nom>
+    <data>2025-02-02</data>
+    <prioritat>Alta</prioritat>
+    <categoria>Feina</categoria>
+  </tasca>
+  <tasca>
+    <nom>Prova6</nom>
+    <data>2025-03-03</data>
+    <prioritat>Moderada</prioritat>
+    <categoria>Personal</categoria>
+  </tasca>
 </tasques>

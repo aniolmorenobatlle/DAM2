@@ -14,7 +14,7 @@ import thebatman from '../assets/films/thebatman.jpg';
 const lists = [
   { title: 'Watchlist', number: 10 },
   { title: 'Watched', number: 30 },
-  { title: 'FIlms', number: 330 },
+  { title: 'Films', number: 330 },
   { title: 'Reviews', number: 30 },
   { title: 'Likes', number: 302 },
   { title: 'Friends', number: 5 },
