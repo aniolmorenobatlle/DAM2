@@ -1,5 +1,5 @@
 Barcelona, 1
-Real Madrid, 1
+Real Madrid, X
 Atlético Madrid, 1
 Valencia, X
 Sevilla, X

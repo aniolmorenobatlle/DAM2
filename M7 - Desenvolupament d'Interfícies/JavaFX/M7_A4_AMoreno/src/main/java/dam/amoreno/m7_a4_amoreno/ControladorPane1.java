@@ -6,12 +6,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxTableCell;
@@ -36,9 +33,6 @@ public class ControladorPane1 {
     @FXML
     private TableColumn<Travessa, String> ColumnaPrediccio;
 
-    @FXML
-    private Button btnGuardar;
-
     private ObservableList<Travessa> dades = FXCollections.observableArrayList();
     private static final String FITXER_APOSTES = "apostes.txt";
 
@@ -52,16 +46,15 @@ public class ControladorPane1 {
         ColumnaPrediccio
                 .setCellFactory(ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList("1", "X", "2")));
 
-        // En fer un canvi guardar el canvi en el fitxer txt
+        // En fer canvi a la columna de prediccions, guardar les apostes
         ColumnaPrediccio.setOnEditCommit(e -> {
             Travessa travessa = e.getRowValue();
             travessa.setPrediccio(e.getNewValue());
+            guardarApostes();
         });
 
         carregarApostes();
         table.setItems(dades);
-
-        btnGuardar.setOnAction(_ -> guardarApostes());
     }
 
     private void guardarApostes() {
@@ -70,13 +63,6 @@ public class ControladorPane1 {
                 writer.write(travessa.getEquip() + ", " + travessa.getPrediccio());
                 writer.newLine();
             }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Guardat");
-            alert.setHeaderText(null);
-            alert.setContentText("Les apostes s'han guardat correctament");
-            alert.showAndWait().ifPresent(_ -> {
-                Platform.exit();
-            });
         } catch (Exception e) {
             e.printStackTrace();
         }
