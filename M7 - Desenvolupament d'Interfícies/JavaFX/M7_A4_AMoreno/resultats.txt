@@ -1,14 +1,14 @@
 Barcelona, 1
 Real Madrid, X
-Atlético Madrid, X
-Valencia, 1
-Sevilla, X
+Atlético Madrid, 1
+Valencia, X
+Sevilla, 1
 Villarreal, X
 Real Sociedad, X
-Girona, X
+Girona, 2
 Athletic Club, 2
-Granada, 1
-Osasuna, 2
-Levante, X
-Real Betis, 1
+Granada, X
+Osasuna, 1
+Levante, 2
+Real Betis, 2
 Alavés, 2

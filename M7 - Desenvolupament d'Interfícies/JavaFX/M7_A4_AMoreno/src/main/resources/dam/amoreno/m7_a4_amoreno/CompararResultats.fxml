@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="pane3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="944.0" prefWidth="1292.0"
+  xmlns="http://javafx.com/javafx/23.0.1"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.amoreno.m7_a4_amoreno.ControladorPane3">
+  <children>
+    <Text layoutX="192.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La teva predicció">
+      <font>
+        <Font size="35.0" />
+      </font>
+    </Text>
+    <Text layoutX="857.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Els resultats">
+      <font>
+        <Font size="35.0" />
+      </font>
+    </Text>
+    <TableView fx:id="table1" layoutX="129.0" layoutY="177.0" prefHeight="590.0" prefWidth="385.0">
+      <columns>
+        <TableColumn fx:id="columnaEquip1" prefWidth="192" text="Equip" />
+        <TableColumn fx:id="columnaPrediccio1" prefWidth="192" text="Predicció" />
+      </columns>
+    </TableView>
+    <TableView fx:id="table2" layoutX="755.0" layoutY="177.0" prefHeight="590.0" prefWidth="384.0">
+      <columns>
+        <TableColumn fx:id="columnaEquip2" prefWidth="192" text="Equip" />
+        <TableColumn fx:id="columnaPrediccio2" prefWidth="192" text="Resultat" />
+      </columns>
+    </TableView>
+    <Label fx:id="labelEncerts" layoutX="129.0" layoutY="821.0" text="0">
+      <font>
+        <Font size="20.0" />
+      </font>
+    </Label>
+  </children>
+</Pane>

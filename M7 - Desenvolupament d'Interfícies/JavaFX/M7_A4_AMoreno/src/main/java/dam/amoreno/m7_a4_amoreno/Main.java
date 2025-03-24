@@ -22,12 +22,15 @@ public class Main extends Application {
             FXMLLoader fxmlLoader;
             if (vista.equals("pane1")) {
                 fxmlLoader = new FXMLLoader(Main.class.getResource("EntrarPrediccions.fxml"));
-            } else {
+            } else if (vista.equals("pane2")) {
                 fxmlLoader = new FXMLLoader(Main.class.getResource("VeureResultats.fxml"));
+            } else {
+                fxmlLoader = new FXMLLoader(Main.class.getResource("CompararResultats.fxml"));
             }
 
             Scene scene = new Scene(fxmlLoader.load());
             teatre.setTitle("Travessa");
+
             teatre.setScene(scene);
             teatre.setOnCloseRequest(_ -> guardarProperaPantalla(vista));
             teatre.show();
@@ -53,7 +56,9 @@ public class Main extends Application {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FITXER_ESTAT))) {
             if (vistaActual.equals("pane1")) {
                 writer.write("pane2");
-            } else {
+            } else if (vistaActual.equals("pane2")) {
+                writer.write("pane3");
+            } else if (vistaActual.equals("pane3")) {
                 writer.write("pane1");
             }
         } catch (Exception e) {
