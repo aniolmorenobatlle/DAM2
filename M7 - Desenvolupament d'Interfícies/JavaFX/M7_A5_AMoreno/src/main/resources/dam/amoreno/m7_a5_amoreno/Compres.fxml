@@ -17,7 +17,7 @@
             <Font size="53.0" />
          </font>
       </Text>
-      <GridPane fx:id="productGrid" hgap="20.0" layoutX="50.0" layoutY="184.0" vgap="20.0">
+      <GridPane fx:id="producteGrid" hgap="20.0" layoutX="50.0" layoutY="184.0" vgap="20.0">
       </GridPane>
       <ImageView fx:id="imageCarrito" fitHeight="70.0" fitWidth="61.0" layoutX="900.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#handleCarrito">
          <image>

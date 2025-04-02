@@ -2,10 +2,13 @@ package dam.amoreno.m7_a5_amoreno.Carret;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import dam.amoreno.m7_a5_amoreno.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class CarretController {
 
@@ -76,6 +80,19 @@ public class CarretController {
     } catch (Exception e) {
       System.out.println("Error al carregar el carret: " + e.getMessage());
     }
+  }
+
+  @FXML
+  private void handleFactura() throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Factura.fxml"));
+
+    Pane carretRoot = fxmlLoader.load();
+
+    Stage currentSatge = (Stage) producteGrid.getScene().getWindow();
+
+    currentSatge.getScene().setRoot(carretRoot);
+
+    currentSatge.show();
   }
 
 }

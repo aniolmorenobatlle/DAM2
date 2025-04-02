@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 public class CompresController {
 
     @FXML
-    private GridPane productGrid;
+    private GridPane producteGrid;
 
     // Llista productes
     private final List<Producte> productes = List.of(
@@ -39,8 +39,8 @@ public class CompresController {
 
     @FXML
     public void initialize() {
-        productGrid.setHgap(50);
-        productGrid.setVgap(10);
+        producteGrid.setHgap(50);
+        producteGrid.setVgap(10);
 
         int column = 0;
         int row = 0;
@@ -70,7 +70,7 @@ public class CompresController {
 
             vbox.getChildren().addAll(imageView, nomText, preuText);
 
-            productGrid.add(vbox, column, row);
+            producteGrid.add(vbox, column, row);
 
             column++;
             if (column == 3) {
@@ -99,11 +99,10 @@ public class CompresController {
 
         Pane carretRoot = fxmlLoader.load();
 
-        Stage currentSatge = (Stage) productGrid.getScene().getWindow();
+        Stage currentSatge = (Stage) producteGrid.getScene().getWindow();
 
         currentSatge.getScene().setRoot(carretRoot);
 
         currentSatge.show();
-
     }
 }
