@@ -17,8 +17,9 @@
       </Text>
       <TableView fx:id="table" layoutX="423.0" layoutY="174.0" prefHeight="597.0" prefWidth="447.0">
          <columns>
-            <TableColumn fx:id="ColumnaEquip" prefWidth="206.0" text="Equip" />
-            <TableColumn fx:id="ColumnaPrediccio" prefWidth="240.0" text="Predicció" />
+            <TableColumn fx:id="ColumnaEquipLocal" text="Local" prefWidth="150" />
+            <TableColumn fx:id="ColumnaEquipVisitant" text="Visitant" prefWidth="150" />
+            <TableColumn fx:id="ColumnaPrediccio" text="Predicció" prefWidth="150" />
          </columns>
       </TableView>
    </children>

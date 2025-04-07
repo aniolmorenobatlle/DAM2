@@ -1,26 +1,37 @@
 package dam.amoreno.m7_a4_amoreno;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 public class Travessa {
-    private final StringProperty equip;
-    private final StringProperty prediccio;
+    private String equipLocal;
+    private String equipVisitant;
+    private String prediccio;
 
-    public Travessa(String equip, String prediccio) {
-        this.equip = new SimpleStringProperty(equip);
-        this.prediccio = new SimpleStringProperty(prediccio);
+    public Travessa(String equipLocal, String equipVisitant, String prediccio) {
+        this.equipLocal = equipLocal;
+        this.equipVisitant = equipVisitant;
+        this.prediccio = prediccio;
     }
 
-    public String getEquip() {
-        return equip.get();
+    public String getEquipLocal() {
+        return equipLocal;
+    }
+
+    public void setEquipLocal(String equipLocal) {
+        this.equipLocal = equipLocal;
+    }
+
+    public String getEquipVisitant() {
+        return equipVisitant;
+    }
+
+    public void setEquipVisitant(String equipVisitant) {
+        this.equipVisitant = equipVisitant;
     }
 
     public String getPrediccio() {
-        return prediccio.get();
+        return prediccio;
     }
 
     public void setPrediccio(String prediccio) {
-        this.prediccio.set(prediccio);
+        this.prediccio = prediccio;
     }
 }

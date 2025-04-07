@@ -23,7 +23,10 @@ public class ControladorPane3 {
   private TableView<Travessa> table1;
 
   @FXML
-  private TableColumn<Travessa, String> columnaEquip1;
+  private TableColumn<Travessa, String> columnaLocal1;
+
+  @FXML
+  private TableColumn<Travessa, String> columnaVisitant1;
 
   @FXML
   private TableColumn<Travessa, String> columnaPrediccio1;
@@ -32,7 +35,10 @@ public class ControladorPane3 {
   private TableView<Travessa> table2;
 
   @FXML
-  private TableColumn<Travessa, String> columnaEquip2;
+  private TableColumn<Travessa, String> columnaLocal2;
+
+  @FXML
+  private TableColumn<Travessa, String> columnaVisitant2;
 
   @FXML
   private TableColumn<Travessa, String> columnaPrediccio2;
@@ -50,13 +56,15 @@ public class ControladorPane3 {
 
   @FXML
   public void initialize() {
-    columnaEquip1.setCellValueFactory(new PropertyValueFactory<>("equip"));
+    columnaLocal1.setCellValueFactory(new PropertyValueFactory<>("equipLocal"));
+    columnaVisitant1.setCellValueFactory(new PropertyValueFactory<>("equipVisitant"));
     columnaPrediccio1.setCellValueFactory(new PropertyValueFactory<>("prediccio"));
 
-    columnaEquip2.setCellValueFactory(new PropertyValueFactory<>("equip"));
+    columnaLocal2.setCellValueFactory(new PropertyValueFactory<>("equipLocal"));
+    columnaVisitant2.setCellValueFactory(new PropertyValueFactory<>("equipVisitant"));
     columnaPrediccio2.setCellValueFactory(new PropertyValueFactory<>("prediccio"));
 
-    // comprovar si la prediccio es correcte canviant el color de fons de la fila
+    // Comparar i marcar les files
     table1.setRowFactory(_ -> new TableRow<Travessa>() {
       @Override
       protected void updateItem(Travessa item, boolean empty) {
@@ -65,10 +73,9 @@ public class ControladorPane3 {
         if (item == null || empty) {
           setStyle("");
         } else {
-          // Bucar el resultat per comparar
           Travessa resultat = dades2.stream()
-              .filter(t -> t.getEquip()
-                  .equals(item.getEquip()))
+              .filter(t -> t.getEquipLocal().equals(item.getEquipLocal()) &&
+                  t.getEquipVisitant().equals(item.getEquipVisitant()))
               .findFirst()
               .orElse(null);
 
@@ -96,19 +103,16 @@ public class ControladorPane3 {
 
   private void carregarApostes() {
     dades1.clear();
-
     File fitxer = new File(FITXER_APOSTES);
-
     if (fitxer.exists()) {
       try (BufferedReader reader = new BufferedReader(new FileReader(fitxer))) {
         String linia;
         while ((linia = reader.readLine()) != null) {
           String[] parts = linia.split(", ");
-          if (parts.length == 2) {
-            dades1.add(new Travessa(parts[0], parts[1]));
+          if (parts.length == 3) {
+            dades1.add(new Travessa(parts[0], parts[1], parts[2]));
           }
         }
-
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -117,19 +121,16 @@ public class ControladorPane3 {
 
   private void carregarResultats() {
     dades2.clear();
-
     File fitxer = new File(FITXER_RESULTATS);
-
     if (fitxer.exists()) {
       try (BufferedReader reader = new BufferedReader(new FileReader(fitxer))) {
         String linia;
         while ((linia = reader.readLine()) != null) {
           String[] parts = linia.split(", ");
-          if (parts.length == 2) {
-            dades2.add(new Travessa(parts[0], parts[1]));
+          if (parts.length == 3) {
+            dades2.add(new Travessa(parts[0], parts[1], parts[2]));
           }
         }
-
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -141,7 +142,9 @@ public class ControladorPane3 {
 
     for (Travessa t : dades1) {
       for (Travessa r : dades2) {
-        if (t.getEquip().equals(r.getEquip()) && t.getPrediccio().equals(r.getPrediccio())) {
+        if (t.getEquipLocal().equals(r.getEquipLocal()) &&
+            t.getEquipVisitant().equals(r.getEquipVisitant()) &&
+            t.getPrediccio().equals(r.getPrediccio())) {
           encerts++;
         }
       }

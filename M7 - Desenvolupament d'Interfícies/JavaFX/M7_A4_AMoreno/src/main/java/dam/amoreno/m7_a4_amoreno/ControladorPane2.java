@@ -1,6 +1,9 @@
 package dam.amoreno.m7_a4_amoreno;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
@@ -19,59 +22,69 @@ public class ControladorPane2 {
 
     @FXML
     private Pane pane1;
-
     @FXML
     private Text title;
-
     @FXML
     private TableView<Travessa> table;
-
     @FXML
-    private TableColumn<Travessa, String> ColumnaEquip;
-
+    private TableColumn<Travessa, String> ColumnaEquipLocal;
+    @FXML
+    private TableColumn<Travessa, String> ColumnaEquipVisitant;
     @FXML
     private TableColumn<Travessa, String> ColumnaPrediccio;
 
-    @FXML
     private ObservableList<Travessa> dades = FXCollections.observableArrayList();
-    private static final String FITXER_APOSTES = "resultats.txt";
-
-    private String[] equips = {
-            "Barcelona", "Real Madrid", "Atlético Madrid", "Valencia", "Sevilla",
-            "Villarreal", "Real Sociedad", "Girona", "Athletic Club", "Granada",
-            "Osasuna", "Levante", "Real Betis", "Alavés"
-    };
-
+    private static final String FITXER_RESULTATS = "resultats.txt";
+    private static final String FITXER_APOSTES = "apostes.txt";
     private String[] opcions = { "1", "X", "2" };
+    private Random random = new Random();
 
     @FXML
     public void initialize() {
-        table.setEditable(true);
-
-        ColumnaEquip.setCellValueFactory(new PropertyValueFactory<>("equip"));
+        ColumnaEquipLocal.setCellValueFactory(new PropertyValueFactory<>("equipLocal"));
+        ColumnaEquipVisitant.setCellValueFactory(new PropertyValueFactory<>("equipVisitant"));
         ColumnaPrediccio.setCellValueFactory(new PropertyValueFactory<>("prediccio"));
 
-        generarApostesAleatories();
+        generarResultatsAleatorisBasatsEnApostes();
         table.setItems(dades);
     }
 
-    private void generarApostesAleatories() {
+    private void generarResultatsAleatorisBasatsEnApostes() {
         dades.clear();
-        Random random = new Random();
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FITXER_APOSTES))) {
-            for (String equip : equips) {
-                String prediccio = opcions[random.nextInt(opcions.length)];
-                dades.add(new Travessa(equip, prediccio));
-                bw.write(equip + ", " + prediccio);
-                bw.newLine();
+        File fitxerApostes = new File(FITXER_APOSTES);
+        if (!fitxerApostes.exists()) {
+            mostrarError("El fitxer d'apostes no existeix", "Has de generar primer les apostes.");
+            return;
+        }
+
+        try (
+                BufferedReader reader = new BufferedReader(new FileReader(fitxerApostes));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(FITXER_RESULTATS))) {
+            String linia;
+            while ((linia = reader.readLine()) != null) {
+                String[] parts = linia.split(", ");
+                if (parts.length >= 2) {
+                    String local = parts[0];
+                    String visitant = parts[1];
+                    String resultat = opcions[random.nextInt(opcions.length)];
+
+                    dades.add(new Travessa(local, visitant, resultat));
+                    writer.write(local + ", " + visitant + ", " + resultat);
+                    writer.newLine();
+                }
             }
         } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("No s'ha pogut escriure al fitxer");
-            alert.setContentText("Error escrivint " + FITXER_APOSTES);
-            alert.showAndWait();
+            mostrarError("Error de fitxer", "No s'han pogut generar els resultats.");
+            e.printStackTrace();
         }
+    }
+
+    private void mostrarError(String header, String missatge) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(header);
+        alert.setContentText(missatge);
+        alert.showAndWait();
     }
 }
