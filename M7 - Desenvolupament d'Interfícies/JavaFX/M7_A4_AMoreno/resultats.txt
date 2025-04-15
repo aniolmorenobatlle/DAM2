@@ -1,10 +1,10 @@
-Betis, Leganés, 2
-Getafe, Espanyol, X
-Valladolid, Las Palmas, X
-Celta de Vigo, Atlético de Madrid, X
-Alavés, Sevilla FC, X
-Real Madrid, Athletic Club, X
-Real Sociedad, Mallorca, X
-FC Barcelona, Villarreal CF, 2
-Girona FC, Valencia CF, 1
-Rayo Vallecano, Osasuna, X
+Osasuna, Girona FC, X
+Villarreal CF, Atlético de Madrid, 1
+Mallorca, Leganés, X
+Alavés, Valencia CF, 1
+Rayo Vallecano, Las Palmas, X
+Real Sociedad, Getafe, 1
+Celta de Vigo, Espanyol, 2
+Athletic Club, FC Barcelona, 2
+Sevilla FC, Real Madrid, 1
+Valladolid, Betis, 1

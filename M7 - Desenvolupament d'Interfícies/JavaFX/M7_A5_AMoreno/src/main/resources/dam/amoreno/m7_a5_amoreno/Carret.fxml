@@ -7,9 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1200.0" prefWidth="1000.0"
-   xmlns="http://javafx.com/javafx/23.0.1"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.amoreno.m7_a5_amoreno.Carret.CarretController">
+<Pane fx:id="pane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.amoreno.m7_a5_amoreno.Carret.CarretController">
    <children>
       <Text layoutX="46.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carret">
          <font>
@@ -18,9 +16,14 @@
       </Text>
       <GridPane fx:id="producteGrid" layoutX="46.0" layoutY="218.0" prefHeight="135.0" prefWidth="903.0">
       </GridPane>
-      <ImageView fx:id="iconFactura" fitHeight="70.0" fitWidth="61.0" layoutX="900.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#handleFactura">
+      <ImageView fx:id="iconFactura" fitHeight="70.0" fitWidth="60.0" layoutX="906.0" layoutY="41.0" onMouseClicked="#handleFactura" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../factura.png"/>
+            <Image url="@../../../factura.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="iconEnrera" fitHeight="70.0" fitWidth="60.0" layoutX="799.0" layoutY="41.0" onMouseClicked="#handleEnrera" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../enrera.png" />
          </image>
       </ImageView>
    </children>

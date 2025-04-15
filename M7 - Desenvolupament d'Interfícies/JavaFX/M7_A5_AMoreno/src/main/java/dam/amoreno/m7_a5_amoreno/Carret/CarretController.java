@@ -10,8 +10,11 @@ import dam.amoreno.m7_a5_amoreno.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -34,7 +37,7 @@ public class CarretController {
   }
 
   private void carregarCarret() {
-    Map<String, ProducteCarret> productesMap = new HashMap<>();
+    Map<String, ProducteCarret> productes = new HashMap<>();
 
     try (BufferedReader reader = new BufferedReader(new FileReader(rutaFitxer))) {
       String linia;
@@ -48,19 +51,14 @@ public class CarretController {
           double preuUnitari = Double.parseDouble(parts[2].replace("€", ""));
           String imagePath = parts[3];
 
-          // Si ja existeix afegir la quantitat
-          if (productesMap.containsKey(nom)) {
-            productesMap.get(nom).afegirQuantitat(quantitat);
-          } else {
-            productesMap.put(nom, new ProducteCarret(nom, preuUnitari, quantitat, imagePath));
-          }
+          productes.put(nom, new ProducteCarret(nom, preuUnitari, quantitat, imagePath));
         }
       }
 
       // Afegir productes al grid
       int row = 0;
 
-      for (ProducteCarret producte : productesMap.values()) {
+      for (ProducteCarret producte : productes.values()) {
         HBox fila = new HBox(20);
         fila.setPadding(new Insets(20));
 
@@ -83,16 +81,22 @@ public class CarretController {
   }
 
   @FXML
-  private void handleFactura() throws IOException {
+  void handleFactura(MouseEvent event) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Factura.fxml"));
-
     Pane carretRoot = fxmlLoader.load();
 
     Stage currentSatge = (Stage) producteGrid.getScene().getWindow();
 
     currentSatge.getScene().setRoot(carretRoot);
-
     currentSatge.show();
   }
 
+  @FXML
+  void handleEnrera(MouseEvent event) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Compres.fxml"));
+    Parent root = fxmlLoader.load();
+
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.getScene().setRoot(root);
+  }
 }

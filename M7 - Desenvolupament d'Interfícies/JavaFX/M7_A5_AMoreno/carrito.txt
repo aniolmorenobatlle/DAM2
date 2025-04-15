@@ -1,12 +1,1 @@
-Peres - 1 - 5.99€ - /pera.jpg
-Arros - 1 - 12.50€ - /arros.jpg
-Carn - 1 - 30.75€ - /filet.jpg
-Cafe - 1 - 25.00€ - /cafe.jpg
-Cafe - 1 - 25.00€ - /cafe.jpg
-Cafe - 1 - 25.00€ - /cafe.jpg
-Cafe - 1 - 25.00€ - /cafe.jpg
-Peres - 1 - 5.99€ - /pera.jpg
-Peres - 1 - 5.99€ - /pera.jpg
-Gambes - 1 - 18.49€ - /gamba.jpg
-Peres - 1 - 5.99€ - /pera.jpg
-Arros - 1 - 12.50€ - /arros.jpg
+Arros - 3 - 12.50€ - /arros.jpg
