@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane fx:id="pane2" prefHeight="980.0" prefWidth="1500.0"
+   xmlns="http://javafx.com/javafx/23.0.1"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.amoreno.m7_a6_amoreno.Escenari2.ControllerPane2">
+   <children>
+      <VBox prefHeight="980.0" prefWidth="1500.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="250.0" style="-fx-padding: 15;">
+               <children>
+                  <ImageView fx:id="imageViewCircuit" fitHeight="236.0" fitWidth="266.0" pickOnBounds="true" preserveRatio="true" />
+
+                  <Region fx:id="leftSpacer" HBox.hgrow="ALWAYS" />
+
+                  <Button fx:id="btnAccelerar" mnemonicParsing="false" text="Accelerar" onAction="#accelerar">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+
+                  <Region fx:id="rightSpacer" HBox.hgrow="ALWAYS" />
+
+                  <Button fx:id="btnClassificacio" mnemonicParsing="false" text="Classificació" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+
+            <VBox fx:id="paneCursa" prefHeight="700.0" prefWidth="0.0" style="-fx-background-color: #EED09D; -fx-border-color: red; -fx-border-width: 1;" spacing="20">
+               <padding>
+                  <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</Pane>

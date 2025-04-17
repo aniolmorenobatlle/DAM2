@@ -9,8 +9,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
+import dam.amoreno.m7_a6_amoreno.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class ControllerPane1 {
 
@@ -300,7 +305,7 @@ public class ControllerPane1 {
                 writer.newLine();
             }
 
-            alerts("INFORMATION", "Èxit", "Imatge guardada correctament.");
+            alerts("INFORMATION", "Exit", "Imatge guardada correctament.");
 
             textFieldNomCircuit.clear();
             imagePreviewCircuit.setImage(null);
@@ -310,6 +315,16 @@ public class ControllerPane1 {
             e.printStackTrace();
             alerts("ERROR", "Error", "No s'ha pogut guardar la imatge.");
         }
+    }
+
+    // ---------------------------- Començar
+    @FXML
+    private void comencar(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Escenari2.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
     }
 
     // ---------------------------- Global
