@@ -234,7 +234,7 @@ public class ControllerPane1 {
             }
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(pilotsFile, true))) {
-                writer.write(nomPilot + ", " + dorsal + ", " + escuderia + ", " + nomPilot + ".jpg");
+                writer.write(nomPilot + ", " + dorsal + ", " + escuderia + ", " + nomPilotFitxer + ".jpg");
                 writer.newLine();
             }
 
