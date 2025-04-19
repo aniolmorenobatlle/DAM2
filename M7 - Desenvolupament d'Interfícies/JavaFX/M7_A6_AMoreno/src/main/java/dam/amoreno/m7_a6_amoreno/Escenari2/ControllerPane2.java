@@ -17,12 +17,18 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import dam.amoreno.m7_a6_amoreno.Main;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class ControllerPane2 {
@@ -276,4 +282,12 @@ public class ControllerPane2 {
     }
   }
 
+  @FXML
+  private void canviEscenari(ActionEvent event) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Escenari3.fxml"));
+    Parent root = fxmlLoader.load();
+
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.getScene().setRoot(root);
+  }
 }

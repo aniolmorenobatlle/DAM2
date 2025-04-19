@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="scrollPane1" prefHeight="980.0" prefWidth="1500.0"
+  xmlns="http://javafx.com/javafx/23.0.1"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.amoreno.m7_a6_amoreno.Escenari3.ControllerPane3">
+
+  <VBox alignment="CENTER" prefWidth="1400.0" spacing="20" style="-fx-padding: 20;">
+    <HBox alignment="TOP_RIGHT">
+      <Button text="Classificació Provisional Campionat">
+        <Font size="20" />
+      </Button>
+    </HBox>
+
+    <HBox alignment="BOTTOM_CENTER" spacing="20">
+      <VBox alignment="BOTTOM_CENTER" spacing="5">
+        <ImageView fx:id="imageViewPodi3" fitHeight="100" fitWidth="100" />
+        <Pane prefHeight="100" prefWidth="100" style="-fx-background-color: #cccccc;" />
+      </VBox>
+
+      <VBox alignment="BOTTOM_CENTER" spacing="5">
+        <ImageView fx:id="imageViewPodi1" fitHeight="100" fitWidth="100" />
+        <Pane prefHeight="200" prefWidth="100" style="-fx-background-color: #cccccc;" />
+      </VBox>
+
+      <VBox alignment="BOTTOM_CENTER" spacing="5">
+        <ImageView fx:id="imageViewPodi2" fitHeight="100" fitWidth="100" />
+        <Pane prefHeight="150" prefWidth="100" style="-fx-background-color: #cccccc;" />
+      </VBox>
+    </HBox>
+
+    <VBox fx:id="llistaVBox" spacing="10">
+    </VBox>
+  </VBox>
+
+</ScrollPane>

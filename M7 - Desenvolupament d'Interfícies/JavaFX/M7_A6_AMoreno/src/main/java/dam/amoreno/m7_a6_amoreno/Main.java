@@ -1,5 +1,7 @@
 package dam.amoreno.m7_a6_amoreno;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -18,6 +20,17 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        resetClassificacio();
         launch();
+    }
+
+    private static void resetClassificacio() {
+        String fitxerClassificacio = "classificacioMundial.txt";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fitxerClassificacio))) {
+            // Buidar el fitxer de classificacio al iniciar la cursa
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
