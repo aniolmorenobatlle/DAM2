@@ -1,4 +1,4 @@
-package dam.amoreno.m7_a6_amoreno.Escenari3;
+package dam.amoreno.m7_a6_amoreno.Escenari4;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,16 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ControllerPane3 {
-
-  @FXML
-  private ImageView imageViewPodi1;
-
-  @FXML
-  private ImageView imageViewPodi2;
-
-  @FXML
-  private ImageView imageViewPodi3;
+public class ControllerPane4 {
 
   @FXML
   private VBox llistaVBox;
@@ -65,13 +56,14 @@ public class ControllerPane3 {
     }
 
     // Llegir fitxer classificacio
-    try (BufferedReader br = new BufferedReader(new FileReader("classificacioCursa.txt"))) {
+    try (BufferedReader br = new BufferedReader(new FileReader("classificacioMundial.txt"))) {
       String linia;
       int posicio = 1;
 
       while ((linia = br.readLine()) != null) {
-        String[] parts = linia.split("- ");
-        String nom = parts[1].toLowerCase();
+        String[] parts = linia.split("-");
+        String nom = parts[1].trim().toLowerCase();
+        int punts = Integer.parseInt(parts[2].trim());
 
         if (dadesPilots.containsKey(nom)) {
           String dadesPilot = dadesPilots.get(nom);
@@ -82,17 +74,7 @@ public class ControllerPane3 {
 
           String imatgePath = "/dam/amoreno/m7_a6_amoreno/images/pilots/" + imatge;
 
-          if (posicio == 1) {
-            imageViewPodi1.setImage(
-                new Image(getClass().getResource(imatgePath).toString()));
-          } else if (posicio == 2) {
-            imageViewPodi2.setImage(
-                new Image(getClass().getResource(imatgePath).toString()));
-          } else if (posicio == 3) {
-            imageViewPodi3.setImage(
-                new Image(getClass().getResource(imatgePath).toString()));
-          }
-          Label label = new Label(posicio + "- " + nom + " (" + dorsal + ") - " + equip);
+          Label label = new Label(posicio + "- " + nom + " (" + dorsal + ") - " + equip + " - " + punts + " punts");
           label.setStyle("-fx-font-size: 18px;");
 
           ImageView imageView = new ImageView(new Image(getClass().getResource(imatgePath).toString()));
@@ -117,8 +99,8 @@ public class ControllerPane3 {
   }
 
   @FXML
-  private void classificacioProvisional(ActionEvent event) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Escenari4.fxml"));
+  private void podiumCampionat(ActionEvent event) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Escenari5.fxml"));
     Parent root = fxmlLoader.load();
 
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

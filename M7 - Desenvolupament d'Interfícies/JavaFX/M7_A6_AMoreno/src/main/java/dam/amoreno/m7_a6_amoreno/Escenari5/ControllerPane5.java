@@ -1,4 +1,4 @@
-package dam.amoreno.m7_a6_amoreno.Escenari3;
+package dam.amoreno.m7_a6_amoreno.Escenari5;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,22 +6,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import dam.amoreno.m7_a6_amoreno.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-public class ControllerPane3 {
+public class ControllerPane5 {
 
   @FXML
   private ImageView imageViewPodi1;
@@ -31,9 +21,6 @@ public class ControllerPane3 {
 
   @FXML
   private ImageView imageViewPodi3;
-
-  @FXML
-  private VBox llistaVBox;
 
   @FXML
   private ScrollPane scrollPane1;
@@ -65,19 +52,17 @@ public class ControllerPane3 {
     }
 
     // Llegir fitxer classificacio
-    try (BufferedReader br = new BufferedReader(new FileReader("classificacioCursa.txt"))) {
+    try (BufferedReader br = new BufferedReader(new FileReader("classificacioMundial.txt"))) {
       String linia;
       int posicio = 1;
 
       while ((linia = br.readLine()) != null) {
-        String[] parts = linia.split("- ");
-        String nom = parts[1].toLowerCase();
+        String[] parts = linia.split("-");
+        String nom = parts[1].trim().toLowerCase();
 
         if (dadesPilots.containsKey(nom)) {
           String dadesPilot = dadesPilots.get(nom);
           String[] dades = dadesPilot.split(", ");
-          String dorsal = dades[0];
-          String equip = dades[1];
           String imatge = dades[2];
 
           String imatgePath = "/dam/amoreno/m7_a6_amoreno/images/pilots/" + imatge;
@@ -92,19 +77,6 @@ public class ControllerPane3 {
             imageViewPodi3.setImage(
                 new Image(getClass().getResource(imatgePath).toString()));
           }
-          Label label = new Label(posicio + "- " + nom + " (" + dorsal + ") - " + equip);
-          label.setStyle("-fx-font-size: 18px;");
-
-          ImageView imageView = new ImageView(new Image(getClass().getResource(imatgePath).toString()));
-          imageView.setFitHeight(50);
-          imageView.setFitWidth(50);
-          imageView.setPreserveRatio(true);
-
-          HBox hbox = new HBox(10);
-          hbox.setAlignment(Pos.CENTER_LEFT);
-          hbox.getChildren().addAll(label, imageView);
-
-          llistaVBox.getChildren().add(hbox);
 
           posicio++;
         } else {
@@ -116,12 +88,4 @@ public class ControllerPane3 {
     }
   }
 
-  @FXML
-  private void classificacioProvisional(ActionEvent event) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Escenari4.fxml"));
-    Parent root = fxmlLoader.load();
-
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    stage.getScene().setRoot(root);
-  }
 }

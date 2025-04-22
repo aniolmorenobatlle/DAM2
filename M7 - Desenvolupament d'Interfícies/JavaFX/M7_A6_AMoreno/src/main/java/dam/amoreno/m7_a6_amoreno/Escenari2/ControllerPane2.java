@@ -232,47 +232,21 @@ public class ControllerPane2 {
 
   private void actualizarClassificacioMundial() {
     try {
-      Map<String, Integer> puntsMundial = new HashMap<>();
-
-      // Llegir classificacio mundial
+      // Fitxer on escriure classificacio mundial
       File fitxerMundial = new File(fitxerClassificacioMundial);
-
-      if (fitxerMundial.exists()) {
-        try (BufferedReader br = new BufferedReader(new FileReader(fitxerMundial))) {
-          String linia;
-
-          while ((linia = br.readLine()) != null) {
-            String[] parts = linia.split(" - ");
-            if (parts.length == 2) {
-              String nom = parts[0];
-              int punts = Integer.parseInt(parts[1]);
-              puntsMundial.put(nom, punts);
-            }
-          }
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      } else {
+      if (!fitxerMundial.exists()) {
         fitxerMundial.createNewFile();
       }
 
       // Afegir punts de la cursa actual
       int[] puntsPerPosicio = { 25, 18, 15, 12, 10, 8, 6, 4, 2, 1 };
-      for (int i = 0; i < classificacioActual.size(); i++) {
-        // Obtenir pilot i posicio
-        String nomPilot = classificacioActual.get(i).getNomPilot();
-        int punts = (i < puntsPerPosicio.length) ? puntsPerPosicio[i] : 0;
-        puntsMundial.put(nomPilot, puntsMundial.getOrDefault(nomPilot, 0) + punts);
-      }
-
-      // Escriure nova classificacio mundial
-      try (BufferedWriter bw = new BufferedWriter(new FileWriter(fitxerClassificacioMundial))) {
-
-        for (Map.Entry<String, Integer> entry : puntsMundial.entrySet()) {
-          bw.write(entry.getKey() + " - " + entry.getValue());
+      try (BufferedWriter bw = new BufferedWriter(new FileWriter(fitxerClassificacioMundial, true))) {
+        for (int i = 0; i < classificacioActual.size(); i++) {
+          String nomPilot = classificacioActual.get(i).getNomPilot();
+          int punts = (i < puntsPerPosicio.length) ? puntsPerPosicio[i] : 0;
+          bw.write((i + 1) + " - " + nomPilot + " - " + punts);
           bw.newLine();
         }
-
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -280,6 +254,7 @@ public class ControllerPane2 {
     } catch (Exception e) {
       e.printStackTrace();
     }
+
   }
 
   @FXML
