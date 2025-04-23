@@ -22,6 +22,9 @@ public class Main extends Application {
     public static void main(String[] args) {
         resetClassificacio();
         resetCircuits();
+        resetPilots();
+        resetEscuderies();
+
         launch();
     }
 
@@ -39,6 +42,26 @@ public class Main extends Application {
         String fitxerCircuits = "circuits.txt";
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fitxerCircuits))) {
+            // Buidar el fitxer de classificacio al iniciar la cursa
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void resetPilots() {
+        String fitxerPilots = "pilots.txt";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fitxerPilots))) {
+            // Buidar el fitxer de classificacio al iniciar la cursa
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void resetEscuderies() {
+        String fitxerEscuderies = "escuderies.txt";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fitxerEscuderies))) {
             // Buidar el fitxer de classificacio al iniciar la cursa
         } catch (IOException e) {
             e.printStackTrace();
