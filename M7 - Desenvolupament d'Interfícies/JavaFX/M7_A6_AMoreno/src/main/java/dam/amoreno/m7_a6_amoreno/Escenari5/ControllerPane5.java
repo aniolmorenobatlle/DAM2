@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 public class ControllerPane5 {
 
@@ -21,6 +22,9 @@ public class ControllerPane5 {
 
   @FXML
   private ImageView imageViewPodi3;
+
+  @FXML
+  private Text textCampio;
 
   @FXML
   private ScrollPane scrollPane1;
@@ -70,6 +74,8 @@ public class ControllerPane5 {
           if (posicio == 1) {
             imageViewPodi1.setImage(
                 new Image(getClass().getResource(imatgePath).toString()));
+
+            textCampio.setText(nom);
           } else if (posicio == 2) {
             imageViewPodi2.setImage(
                 new Image(getClass().getResource(imatgePath).toString()));

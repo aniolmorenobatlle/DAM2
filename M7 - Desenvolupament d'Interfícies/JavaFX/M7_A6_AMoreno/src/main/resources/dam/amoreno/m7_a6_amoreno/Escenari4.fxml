@@ -12,7 +12,7 @@
 
   <VBox alignment="CENTER" prefWidth="1400.0" spacing="20" style="-fx-padding: 20;">
     <HBox alignment="TOP_RIGHT" spacing="20">
-      <Button text="Propera cursa">
+      <Button text="Propera cursa" onAction="#properaCursa">
         <font>
           <Font size="20.0" />
         </font>

@@ -99,6 +99,15 @@ public class ControllerPane4 {
   }
 
   @FXML
+  private void properaCursa(ActionEvent event) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Escenari2.fxml"));
+    Parent root = fxmlLoader.load();
+
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.getScene().setRoot(root);
+  }
+
+  @FXML
   private void podiumCampionat(ActionEvent event) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Escenari5.fxml"));
     Parent root = fxmlLoader.load();

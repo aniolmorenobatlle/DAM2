@@ -301,7 +301,7 @@ public class ControllerPane1 {
             }
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(circuitsFile, true))) {
-                writer.write(nomCircuit + ", " + dataCircuit + ", " + nomCircuitFitxer + ".jpg");
+                writer.write(nomCircuit + ", " + dataCircuit + ", " + nomCircuitFitxer + ".jpg" + ", " + false);
                 writer.newLine();
             }
 
@@ -310,6 +310,7 @@ public class ControllerPane1 {
             textFieldNomCircuit.clear();
             imagePreviewCircuit.setImage(null);
             imatgeSeleccionadaCircuit = null;
+            datePickerDataCircuit.setValue(null);
 
         } catch (Exception e) {
             e.printStackTrace();

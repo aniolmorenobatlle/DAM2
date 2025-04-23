@@ -28,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -43,6 +44,9 @@ public class ControllerPane2 {
   private ImageView imageViewCircuit;
 
   @FXML
+  private Text textData;
+
+  @FXML
   private Pane pane2;
 
   @FXML
@@ -55,8 +59,11 @@ public class ControllerPane2 {
   private int classificacio = 1;
   private int cotxesAcabats = 0;
 
+  private Circuit circuitActual;
+
   String fitxerClassificacioCursa = "classificacioCursa.txt";
   String fitxerClassificacioMundial = "classificacioMundial.txt";
+  String fitxerCircuits = "circuits.txt";
 
   @FXML
   private void initialize() {
@@ -73,19 +80,19 @@ public class ControllerPane2 {
   void llegirCircuits() {
     List<Circuit> circuits = new ArrayList<>();
 
-    String ruta = "circuits.txt";
-
-    try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+    try (BufferedReader br = new BufferedReader(new FileReader(fitxerCircuits))) {
       String linia;
 
       while ((linia = br.readLine()) != null) {
         String[] parts = linia.split(", ");
 
-        if (parts.length == 3) {
+        if (parts.length == 4) {
           String nom = parts[0];
           LocalDate data = LocalDate.parse(parts[1]);
           String imatge = parts[2];
-          circuits.add(new Circuit(nom, data, imatge));
+          boolean corregut = Boolean.parseBoolean(parts[3]);
+
+          circuits.add(new Circuit(nom, data, imatge, corregut));
         }
       }
     } catch (Exception e) {
@@ -94,17 +101,29 @@ public class ControllerPane2 {
 
     circuits.sort(Comparator.comparing(Circuit::getData));
 
-    // Mostrar imatge del primer circuit
-    if (!circuits.isEmpty()) {
-      String nomImatge = circuits.get(0).getImatge();
-      InputStream inputStream = getClass()
-          .getResourceAsStream("/dam/amoreno/m7_a6_amoreno/images/circuit/" + nomImatge);
-      if (inputStream == null) {
-        System.out.println("No s'ha trobat el fitxer: " + nomImatge);
-      } else {
-        Image imatge = new Image(inputStream);
-        imageViewCircuit.setImage(imatge);
+    // Filtrar primera cursa que no sha corregut
+    for (Circuit c : circuits) {
+      if (!c.isCorregut()) {
+        circuitActual = c;
+        mostrarCircuit(c);
+        break;
       }
+    }
+
+  }
+
+  void mostrarCircuit(Circuit c) {
+    InputStream inputStream = getClass()
+        .getResourceAsStream("/dam/amoreno/m7_a6_amoreno/images/circuit/" + c.getImatge());
+
+    if (inputStream == null) {
+      System.out.println("No s'ha trobat la imatge del circuit: " + c.getImatge());
+      return;
+    } else {
+      Image image = new Image(inputStream);
+      imageViewCircuit.setImage(image);
+
+      textData.setText(c.getData().toString());
     }
   }
 
@@ -232,33 +251,87 @@ public class ControllerPane2 {
 
   private void actualizarClassificacioMundial() {
     try {
-      // Fitxer on escriure classificacio mundial
       File fitxerMundial = new File(fitxerClassificacioMundial);
-      if (!fitxerMundial.exists()) {
-        fitxerMundial.createNewFile();
+      Map<String, Integer> classificacio = new HashMap<>();
+
+      // Si existeix llegim la quali anterior
+      if (fitxerMundial.exists()) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fitxerMundial))) {
+          String linia;
+          while ((linia = br.readLine()) != null) {
+            String[] parts = linia.split(" - ");
+            if (parts.length == 3) {
+              String nom = parts[1].trim();
+              int punts = Integer.parseInt(parts[2].trim());
+              classificacio.put(nom, classificacio.getOrDefault(nom, 0) + punts);
+            }
+          }
+        }
       }
 
-      // Afegir punts de la cursa actual
+      // Afegim els punts
       int[] puntsPerPosicio = { 25, 18, 15, 12, 10, 8, 6, 4, 2, 1 };
-      try (BufferedWriter bw = new BufferedWriter(new FileWriter(fitxerClassificacioMundial, true))) {
-        for (int i = 0; i < classificacioActual.size(); i++) {
-          String nomPilot = classificacioActual.get(i).getNomPilot();
-          int punts = (i < puntsPerPosicio.length) ? puntsPerPosicio[i] : 0;
-          bw.write((i + 1) + " - " + nomPilot + " - " + punts);
-          bw.newLine();
+
+      for (int i = 0; i < classificacioActual.size(); i++) {
+        String nomPilot = classificacioActual.get(i).getNomPilot();
+        int punts;
+        if (i < puntsPerPosicio.length) {
+          punts = puntsPerPosicio[i];
+        } else {
+          punts = 0;
         }
-      } catch (Exception e) {
-        e.printStackTrace();
+
+        classificacio.put(nomPilot, classificacio.getOrDefault(nomPilot, 0) + punts);
+      }
+
+      // Ordenar per punts
+      List<Map.Entry<String, Integer>> llistaOrdenada = new ArrayList<>(classificacio.entrySet());
+      llistaOrdenada.sort((a, b) -> Integer.compare(b.getValue(), a.getValue()));
+
+      // Escriure nova classificacio
+      try (BufferedWriter bw = new BufferedWriter(new FileWriter(fitxerClassificacioMundial))) {
+        int posicio = 1;
+        for (Map.Entry<String, Integer> entry : llistaOrdenada) {
+          bw.write(posicio + " - " + entry.getKey() + " - " + entry.getValue());
+          bw.newLine();
+          posicio++;
+        }
       }
 
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
 
+  void marcarCircuitCorregut(Circuit circuitActual) {
+    List<String> liniesModificades = new ArrayList<>();
+
+    try (BufferedReader br = new BufferedReader(new FileReader(fitxerCircuits))) {
+      String linia;
+      while ((linia = br.readLine()) != null) {
+        if (linia.contains(circuitActual.getNom())) {
+          linia = circuitActual.getNom() + ", " + circuitActual.getData() + ", " + circuitActual.getImatge() + ", true";
+        }
+        liniesModificades.add(linia);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(fitxerCircuits))) {
+      for (String linia : liniesModificades) {
+        bw.write(linia);
+        bw.newLine();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @FXML
   private void canviEscenari(ActionEvent event) throws IOException {
+    marcarCircuitCorregut(circuitActual);
+
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Escenari3.fxml"));
     Parent root = fxmlLoader.load();
 

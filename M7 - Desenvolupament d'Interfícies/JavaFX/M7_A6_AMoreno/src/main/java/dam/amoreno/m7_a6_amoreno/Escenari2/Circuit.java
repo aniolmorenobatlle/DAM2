@@ -6,11 +6,13 @@ public class Circuit {
   private String nom;
   private LocalDate data;
   private String imatge;
+  private boolean corregut = false;
 
-  public Circuit(String nom, LocalDate data, String imatge) {
+  public Circuit(String nom, LocalDate data, String imatge, boolean corregut) {
     this.nom = nom;
     this.data = data;
     this.imatge = imatge;
+    this.corregut = corregut;
   }
 
   public String getNom() {
@@ -23,5 +25,13 @@ public class Circuit {
 
   public String getImatge() {
     return imatge;
+  }
+
+  public boolean isCorregut() {
+    return corregut;
+  }
+
+  public void setCorregut(boolean corregut) {
+    this.corregut = corregut;
   }
 }
