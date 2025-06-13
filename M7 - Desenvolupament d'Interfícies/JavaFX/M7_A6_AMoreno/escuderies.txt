@@ -1,4 +1,2 @@
-Ferrari, Ferrari.jpg
-Red Bull, RedBull.jpg
 Mercedes, Mercedes.jpg
 McLaren, McLaren.jpg

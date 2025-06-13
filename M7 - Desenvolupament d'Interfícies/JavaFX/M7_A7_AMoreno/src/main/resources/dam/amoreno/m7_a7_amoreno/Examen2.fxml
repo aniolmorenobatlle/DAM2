@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<Pane id="pane1" fx:id="pane1" maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles/examen2.css"
+   xmlns="http://javafx.com/javafx/23.0.1"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="dam.amoreno.m7_a7_amoreno.Examen.ControllerExamen2">
+
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+         <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+         </padding>
+         <children>
+            <ImageView fx:id="imageView1" fitHeight="420.0" fitWidth="530.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+      <VBox layoutX="600.0" prefHeight="413.0" prefWidth="600.0" spacing="20.0">
+         <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+         </padding>
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Text id="text" fx:id="textPregunta" text="Pregunta:" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <RadioButton id="radioBtnResposta" fx:id="radioBtnResposta1" mnemonicParsing="false">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="toggleGroup" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <Text id="text" fx:id="textResposta1" text="Resposta 1:" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <RadioButton id="radioBtnResposta" fx:id="radioBtnResposta2" mnemonicParsing="false" toggleGroup="$toggleGroup" />
+                        <Text id="text" fx:id="textResposta2" text="Resposta 2:" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <RadioButton id="radioBtnResposta" fx:id="radioBtnResposta3" mnemonicParsing="false" toggleGroup="$toggleGroup" />
+                        <Text id="text" fx:id="textResposta3" text="Resposta 3:" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+
+      <Button id="btn" fx:id="btnAnterior" onAction="#btnAnterior" alignment="CENTER" layoutX="14.0" layoutY="662.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="150.0" text="Pregunta anterior" />
+      <Button id="btn" fx:id="btnSeguent" onAction="#btnSeguent" alignment="CENTER" layoutX="1036.0" layoutY="662.0" mnemonicParsing="false" text="Següent pregunta" />
+      <Button id="btn" fx:id="btnFinalitzar" onAction="#btnFinalitzar" alignment="CENTER" layoutX="1036.0" layoutY="714.0" mnemonicParsing="false" prefHeight="40.0" text="Finalitzar examen" />
+
+   </children>
+</Pane>
